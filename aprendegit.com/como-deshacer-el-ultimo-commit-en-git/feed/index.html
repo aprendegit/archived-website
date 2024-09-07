@@ -205,29 +205,29 @@ Gracias]]></description>
 
 					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16898&quot;&gt;JAvi&lt;/a&gt;.
 
-Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero &quot;index.html&quot; que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).
+Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero &quot;&quot; que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).
 
-Supongamos que este es el contenido del fichero index.html en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)
+Supongamos que este es el contenido del fichero  en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)
 
 &lt;code&gt;
-# index.html Commit1 
+#  Commit1 
 &#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
 &lt;/code&gt;
 
 &lt;code&gt;
-# index.html Commit2
+#  Commit2
 &#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
 &#060;a href=&quot;pagina2.html&quot; rel=&quot;nofollow&quot;&gt;Página 2&#060;/a&gt;
 &lt;/code&gt;
 
 &lt;code&gt;
-# index.html Commit3
+#  Commit3
 &#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
 &#060;a href=&quot;pagina2.html&quot; rel=&quot;nofollow&quot;&gt;Página 2&#060;/a&gt;
 &#060;a href=&quot;pagina3.html&quot; rel=&quot;nofollow&quot;&gt;Página 3&#060;/a&gt;
 &lt;/code&gt;
 
-Si quieres borrar el fichero &quot;index.html&quot; del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción &quot;edit&quot; del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:
+Si quieres borrar el fichero &quot;&quot; del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción &quot;edit&quot; del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:
 
 Imagina que este es tu repositorio:
 
@@ -248,30 +248,30 @@ edit ac1a1c8 Commit 1
 pick d7c982c Commit 2
 pick d36db1d Commit 3
 
-Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero index.html. También podrías usar la opción &quot;exec&quot; del rebase interactivo y borrar el fichero ejecutando un comando rm.
+Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero . También podrías usar la opción &quot;exec&quot; del rebase interactivo y borrar el fichero ejecutando un comando rm.
 
-Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero index.html que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.
+Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero  que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.
 
 ¿Te he respondido a la pregunta?]]></description>
 			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16898">JAvi</a>.</p>
-<p>Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero «index.html» que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).</p>
-<p>Supongamos que este es el contenido del fichero index.html en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)</p>
+<p>Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero «» que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).</p>
+<p>Supongamos que este es el contenido del fichero  en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)</p>
 <p><code><br />
-# index.html Commit1<br />
+#  Commit1<br />
 &lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
 </code></p>
 <p><code><br />
-# index.html Commit2<br />
+#  Commit2<br />
 &lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
 &lt;a href="pagina2.html" rel="nofollow">Página 2&lt;/a><br />
 </code></p>
 <p><code><br />
-# index.html Commit3<br />
+#  Commit3<br />
 &lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
 &lt;a href="pagina2.html" rel="nofollow">Página 2&lt;/a><br />
 &lt;a href="pagina3.html" rel="nofollow">Página 3&lt;/a><br />
 </code></p>
-<p>Si quieres borrar el fichero «index.html» del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción «edit» del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:</p>
+<p>Si quieres borrar el fichero «» del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción «edit» del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:</p>
 <p>Imagina que este es tu repositorio:</p>
 <p>* d36db1d (master) Commit 3<br />
 * d7c982c Commit 2<br />
@@ -285,8 +285,8 @@ Cuando termines el primer paso del rebase interactivo y git genere el siguiente 
 <p>edit ac1a1c8 Commit 1<br />
 pick d7c982c Commit 2<br />
 pick d36db1d Commit 3</p>
-<p>Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero index.html. También podrías usar la opción «exec» del rebase interactivo y borrar el fichero ejecutando un comando rm.</p>
-<p>Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero index.html que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.</p>
+<p>Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero . También podrías usar la opción «exec» del rebase interactivo y borrar el fichero ejecutando un comando rm.</p>
+<p>Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero  que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.</p>
 <p>¿Te he respondido a la pregunta?</p>
 ]]></content:encoded>
 		

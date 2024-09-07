@@ -176,7 +176,7 @@ computer data so it may be used to restore the original after a data loss event.
 <li>Roberto Tyley nos ha presentado BFG-repo-cleaner, una herramienta escrita en Scala que multiplica por mucho la velocidad de git-filter-branch: <a href="http://rtyley.github.io/bfg-repo-cleaner/">http://rtyley.github.io/bfg-repo-cleaner/</a>. En este enlace tenéis un vídeo que compara el rendimiento de un raspberry-pi usando su herramienta vs un MacBook Pro usando git-filter-branch&#8230; por supuesto gana la RaspberryPi.</li>
 <li>Michael Haggerty ha presentado git-imerge, una herramienta para hacer merges incrementales entre ramas de larga duración (<a href="http://softwareswirl.blogspot.de/2013/05/git-incremental-merge.html">http://softwareswirl.blogspot.de/2013/05/git-incremental-merge.html</a>, <a href="https://github.com/mhagger/git-imerge">https://github.com/mhagger/git-imerge</a>). Muchas vences me habréis oído decir “no dejes el merge para el final”, haz merge a menudo para resolver los conflictos poco a poco. Puesta esta herramienta facilita esta tarea. Está todavía en modo experimental, seguiremos su evolución con atención porque es realmente útil.</li>
 <li>Jack Pearkes ha presentado <a href="https://github.com/pearkes/get">get</a> una herramienta escrita en Go y pensada para hacer fetch de una cuenta de github y todos sus repositorios. Siguiendo con el ejemplo que ha puesto Jack, antes de salir de casa con el portátil, me hago un fetch de todos los repositorios de mi cuenta y me voy al tren con todos actualizados.</li>
-<li>Filip Noetzel ha hablado de dos proyectos <a href="https://github.com/peritus/bumpversion">bumpversion</a> y <a href="http://www.geocommit.com/index.html">geocommit</a>. El primero sirve para actualizar todas las cadenas de versión de un programa, crear un commit y etiquetarlo. Está escrito en python y nos puede ahorrar trabajo a la hora de generar una nueva versión de nuestra aplicación. El segundo, geocommit, es un servicio que geolocaliza los commits y nos ayuda a ver de dónde vienen las contribuciones a un proyecto.</li>
+<li>Filip Noetzel ha hablado de dos proyectos <a href="https://github.com/peritus/bumpversion">bumpversion</a> y <a href="http://www.geocommit.com/">geocommit</a>. El primero sirve para actualizar todas las cadenas de versión de un programa, crear un commit y etiquetarlo. Está escrito en python y nos puede ahorrar trabajo a la hora de generar una nueva versión de nuestra aplicación. El segundo, geocommit, es un servicio que geolocaliza los commits y nos ayuda a ver de dónde vienen las contribuciones a un proyecto.</li>
 <li>Una persona nos ha presentado <a href="http://github.com/acaudwell/Gource">gource</a>. Digo una persona porque no me he quedado con su nombre y no era el que lo ha desarrollado. Es una aplicación que lee el repositorio y hace una animación de cómo evoluciona un repositorio. Muy chulo el resultado para repositorios grandes con muchos participantes. Después de esto las pantallas han estado mostrando la animación del repositorio de git el resto del día.</li>
 <li>Se hicieron varias presentaciones sobre <a href="http://libgit2.github.com/">libgit2</a>. En este momento es la niña bonita de Github ya que como nos contó Vicent Martí en la presentación (<a href="http://vimeo.com/64716825">http://vimeo.com/64716825</a>) les ha permitido resolver varios problemas de escalabilidad en el backend. Se trata de una implementación de git empaquetada en una librería en C de forma que puede utilizarse en cualquier aplicación. ¿Te imaginas poder hacer un commit desde una aplicación echa por tí en ruby o python? Pues esto es, entre otras cosas, lo que permite hacer libgit2. La librería está bastante madura y tiene bindings para muchos lenguajes (lo siento, parece que Java no es uno de ellos de momento).</li>
 <li>Relacionado con libgit2, tuvimos dos presentaciones de personal de Microsoft en la que nos mostraron cómo instalar y usar el plugin de git en Visual Studio 2012 y cómo clonar un repositorio alojado en TFS usando <a href="http://gittf.codeplex.com/">git-tf</a>. Parece que dentro de poco Visual Studio ya incluirá el soporte de git nativo y no será necesario instalar ningún plugin.</li>
@@ -344,7 +344,7 @@ git branch -d hotfix/bug14</pre>
 stash@{0}: On feature/h5: Antes de empezar a corregir el bug #14
 
 $ git stash pop stash@{0}
-Auto-merging index.html</pre>
+Auto-merging </pre>
 <p>(Nota: dado que sólo tenemos una cosa guardada en el stash, podríamos ejecutar sencillamente git stash pop).</p>
 <p>Y con esto hemos terminado, ya tenemos todo listo para seguir trabajando en la historia de usuario H5.</p>
 <h1>Conclusión</h1>
@@ -560,7 +560,7 @@ Now, start committing on your feature. When done, use:
 <pre>$ git flow feature finish H-2
 Switched to branch 'develop'
 Merge made by the 'recursive' strategy.
- index.html | 7 +++++++
+  | 7 +++++++
  1 file changed, 7 insertions(+)
 Deleted branch feature/H-2 (was 4604003).
 
@@ -780,7 +780,7 @@ $ git merge hotfix_15423
 Updating 2d1d1c4..2b9d126
 <span style="color: #ff0000;"><strong>Fast-forward</strong></span>
 Gemfile | 2 ++
-app/views/home/index.html.erb | 1 +
+app/views/home/.erb | 1 +
 2 files changed, 3 insertions(+)</pre>
 <p>Así queda el grafo después de hacer el merge:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-412" title="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png" alt="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" width="920" height="346" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-300x112.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-624x234.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
 <p>Como vemos, mirando la historia del repositorio, no queda constancia de cuándo se empezó el desarrollo de la rama hotfix_15423 y cuándo se incorporó a la rama devel. Una solución podría ser etiquetar los commits correspondientes, como se muestra en la siguiente captura:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-413" title="Usando etiquetas para indicar el inicio y final de una rama" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png" alt="Usando etiquetas para indicar el inicio y final de una rama" width="919" height="370" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png 919w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-300x120.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-624x251.png 624w" sizes="(max-width: 919px) 100vw, 919px" /></a></p>
@@ -794,7 +794,7 @@ HEAD is now at 2d1d1c4 Update README.rdoc</pre>
 <pre>$ git merge <strong><span style="color: #ff0000;">--no-ff</span></strong> hotfix_15423 -m'Incorporando rama hotfix_15423'
 Merge made by the 'recursive' strategy.
  Gemfile | 2 ++
- app/views/home/index.html.erb | 1 +
+ app/views/home/.erb | 1 +
  2 files changed, 3 insertions(+)</pre>
 <p>Después de ejecutar el comando, este es el estado del repositorio:</p>
 <p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-414" title="Incoporando hotfix15423 en devel con la opción --no-ff" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png" alt="Incoporando hotfix15423 en devel con la opción --no-ff" width="921" height="457" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png 921w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-300x148.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-624x309.png 624w" sizes="(max-width: 921px) 100vw, 921px" /></a></p>
@@ -1110,7 +1110,7 @@ $ git status
 #       new file: app/assets/stylesheets/home.css.scss
 #       new file: app/controllers/home_controller.rb
 #       new file: app/helpers/home_helper.rb
-#       new file: app/views/home/index.html.erb
+#       new file: app/views/home/.erb
 #       modified: config/database.yml
 #       modified: config/routes.rb
 #       new file: test/functional/home_controller_test.rb
@@ -1134,7 +1134,7 @@ $ git status
 # new file: app/assets/stylesheets/home.css.scss
 # new file: app/controllers/home_controller.rb
 # new file: app/helpers/home_helper.rb
-# new file: app/views/home/index.html.erb
+# new file: app/views/home/.erb
 # modified: config/database.yml
 # modified: config/routes.rb
 # new file: test/functional/home_controller_test.rb
@@ -1243,7 +1243,7 @@ $ git status
 #    new file: app/assets/stylesheets/home.css.scss
 #    new file: app/controllers/home_controller.rb
 #    new file: app/helpers/home_helper.rb
-#    new file: app/views/home/index.html.erb
+#    new file: app/views/home/.erb
 #    modified: config/routes.rb
 #    new file: test/functional/home_controller_test.rb
 #    new file: test/unit/helpers/home_helper_test.rb</pre>
@@ -1367,7 +1367,7 @@ web/*.html</pre>
 # No ignora los ficheros web/*.html
 #
 # Con este patrón, el fichero web/fichero.html se incluirá en el repositorio
-# mientras que ficheros con web/admin/fichero.html o web/images/index.html se 
+# mientras que ficheros con web/admin/fichero.html o web/images/ se 
 # ignorarán
 web/**/*.html</pre>
 <p>Otra pregunta: Este patrón ¿ignora el fichero web/admin/subcarpeta/fichero.txt?</p>

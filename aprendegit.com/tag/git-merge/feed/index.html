@@ -46,7 +46,7 @@ $ git merge hotfix_15423
 Updating 2d1d1c4..2b9d126
 <span style="color: #ff0000;"><strong>Fast-forward</strong></span>
 Gemfile | 2 ++
-app/views/home/index.html.erb | 1 +
+app/views/home/.erb | 1 +
 2 files changed, 3 insertions(+)</pre>
 <p>Así queda el grafo después de hacer el merge:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png"><img decoding="async" class="aligncenter size-full wp-image-412" title="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png" alt="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" width="920" height="346" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-300x112.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-624x234.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
 <p>Como vemos, mirando la historia del repositorio, no queda constancia de cuándo se empezó el desarrollo de la rama hotfix_15423 y cuándo se incorporó a la rama devel. Una solución podría ser etiquetar los commits correspondientes, como se muestra en la siguiente captura:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png"><img decoding="async" class="aligncenter size-full wp-image-413" title="Usando etiquetas para indicar el inicio y final de una rama" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png" alt="Usando etiquetas para indicar el inicio y final de una rama" width="919" height="370" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png 919w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-300x120.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-624x251.png 624w" sizes="(max-width: 919px) 100vw, 919px" /></a></p>
@@ -60,7 +60,7 @@ HEAD is now at 2d1d1c4 Update README.rdoc</pre>
 <pre>$ git merge <strong><span style="color: #ff0000;">--no-ff</span></strong> hotfix_15423 -m'Incorporando rama hotfix_15423'
 Merge made by the 'recursive' strategy.
  Gemfile | 2 ++
- app/views/home/index.html.erb | 1 +
+ app/views/home/.erb | 1 +
  2 files changed, 3 insertions(+)</pre>
 <p>Después de ejecutar el comando, este es el estado del repositorio:</p>
 <p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-414" title="Incoporando hotfix15423 en devel con la opción --no-ff" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png" alt="Incoporando hotfix15423 en devel con la opción --no-ff" width="921" height="457" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png 921w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-300x148.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-624x309.png 624w" sizes="(max-width: 921px) 100vw, 921px" /></a></p>
