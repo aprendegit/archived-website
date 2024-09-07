@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>Uncategorized Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/category/uncategorized/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:45 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>git no borra nada&#8230; hasta que pasa el recolector de basura</title>
+		<link>https://aprendegit.com/ggit-borra-nada-hasta-que-pasa-el-recolector-de-basura/</link>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 01 Aug 2014 06:35:38 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=688</guid>
+
+					<description><![CDATA[La semana pasada (el 21 de julio para ser más concretos) tuvo lugar el tercer meetup del grupo de usuarios de git. En esta reunión estuvimos hablando de una característica muy importante y poco conocida de git: git no borra commits. Cuando hacemos ciertas operaciones, como un commit &#8211;amend, rebase o resets, parece que los commits [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>La semana pasada (el 21 de julio para ser más concretos) tuvo lugar el <a href="http://www.meetup.com/Spanish-Git-Meetup/events/193657692/">tercer meetup</a> del <a href="http://www.meetup.com/Spanish-Git-Meetup/">grupo de usuarios de git</a>.</p>
+<p>En esta reunión estuvimos hablando de una característica muy importante y poco conocida de git: git no borra commits. Cuando hacemos ciertas operaciones, como un commit &#8211;amend, rebase o resets, parece que los commits se modifican o desaparecen. Sin embargo, lo cierto es que git no los borra, ni los modifica: siempre crea commits nuevos a partir de los anteriores.</p>
+<p>Y si no los borra ¿por qué no los veo? ¿dónde están los commits originales? ¿cómo los puedo recuperar? y por último ¿cómo los borro definitivamente si es lo que realmente quiero hacer?. A estas y otras preguntas dimos respuesta en esta reunión.</p>
+<p>Nos veremos de nuevo ya en septiembre ¡que paséis todos un buen verano!</p>
+<h2>Parte I: git no borra nada&#8230;</h2>
+<p>En esta primera parte de la charla, vemos una característica muy poco conocida de git: git mantiene los commits que parece que se han borrado y aunque no los veamos, siguen estando en nuestro repositorio (en la carpeta .git).</p>
+<p>Para mostrarlo, comenzamos viendo cómo la opción &#8211;amend del comando git-commit no «modifica» el último commit sino que crea uno nuevo. Después pasamos a demostrar este comportamiento «rompiendo» un repositorio: ejecutamos una serie de operaciones (rebases y resets) hasta «perder» casi todos los commits y posteriormente utilizamos SmartGit y el reflog para «ver» esos commits que parece que se han perdido y devolver el repositorio a su estado inicial.</p>
+<p><iframe src="//www.youtube.com/embed/oIDyQ1fOeS4" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>&nbsp;</p>
+<h2>Parte II: &#8230;hasta que pasa el recolector de basura</h2>
+<p>En esta segunda parte de la charla, vemos cuáles son las condiciones que se deben cumplir para que los commits desaparezcan de y se borren definitivamente del repositorio. Analizamos el comportamiento del comando git-gc, aprendemos a caducar entradas del reflog para poder «limpiar» y finalmente borramos los commits del disco duro.</p>
+<p>Al final de la presentación, hablamos del comando git-fsck y mostramos cómo funciona y qué información nos puede dar.</p>
+<p><iframe src="//www.youtube.com/embed/qwL3lhRwn78" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">688</post-id>	</item>
+		<item>
+		<title>Primera reunión del grupo de usuarios de git</title>
+		<link>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/</link>
+					<comments>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 11 Jun 2014 13:17:35 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=678</guid>
+
+					<description><![CDATA[Después de unos cuantos meses un poco «inactivos» hemos retomado la actividad con fuerza. Hace casi un mes (el 13 de mayo) abrimos el Grupo de usuarios de git en meetup.com contando con Israel Alcazar, uno de los pesos pesados de git,  como coorganizador. En este tiempo se han unido al grupo más de 150 personas y ayer tuvimos la primera [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Después de unos cuantos meses un poco «inactivos» hemos retomado la actividad con fuerza. Hace casi un mes (el 13 de mayo) abrimos el <a href="http://www.meetup.com/Spanish-Git-Meetup/">Grupo de usuarios de git</a> en meetup.com contando con Israel Alcazar, uno de los pesos pesados de git,  como coorganizador. En este tiempo se han unido al grupo más de 150 personas y ayer tuvimos <a href="http://www.meetup.com/Spanish-Git-Meetup/events/183012642/">la primera reunión</a> en el Hogar Extremeño de Madrid.</p>
+<p>Es un sitio atípico, con mucha historia detrás. Situado en el número 59 de la Gran Vía, el Hogar Extremeño se diseñó sobre plano a la vez que se hizo el edificio a finales de los 50. Lo mejor de todo no es lo bien comunicado que está, es que tenemos una barra con cervezas en el mismo salón en el que hacemos las charlas.</p>
+<p>Aparte de git, dedico una buena parte de mi tiempo (la mayoría) al proyecto extremadura.com. Dentro de este proyecto tenemos un «subproyecto» podemos decir que se llama «Extremadura en el mundo» y que tiene como objetivo poner en valor todo lo que tenga que ver con Extremadura fuera de Extremadura. Estamos convencidos de que tradición y tecnología no son incompatibles y la mejor forma de demostrarlo es tener un meetup de git en un lugar tradicionalmente considerado como «para jugar a las cartas y al dominó». Fue muy divertido ver las caras de la gente cuando entraban allí como despistadillos, menos mal que avisamos que era un sitio atípico.</p>
+<p>Desde la organización, queremos agradecer de manera especial al Hogar Extremeño y a todas las personas que hicieron que ayer nos sintiésemos como en casa (o incluso mejor).</p>
+<p>Y ya sin más, os dejo las grabaciones de las dos intervenciones de ayer. Nos vemos en la siguiente.</p>
+<p><iframe src="//www.youtube.com/embed/W0goZDxQ8EA" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe><br />
+<iframe loading="lazy" src="//www.youtube.com/embed/8WBJ7Ehr3-U" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">678</post-id>	</item>
+		<item>
+		<title>Todo listo para el git-merge 2013 de Berlín</title>
+		<link>https://aprendegit.com/todo-listo-para-el-git-merge-2013-de-berlin/</link>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 08 May 2013 15:00:25 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=573</guid>
+
+					<description><![CDATA[Bueno, pues llegó el día&#8230; o casi. Mañana a estas horas estaré ya en Berlín para asistir al git-merge que ha organizado Github. La verdad es que esto de ir a congresos «de friquis» me encanta, así que estoy como un niño la noche antes de que lleguen los reyes magos. El programa promete&#8230; porque no [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Bueno, pues llegó el día&#8230; o casi. Mañana a estas horas estaré ya en Berlín para asistir al <a href="http://git-merge.com/">git-merge que ha organizado Github</a>.</p>
+<p>La verdad es que esto de ir a congresos «de friquis» me encanta, así que estoy como un niño la noche antes de que lleguen los reyes magos.</p>
+<p>El programa promete&#8230; porque no hay programa así que el evento que va a ser bastante abierto. El primer día, el jueves, está reservado para los «contributors». El segundo tendremos un formato un-conference / lightning talks y el sábado será el hack day. Y como no, el motivo real por el que todos vamos a Berlín, que es el cierre del evento el sábado por la noche en el Golgatha Biergarten ¡Github drinkup!</p>
+<p>Contará con la presencia de <a href="https://twitter.com/matthewmccull">Matthew McCullough</a>, <a href="https://twitter.com/vmg">Vicent Marti</a> o  <a href="http://www.tfnico.com/">Thomas Ferris Nicolaisen</a>, director del podcast «<a href="http://www.gitminutes.com/">Git Minutes</a>«. Con muchas ganas de ponerle cara a personas que llevo tiempo siguiendo y que han cambiado nuestra forma de trabajar. A la vuelta os contaré qué tal ha ido el evento.</p>
+<p>¡Hasta la semana que viene!</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">573</post-id>	</item>
+		<item>
+		<title>Git: la he liado parda</title>
+		<link>https://aprendegit.com/git-la-he-liado-parda/</link>
+					<comments>https://aprendegit.com/git-la-he-liado-parda/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 25 Apr 2013 06:37:55 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=563</guid>
+
+					<description><![CDATA[Aquí os dejo el vídeo de la presentación que hice ayer (24 de abril de 2013) en el grupo de desarrolladores de Symfony de Madrid. Una presentación de una hora en la que hablamos de las herramientas que nos da git para no tener que recurrir al famoso borrar-y-volver-a-clonar-repositorio para recuperar nuestro repo cuando nos [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Aquí os dejo el vídeo de la presentación que hice ayer (24 de abril de 2013) en el <a href="http://www.symfony-madrid.es/">grupo de desarrolladores de Symfony de Madrid</a>.</p>
+<p>Una presentación de una hora en la que hablamos de las herramientas que nos da git para no tener que recurrir al famoso borrar-y-volver-a-clonar-repositorio para recuperar nuestro repo cuando nos equivocamos.</p>
+<p>Durante la presentación hacemos varias demos:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo detener un merge que nos ha dado conflictos</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo deshacer un merge una vez finalizado</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo deshacer un rebase que hemos hecho al revés, sobreescribiendo la historia del repositorio</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo usar git-bisect para encontrar un bug</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo usar git-revert para solucionarlo</span></li>
+</ul>
+<p><span style="font-size: 1rem; line-height: 1.714285714;">¡No está mal para una hora! Espero que os guste y os resulte útil.</span><span style="font-size: 1rem; line-height: 1.714285714;"><br />
+</span></p>
+<p>Aprovechamos para recordaros que en Aprendegit estamos siempre dispuestos para dar charlas y presentaciones sobre nuestra herramienta favorita. Así que si quieres que vayamos a hablar de git a cualquier sitio, sólo tienes que proponernoslo <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><iframe loading="lazy" src="http://www.youtube.com/embed/aF-zt73Zm5I" height="315" width="560" allowfullscreen="" frameborder="0"></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/git-la-he-liado-parda/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">563</post-id>	</item>
+		<item>
+		<title>Git Workflows: el tema que más interés despierta</title>
+		<link>https://aprendegit.com/git-workflows-git-es-el-tema-que-mas-interes-despiert/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Fri, 25 Jan 2013 11:05:27 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=319</guid>
+
+					<description><![CDATA[Hace unos días os pedimos ayuda a través de un formulario para enfocar el contenido del blog a lo que más os interesa. Queremos dar las gracias en primer lugar a todos los que os habéis tomado el tiempo de rellenar el formulario. A partir de los siguientes posts enfocaremos el contenido a lo que [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hace unos días os pedimos ayuda <a title="¿Sobre qué te gustaría que hablásemos?" href="https://aprendegit.com/sobre-que-te-gustaria-que-hablasemos/">a través de un formulario</a> para enfocar el contenido del blog a lo que más os interesa.</p>
+<p>Queremos dar las gracias en primer lugar a todos los que os habéis tomado el tiempo de rellenar el formulario. A partir de los siguientes posts enfocaremos el contenido a lo que nos habéis pedido.</p>
+<h1>Resultados: Git Workflows, CLI y git-config</h1>
+<p>Con respecto al contenido, lo que más interés ha suscitado es lo relacionado con Workflows de git, seguido de la línea de comandos y la configuración con git-config.</p>
+<div id="attachment_320" style="width: 381px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture316.png"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-320" class=" wp-image-320" title="¿Qué te interesa más?" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture316.png" alt="" width="371" height="372" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture316.png 530w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture316-150x150.png 150w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture316-300x300.png 300w" sizes="(max-width: 371px) 100vw, 371px" /></a><p id="caption-attachment-320" class="wp-caption-text">Resultados: 30% Workflows, 19% Configuración con git-config, 19% Línea de comandos, 11% Github, 11% Crear mi servidor git, 7% GUIs, 4% Bitbucket.</p></div>
+<p>También nos habéis convencido de que empecemos a grabar vídeos, así que en las próximas semanas empezaremos a hacerlo:</p>
+<div id="attachment_321" style="width: 389px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture317.png"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-321" class=" wp-image-321" title="¿Prefieres vídeo o tutorial?" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture317.png" alt="¿Prefieres vídeo o tutorial?" width="379" height="349" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture317.png 542w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture317-300x276.png 300w" sizes="(max-width: 379px) 100vw, 379px" /></a><p id="caption-attachment-321" class="wp-caption-text">Resultados: 40% Las dos cosas, 30% Ver un vídeo, 30% Leer un tutorial</p></div>
+<p>Con respecto a vuestros conocimientos, poco más de la mitad (60%) trabajáis con vuestro repositorio remoto y sabéis hacer pull y push. Sin embargo, pocos sois los que habéis trabajado con repositorios remotos, muy necesarios para poder implementar workflows en equipos distribuidos:</p>
+<div id="attachment_322" style="width: 477px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture318.png"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-322" class=" wp-image-322" title="Conocimientos" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture318.png" alt="Conocimientos" width="467" height="452" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture318.png 667w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture318-300x290.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture318-624x604.png 624w" sizes="(max-width: 467px) 100vw, 467px" /></a><p id="caption-attachment-322" class="wp-caption-text">Resultados: 60% Trabajo con mi repositorio haciendo pull y push, 20% ¡apenas se instalarlo!, 10% se crear ramas y hacer un merge, 10% Trabajo con múltiples repositorios remotos y hago pull request a diario.</p></div>
+<p style="text-align: left;">Entre los que nos habéis respondido, hay un porcentaje importante que todavía no trabajáis con remotos (30%). ¡Eso hay que cambiarlo!.</p>
+<h1 style="text-align: left;">Conclusión</h1>
+<p>Empezaremos a generar contenido tanto en formato tutorial y vídeo relacionado con trabajo con múltiples ramas, git workflows y configuración de git. ¡Sin olvidarnos por supuesto de aquellos que estáis empezando!</p>
+<p style="text-align: center;"><strong>De nuevo muchas gracias por vuestra ayuda.</strong></p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">319</post-id>	</item>
+		<item>
+		<title>¿Sobre qué te gustaría que hablásemos?</title>
+		<link>https://aprendegit.com/sobre-que-te-gustaria-que-hablasemos/</link>
+					<comments>https://aprendegit.com/sobre-que-te-gustaria-que-hablasemos/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 22 Jan 2013 12:36:55 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=309</guid>
+
+					<description><![CDATA[El objetivo de este blog es que sea útil, y para que sea útil necesitamos tu ayuda. Cuéntanos qué te gustaría saber de git o sobre qué te gustaría que profundizásemos ¿flujos de trabajo? ¿configuración? ¿palabrejas raras como cherry picking o rebase? También puedes envíarnos una pregunta para que la convirtamos en un post. ¡Te [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>El objetivo de este blog es que sea útil, y para que sea útil necesitamos tu ayuda. Cuéntanos qué te gustaría saber de git o sobre qué te gustaría que profundizásemos ¿flujos de trabajo? ¿configuración? ¿palabrejas raras como cherry picking o rebase? También puedes envíarnos una pregunta para que la convirtamos en un post.</p>
+<p>¡Te estamos escuchando! ¡aprovecha y pide, que es gratis!</p>
+<p><iframe loading="lazy" src="https://docs.google.com/spreadsheet/embeddedform?formkey=dFRyYTRQTkhjeWJkQ2VlbDV1dXVDQ0E6MQ" frameborder="0" marginwidth="0" marginheight="0" width="760" height="1311"></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/sobre-que-te-gustaria-que-hablasemos/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">309</post-id>	</item>
+		<item>
+		<title>.gitkeep &#8211; Incluyendo carpetas en los repositorios</title>
+		<link>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/</link>
+					<comments>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 02 Jan 2013 09:24:15 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=248</guid>
+
+					<description><![CDATA[¿Has visto esos ficheros .gitkeep que Ruby on Rails crea cuando generas un proyecto nuevo? ¿por qué están ahí? Git sólo gestiona ficheros, no carpetas. Esto es así por la forma en la que el índice (o staging area) de git se ha diseñado: sencillamente no lo permite. Tal y como se dice en la [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>¿Has visto esos ficheros .gitkeep que Ruby on Rails crea cuando generas un proyecto nuevo? ¿por qué están ahí? Git sólo gestiona ficheros, no carpetas. Esto es así por la forma en la que el índice (o <em>staging area</em>) de git se ha diseñado: sencillamente no lo permite. Tal y como se dice en la <a href="https://git.wiki.kernel.org/index.php/GitFaq#Can_I_add_empty_directories.3F">FAQ</a>, nadie lo suficientemente competente se ha ocupado de implementar el soporte para carpetas. Aún así, nos encontraremos con que en muchas ocasiones nos vendría muy bien poder añadir carpetas vacías al repositorio.</p>
+<h2>¿Porqué carpetas vacías?</h2>
+<p>Hay muchas herramientas, aplicaciones y frameworks que requieren de la existencia de ciertas carpetas para funcionar. Un ejemplo: tanto Symfony como Ruby on Rails necesitan disponer de directorios en los que almacenar cachés y logs. El contenido de estas carpetas se ignora siempre del repositorio; son archivos locales que sólo tienen sentido en cada copia local ¿pará que queremos distribuir a nuestros compañeros de trabajo los archivos de log creados por nuestro portátil mientras estamos desarrollando la aplicación? Es un derroche inútil de recursos y una fuente de conflictos que nos quitará mucho tiempo y no nos aportará nada.</p>
+<p>El problema que se deriva de esto es que si ignoramos toda la carpeta completa utilizando un patrón de este tipo:</p>
+<pre>#Ignorando cache y log
+cache/
+log/</pre>
+<p>cuando otra persona clone el repositorio esas carpetas no se crearán. A no ser que las cree manualmente, la aplicación no funcionará.</p>
+<p>La solución es decirle a git que cree las carpetas cuando clone el repositorio y luego que ignore su contenido. ¿Cómo se hace? creamos un fichero vacío dentro de la carpeta, lo añadimos al repositorio y le decimos a git que ignore el resto de archivos que están dentro. Esto se puede hacer de dos maneras:</p>
+<ul>
+<li>A través de un fichero .gitkeep</li>
+<li>A través de un fichero .gitignore</li>
+</ul>
+<h2>.gitkeep</h2>
+<p>Lo primero que debemos tener claro es que el uso del fichero .gitkeep es un convenio. En ningún lugar de la documentación de git veréis que se haga referencia a este fichero. De hecho, si no os gusta el nombre nada os impide cambiarlo y usar cualquier otro.</p>
+<p>Veamos cómo usar este fichero:</p>
+<ul>
+<li>Antes de añadir al fichero .gitignore el patrón que ignore la carpeta cache, creamos el fichero cache/.gitkeep, bien usando el comando touch o con nuestro editor de texto o entorno de desarrollo.</li>
+</ul>
+<pre># touch cache/.gitkeep</pre>
+<ul>
+<li>Una vez creado el fichero lo añadimos al repositorio y hacemos el commit:</li>
+</ul>
+<div><span style="line-height: 24px;"><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-250" title="Añadiendo .gitkeep al repositorio con Bitbucket" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png" alt="Añadiendo .gitkeep al repositorio con Bitbucket" width="713" height="318" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png 713w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277-300x133.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277-624x278.png 624w" sizes="(max-width: 713px) 100vw, 713px" /></a><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-251" title="Commit del fichero .gitkeep" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png" alt="" width="570" height="456" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png 570w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278-300x240.png 300w" sizes="(max-width: 570px) 100vw, 570px" /></a></span></div>
+<pre># git add cache/.gitkeep 
+# git commit -m'Añadiendo el fichero cache/.gitkeep</pre>
+<ul>
+<li>Editamos el fichero .gitignore (o lo creamos si no existe) y añadimos el patrón para ignorar la carpeta cache:</li>
+</ul>
+<pre># Ignorando los ficheros de la carpeta cache/
+cache/</pre>
+<ul>
+<li> Hacemos commit del fichero .gitignore</li>
+</ul>
+<p>Ya está, la próxima vez que alguien cree el repositorio, se creará el fichero cache/.gitkeep a la vez que se ignora cualquier otro fichero que esté en la carpeta cache/.</p>
+<p>Esta técnica utiliza la siguiente característica de git: si un fichero ya está en el índice (es decir, git ya está haciendo seguimiento de las modificaciones de ese fichero) a pesar de que el .gitignore lo ignore, git lo seguirá monitorizando.</p>
+<h2>Utilizar un fichero .gitignore</h2>
+<p>El método anterior tiene una pega: tenemos patrones para ignorar ficheros que requieren que tengamos varias excepciones en el índice de git (cache/.gitkeep, log/.gitkeep, etc). No hay problema con ello, aunque si no os gusta podemos utilizar otra de las características de git para no tener excepciones en el índice: utilizar un fichero .gitignore dentro de la carpeta que queremos ignorar.</p>
+<ul>
+<li>Crear el fichero cache/.gitignore con los siguientes patrones</li>
+</ul>
+<pre># Ignorar todos los ficheros...
+*
+
+# ...excepto el fichero .gitignore
+!.gitignore</pre>
+<ul>
+<li>Añadir el fichero cache/.gitignore al repositorio y hacer un commit</li>
+</ul>
+<p>Si repetís esta operación con las carpetas cuyos ficheros queráis ignorar, no tendréis necesidad de andar incluyendo excepciones en el índice.</p>
+<p>Cualquiera de los dos métodos nos permite tener carpetas «vacías» en el repositorio, aunque vacías, vacías del todo no lo están. ¿Qué método usáis vosotros normalmente? ¡Esperamos vuestros comentarios!</p>
+<p>¡Happy gitting!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">248</post-id>	</item>
+	</channel>
+</rss>

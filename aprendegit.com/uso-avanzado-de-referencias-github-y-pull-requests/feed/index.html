@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Uso avanzado de referencias: github y pull requests	</title>
+	<atom:link href="https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:46 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: leonardo		</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-1248</link>
+
+		<dc:creator><![CDATA[leonardo]]></dc:creator>
+		<pubDate>Mon, 09 Dec 2013 07:31:46 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544#comment-1248</guid>
+
+					<description><![CDATA[ooohh ya veo, muchas gracias ^¿^]]></description>
+			<content:encoded><![CDATA[<p>ooohh ya veo, muchas gracias ^¿^</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-1245</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Sun, 08 Dec 2013 09:22:29 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544#comment-1245</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-1244&quot;&gt;leolardo&lt;/a&gt;.
+
+Hola:
+
+El comando pull hace dos cosas: un fetch para traerte los commits que te faltan y después hace un merge. Supón que has ejecutado el comando git pull unaramacualquiera. Un posible camino para deshacer el merge es:
+
+&lt;ul&gt;
+	&lt;li&gt;Guardas en el stash cualquier cambio local que tengas ejecutando git stash&lt;/li&gt;
+
+	&lt;li&gt;Mirando el log, averiguas en que commit estaba tu rama unaramacualquiera antes de hacer pull. Esto puedes mirarlo usando una interfaz gráfica como gitk, sourcetree, o cualquier otra. (supongamos que el commit era 1234567)&lt;/li&gt;
+	&lt;li&gt;Haces unaramacualquiera  tu rama activa ejecutando git checkout unaramacualquiera &lt;/li&gt;
+	&lt;li&gt;Mueves la rama al commit 1234567 ejecutando git reset —hard 1234567&lt;/li&gt;
+	&lt;li&gt;Recuperas los cambios locales que has guardado en el stash ejecutando git stash pop.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+Ten cuidado cuando hagas el reset —hard, ya que puedes perder información si no la almacenas en el stash. Si no estás seguro, hazte un zip del repo antes de hacer nada.
+
+Espero haberte ayudado,
+
+Alfonso]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-1244">leolardo</a>.</p>
+<p>Hola:</p>
+<p>El comando pull hace dos cosas: un fetch para traerte los commits que te faltan y después hace un merge. Supón que has ejecutado el comando git pull unaramacualquiera. Un posible camino para deshacer el merge es:</p>
+<ul>
+<li>Guardas en el stash cualquier cambio local que tengas ejecutando git stash</li>
+<li>Mirando el log, averiguas en que commit estaba tu rama unaramacualquiera antes de hacer pull. Esto puedes mirarlo usando una interfaz gráfica como gitk, sourcetree, o cualquier otra. (supongamos que el commit era 1234567)</li>
+<li>Haces unaramacualquiera  tu rama activa ejecutando git checkout unaramacualquiera </li>
+<li>Mueves la rama al commit 1234567 ejecutando git reset —hard 1234567</li>
+<li>Recuperas los cambios locales que has guardado en el stash ejecutando git stash pop.</li>
+</ul>
+<p>Ten cuidado cuando hagas el reset —hard, ya que puedes perder información si no la almacenas en el stash. Si no estás seguro, hazte un zip del repo antes de hacer nada.</p>
+<p>Espero haberte ayudado,</p>
+<p>Alfonso</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: leolardo		</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-1244</link>
+
+		<dc:creator><![CDATA[leolardo]]></dc:creator>
+		<pubDate>Sun, 08 Dec 2013 05:06:22 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544#comment-1244</guid>
+
+					<description><![CDATA[amigo, de casualidad sabes como revertir un pull?]]></description>
+			<content:encoded><![CDATA[<p>amigo, de casualidad sabes como revertir un pull?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-517</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 23 Apr 2013 19:08:44 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544#comment-517</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-516&quot;&gt;Joan&lt;/a&gt;.
+
+Hola Joan
+
+Me alegro mucho de que el artículo te haya sido útil. Muchas gracias por tu comentario y los ánimos, saber que estáis ahí anima a seguir con la labor.
+
+Un saludo.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-516">Joan</a>.</p>
+<p>Hola Joan</p>
+<p>Me alegro mucho de que el artículo te haya sido útil. Muchas gracias por tu comentario y los ánimos, saber que estáis ahí anima a seguir con la labor.</p>
+<p>Un saludo.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Joan		</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comment-516</link>
+
+		<dc:creator><![CDATA[Joan]]></dc:creator>
+		<pubDate>Tue, 23 Apr 2013 09:50:56 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544#comment-516</guid>
+
+					<description><![CDATA[Justo hace unos días me preguntaba como hacer esto, muchas gracias :) Hacéis un trabajo fantástico, seguid así!]]></description>
+			<content:encoded><![CDATA[<p>Justo hace unos días me preguntaba como hacer esto, muchas gracias 🙂 Hacéis un trabajo fantástico, seguid así!</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

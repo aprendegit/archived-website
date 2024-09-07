@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Organizando las ramas en carpetas	</title>
+	<atom:link href="https://aprendegit.com/organizando-las-ramas-en-carpetas/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:35 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-371</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 14 Mar 2013 12:03:59 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=458#comment-371</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-369&quot;&gt;Rubén&lt;/a&gt;.
+
+Existe otra forma de hacer esto que no requiere el uso de atributos. Consiste en lo siguiente:
+
+&lt;ul&gt;
+	&lt;li&gt; Creas un fichero settings_ref.php con la configuración de referencia&lt;/li&gt;
+	&lt;li&gt; Incluyes este fichero en el repositorio &lt;/li&gt;
+	&lt;li&gt; Incluyes settings.php en .gitignore &lt;/li&gt;
+&lt;/ul&gt;
+
+Cuando alguien clona el repositorio, debe copiar settings_ref.php a settings.php y proceder a configurar el proyecto. De esta forma puedes tener tantos clones como necesites (producción, testing, pre-producción, tu máquina, la de tus compañeros de equipo, etc) cada uno con su settings.php. Toda configuración que necesite ser guardada en el repositorio se almacena en settings_ref.php.
+
+De esta forma, además, evitamos que por error se sobreescriba el settings.php al estar incluido en el .gitignore.
+
+Y gracias por la información que has puesto antes sobre el driver, es la primera vez que lo veo.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-369">Rubén</a>.</p>
+<p>Existe otra forma de hacer esto que no requiere el uso de atributos. Consiste en lo siguiente:</p>
+<ul>
+<li> Creas un fichero settings_ref.php con la configuración de referencia</li>
+<li> Incluyes este fichero en el repositorio </li>
+<li> Incluyes settings.php en .gitignore </li>
+</ul>
+<p>Cuando alguien clona el repositorio, debe copiar settings_ref.php a settings.php y proceder a configurar el proyecto. De esta forma puedes tener tantos clones como necesites (producción, testing, pre-producción, tu máquina, la de tus compañeros de equipo, etc) cada uno con su settings.php. Toda configuración que necesite ser guardada en el repositorio se almacena en settings_ref.php.</p>
+<p>De esta forma, además, evitamos que por error se sobreescriba el settings.php al estar incluido en el .gitignore.</p>
+<p>Y gracias por la información que has puesto antes sobre el driver, es la primera vez que lo veo.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-370</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Thu, 14 Mar 2013 11:55:46 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=458#comment-370</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-369&quot;&gt;Rubén&lt;/a&gt;.
+
+Hola Rubén:
+
+Copio aquí la respuesta que te di ayer por twitter a toda prisa:
+
+Hola. Creo que el problema puede estar en los * de la ruta la fichero. Si la expansión funciona como en .gitignore quizás ese sea el problema. Prueba a meter un fichero .gitattributes en la carpeta en la que están los settings (sites/CARPETA) y dentro de ese .gitattributes pon 
+&lt;code&gt;
+settings*.php, merge=ours
+&lt;/code&gt;
+
+Así eleminas el * de la ruta. Otra opción es que pruebes con sites/**/settings*.php.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-369">Rubén</a>.</p>
+<p>Hola Rubén:</p>
+<p>Copio aquí la respuesta que te di ayer por twitter a toda prisa:</p>
+<p>Hola. Creo que el problema puede estar en los * de la ruta la fichero. Si la expansión funciona como en .gitignore quizás ese sea el problema. Prueba a meter un fichero .gitattributes en la carpeta en la que están los settings (sites/CARPETA) y dentro de ese .gitattributes pon<br />
+<code><br />
+settings*.php, merge=ours<br />
+</code></p>
+<p>Así eleminas el * de la ruta. Otra opción es que pruebes con sites/**/settings*.php.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Rubén		</title>
+		<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-369</link>
+
+		<dc:creator><![CDATA[Rubén]]></dc:creator>
+		<pubDate>Thu, 14 Mar 2013 11:00:13 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=458#comment-369</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-361&quot;&gt;Rubén&lt;/a&gt;.
+
+Finalmente lo he conseguido en parte siguiendo tu consejo, simplificando el .gitattributes poniendo el fichero en el mismo directorio que el settings.php y para no pelearme con rutas, ya que es un fichero muy concreto lo he dejado así: &lt;code&gt;settings.php merge=ours&lt;/code&gt;
+
+Sin embargo no ha sido suficiente y he tenido que configurar un driver de merge, de esto ayer no tenía ni conocimiento :P
+
+Poniendo esto en el .git/config
+
+&lt;code&gt;
+[merge &quot;ours&quot;]
+    name = &quot;Keep ours merge&quot;
+    driver = true
+&lt;/code&gt;
+
+Ha empezado a funcionar, supongo que tiene sentido que sin esto &quot;no entiende&quot; la palabra &quot;ours&quot;, pero pensaba que el &quot;ours&quot; y el &quot;theirs&quot; eran palabras reservadas o algo, supongo que SourceTree nos abstrae un poco de esto :P
+
+Gracias por tu ayuda!]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-361">Rubén</a>.</p>
+<p>Finalmente lo he conseguido en parte siguiendo tu consejo, simplificando el .gitattributes poniendo el fichero en el mismo directorio que el settings.php y para no pelearme con rutas, ya que es un fichero muy concreto lo he dejado así: <code>settings.php merge=ours</code></p>
+<p>Sin embargo no ha sido suficiente y he tenido que configurar un driver de merge, de esto ayer no tenía ni conocimiento 😛</p>
+<p>Poniendo esto en el .git/config</p>
+<p><code><br />
+[merge "ours"]<br />
+    name = "Keep ours merge"<br />
+    driver = true<br />
+</code></p>
+<p>Ha empezado a funcionar, supongo que tiene sentido que sin esto «no entiende» la palabra «ours», pero pensaba que el «ours» y el «theirs» eran palabras reservadas o algo, supongo que SourceTree nos abstrae un poco de esto 😛</p>
+<p>Gracias por tu ayuda!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Rubén		</title>
+		<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/#comment-361</link>
+
+		<dc:creator><![CDATA[Rubén]]></dc:creator>
+		<pubDate>Wed, 13 Mar 2013 12:26:53 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=458#comment-361</guid>
+
+					<description><![CDATA[Hola Alfonso, en primer lugar déjame felicitarte por el blog es un verdadero repositorio de lujo en cuanto a lo que información y documentación de Git respecta.
+
+Te quería hacer una pregunta un tanto concreta de Git, y no sé bien donde dejártela, lo hago por aquí para que cuando lo resolvamos los lectores puedan aprovechar el feedback.
+
+Verás, estoy en un escenario bastante común. Tengo varias ramas: develop, uat, master... de un website. Entonces tengo un fichero settings.php en el que, entre otras cosas, se guardan los datos de conexión a la Base de Datos.
+
+Quiero versionar este fichero, pero necesitaría que cada entorno mantuviera su versión y al hacer merges entre ramas no se &quot;machacara&quot;. El gitignore no me vale, porque pierdo el versionado del fichero.
+
+He investigado un poco y parece que los gitatributte pueden servir: http://librosweb.es/pro_git/capitulo_7/atributos_de_git.html pero no acabo de conseguir lo que quiero, y cuando voy a hacer un merge de develop a uat me detecta diferencias y me obliga a comitear cambios en el settings antes de mergear.
+
+Mi fichero .gitattribute contiene sólo esto: &lt;code&gt;sites/*/settings*.php merge=ours&lt;/code&gt; 
+
+Por lo general uso SourceTree pero no tengo problema moviéndome por terminal, podrías echarme algo de luz con el asunto?
+
+Muchas gracias!]]></description>
+			<content:encoded><![CDATA[<p>Hola Alfonso, en primer lugar déjame felicitarte por el blog es un verdadero repositorio de lujo en cuanto a lo que información y documentación de Git respecta.</p>
+<p>Te quería hacer una pregunta un tanto concreta de Git, y no sé bien donde dejártela, lo hago por aquí para que cuando lo resolvamos los lectores puedan aprovechar el feedback.</p>
+<p>Verás, estoy en un escenario bastante común. Tengo varias ramas: develop, uat, master&#8230; de un website. Entonces tengo un fichero settings.php en el que, entre otras cosas, se guardan los datos de conexión a la Base de Datos.</p>
+<p>Quiero versionar este fichero, pero necesitaría que cada entorno mantuviera su versión y al hacer merges entre ramas no se «machacara». El gitignore no me vale, porque pierdo el versionado del fichero.</p>
+<p>He investigado un poco y parece que los gitatributte pueden servir: <a href="http://librosweb.es/pro_git/capitulo_7/atributos_de_git.html" rel="nofollow ugc">http://librosweb.es/pro_git/capitulo_7/atributos_de_git.html</a> pero no acabo de conseguir lo que quiero, y cuando voy a hacer un merge de develop a uat me detecta diferencias y me obliga a comitear cambios en el settings antes de mergear.</p>
+<p>Mi fichero .gitattribute contiene sólo esto: <code>sites/*/settings*.php merge=ours</code> </p>
+<p>Por lo general uso SourceTree pero no tengo problema moviéndome por terminal, podrías echarme algo de luz con el asunto?</p>
+<p>Muchas gracias!</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

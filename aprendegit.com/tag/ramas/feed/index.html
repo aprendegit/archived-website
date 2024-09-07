@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>ramas Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/tag/ramas/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/tag/ramas/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:35 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Organizando las ramas en carpetas</title>
+		<link>https://aprendegit.com/organizando-las-ramas-en-carpetas/</link>
+					<comments>https://aprendegit.com/organizando-las-ramas-en-carpetas/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 11 Mar 2013 18:49:45 +0000</pubDate>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[ramas]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=458</guid>
+
+					<description><![CDATA[Si en el momento de crear una rama utilizas como nombre una ruta, como por ejemplo “mi-carpeta-de-ramas/nombre-de-rama”, verás que en la carpeta .git/refs/heads de tu repositorio se creará una subcarpeta “mi-carpeta-de-ramas”. Dentro de la misma verás el fichero “nombre-de-rama” con la referencia. Es decir, git convierte la cadena con formato de ruta que pasamos como [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Si en el momento de crear una rama utilizas como nombre una ruta, como por ejemplo “mi-carpeta-de-ramas/nombre-de-rama”, verás que en la carpeta .git/refs/heads de tu repositorio se creará una subcarpeta “mi-carpeta-de-ramas”. Dentro de la misma verás el fichero “nombre-de-rama” con la referencia. Es decir, git convierte la cadena con formato de ruta que pasamos como argumento en una estructura real de carpetas.</p>
+<p>Esta forma de crear ramas soporta subcarpetas, es decir, si creamos una rama que se llame carpeta1/carpeta2/mirama:</p>
+<pre>$ git checkout -b carpeta1/carpeta2/mirama</pre>
+<p>git creará el fichero .git/refs/heads/carpeta1/carpeta2/mirama con la referencia.</p>
+<p>¿Y cómo muestra SourceTree las ramas creadas de esta manera?</p>
+<p><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-459" title="Organizando las ramas en carpetas" src="https://aprendegit.com/wp-content/uploads/2013/03/Voila_Capture38.png" alt="Organizando las ramas en carpetas" width="256" height="318" srcset="https://aprendegit.com/wp-content/uploads/2013/03/Voila_Capture38.png 256w, https://aprendegit.com/wp-content/uploads/2013/03/Voila_Capture38-241x300.png 241w" sizes="(max-width: 256px) 100vw, 256px" /></p>
+<p>Esta forma de clasificar las ramas en carpetas es especialmente útil cuando trabajamos con ramas para hacer hotfixes, corregir bugs o desarrollar funcionalidades organizadas en historias de usuario.</p>
+<p>Desde la interfaz de línea de comandos, así es como veríamos las ramas:</p>
+<pre>$ git branch -av
+   carpeta1/carpeta2/mirama 4604003 Introduciendo el texto definitivo
+   develop                  b7bd517 Merge branch ‘feature-H-1’ into develop
+*  feature/H-2              4604003 Introduciendo el text definitive
+   master                   87ee184 Initial commit</pre>
+<p>Si quisiésemos ver sólo las ramas feature, podemos usar la opción &#8211;list:</p>
+<pre>$ git branch --list feature*
+feature/H-2</pre>
+<p>Para borrar la rama, usamos el comando git-branch con la ruta completa a la rama:</p>
+<pre>$ git branch -D carpeta1/carpeta2/mirama</pre>
+<p>Un truco muy sencillo que nos ayuda a organizar las ramas un poco mejor, especialmente útil si estáis usando SourceTree.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/organizando-las-ramas-en-carpetas/feed/</wfw:commentRss>
+			<slash:comments>4</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">458</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Cómo deshacer el último commit en git	</title>
+	<atom:link href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:40 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-77136</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 27 Mar 2020 08:30:54 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-77136</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-59394&quot;&gt;Daniel&lt;/a&gt;.
+
+Hola Daniel:
+
+Acabo de ver este comentario metido entre el SPAM del blog. Disculpa que haya tardado tanto tiempo en responderte. Es una buena pregunta y aunque haya pasado tiempo, te respondo por si aún te sirve la respuesta.
+
+Para eliminar ese commit necesitas hacer un &lt;a href=&quot;https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt--i&quot; rel=&quot;nofollow ugc&quot;&gt;rebase interactivo&lt;/a&gt;.
+
+3b4r4903 (ramaX)
+549nf34
+4m3400
+904g4jf4
+aaabbbccc
+
+(date cuenta que a los commits que has puesto tu yo he añadido el commit aaabbbccc, que sería el padre de 904g4jf4)
+
+El comando sería:
+
+&lt;code&gt;
+&gt; git checkout ramaX
+&gt; git rebase -i aaabbbccc
+&lt;/code&gt;
+
+Este comando abrirá un editor de texto con una pantalla similar a la siguiente:
+
+&lt;code&gt;
+pick 904g4jf Comentario de este commit...
+pick 4m3400  Comentario de este commit...
+pick 549nf34 Comentario de este commit...
+pick 3b4r490 Comentario de este commit...
+
+# Rebase aaabbbccc..3b4r490 onto 3b4r490 (4 commands)
+#
+# Commands:
+# p, pick &lt;commit&gt; = use commit
+# r, reword &lt;commit&gt; = use commit, but edit the commit message
+# e, edit &lt;commit&gt; = use commit, but stop for amending
+# s, squash &lt;commit&gt; = use commit, but meld into previous commit
+# f, fixup &lt;commit&gt; = like &quot;squash&quot;, but discard this commit&#039;s log message
+# x, exec &lt;command&gt; = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with &#039;git rebase --continue&#039;)
+# d, drop &lt;commit&gt; = remove commit
+# l, label &lt;label&gt; = label current HEAD with a name
+# t, reset &lt;label&gt; = reset HEAD to a label
+# m, merge [-C &lt;commit&gt; &#124; -c &lt;commit&gt;] &lt;label&gt; [# &lt;oneline&gt;]
+# .       create a merge commit using the original merge commit&#039;s
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c &lt;commit&gt; to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+&lt;/code&gt;
+
+Siguiendo las instrucciones que te muestra el comando en pantalla, en la línea correspondiente al commit 549nf34 sustituyas &quot;pick&quot; por &quot;drop&quot;. Guarda y cierra tu editor y el rebase interactivo comenzará a ejecutarse.
+
+Si te salen conflictos (cosa que dependerá de lo que tengas en los commits) resuelvelos, sube los ficheros al staging area con un git add y luego continúa el rebase con git rebase --continue.
+
+Espero haberte resuelto la pregunta y, de nuevo, perdona el retraso.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-59394">Daniel</a>.</p>
+<p>Hola Daniel:</p>
+<p>Acabo de ver este comentario metido entre el SPAM del blog. Disculpa que haya tardado tanto tiempo en responderte. Es una buena pregunta y aunque haya pasado tiempo, te respondo por si aún te sirve la respuesta.</p>
+<p>Para eliminar ese commit necesitas hacer un <a href="https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt--i" rel="nofollow ugc">rebase interactivo</a>.</p>
+<p>3b4r4903 (ramaX)<br />
+549nf34<br />
+4m3400<br />
+904g4jf4<br />
+aaabbbccc</p>
+<p>(date cuenta que a los commits que has puesto tu yo he añadido el commit aaabbbccc, que sería el padre de 904g4jf4)</p>
+<p>El comando sería:</p>
+<p><code><br />
+> git checkout ramaX<br />
+> git rebase -i aaabbbccc<br />
+</code></p>
+<p>Este comando abrirá un editor de texto con una pantalla similar a la siguiente:</p>
+<p><code><br />
+pick 904g4jf Comentario de este commit...<br />
+pick 4m3400  Comentario de este commit...<br />
+pick 549nf34 Comentario de este commit...<br />
+pick 3b4r490 Comentario de este commit...</p>
+<p># Rebase aaabbbccc..3b4r490 onto 3b4r490 (4 commands)<br />
+#<br />
+# Commands:<br />
+# p, pick <commit> = use commit<br />
+# r, reword </commit><commit> = use commit, but edit the commit message<br />
+# e, edit </commit><commit> = use commit, but stop for amending<br />
+# s, squash </commit><commit> = use commit, but meld into previous commit<br />
+# f, fixup </commit><commit> = like "squash", but discard this commit's log message<br />
+# x, exec <command /> = run command (the rest of the line) using shell<br />
+# b, break = stop here (continue rebase later with 'git rebase --continue')<br />
+# d, drop </commit><commit> = remove commit<br />
+# l, label <label> = label current HEAD with a name<br />
+# t, reset </label><label> = reset HEAD to a label<br />
+# m, merge [-C <commit> | -c </commit><commit>] <label> [# <oneline>]<br />
+# .       create a merge commit using the original merge commit's<br />
+# .       message (or the oneline, if no original merge commit was<br />
+# .       specified). Use -c <commit> to reword the commit message.<br />
+#<br />
+# These lines can be re-ordered; they are executed from top to bottom.<br />
+#<br />
+# If you remove a line here THAT COMMIT WILL BE LOST.<br />
+#<br />
+# However, if you remove everything, the rebase will be aborted.<br />
+</commit></oneline></label></commit></label></commit></code></p>
+<p>Siguiendo las instrucciones que te muestra el comando en pantalla, en la línea correspondiente al commit 549nf34 sustituyas «pick» por «drop». Guarda y cierra tu editor y el rebase interactivo comenzará a ejecutarse.</p>
+<p>Si te salen conflictos (cosa que dependerá de lo que tengas en los commits) resuelvelos, sube los ficheros al staging area con un git add y luego continúa el rebase con git rebase &#8211;continue.</p>
+<p>Espero haberte resuelto la pregunta y, de nuevo, perdona el retraso.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Daniel		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-59394</link>
+
+		<dc:creator><![CDATA[Daniel]]></dc:creator>
+		<pubDate>Thu, 05 Dec 2019 18:42:58 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-59394</guid>
+
+					<description><![CDATA[Ejemplo tengo una serie de commits
+
+3b4r4903
+549nf34
+4m3400
+904g4jf4
+
+Si yo quiero eliminar únicamente el 549nf34 pero quiero conservar los demás sin tener que eliminar el primero 3b4r4903 ,4m3400, 904g4jf4 ? 
+
+Que comando tengo que usar?
+
+
+Que es lo que tengo que hacer?]]></description>
+			<content:encoded><![CDATA[<p>Ejemplo tengo una serie de commits</p>
+<p>3b4r4903<br />
+549nf34<br />
+4m3400<br />
+904g4jf4</p>
+<p>Si yo quiero eliminar únicamente el 549nf34 pero quiero conservar los demás sin tener que eliminar el primero 3b4r4903 ,4m3400, 904g4jf4 ? </p>
+<p>Que comando tengo que usar?</p>
+<p>Que es lo que tengo que hacer?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Oscar		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-26576</link>
+
+		<dc:creator><![CDATA[Oscar]]></dc:creator>
+		<pubDate>Tue, 23 Oct 2018 12:28:32 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-26576</guid>
+
+					<description><![CDATA[Hola, buenos días. 
+
+Hice un commit que quedó en el repositorio local, luego hice un revert pero se me perdió el último código que había generado. Es posible recuperar ese código? Qué puedo hacer?
+
+Gracias]]></description>
+			<content:encoded><![CDATA[<p>Hola, buenos días. </p>
+<p>Hice un commit que quedó en el repositorio local, luego hice un revert pero se me perdió el último código que había generado. Es posible recuperar ese código? Qué puedo hacer?</p>
+<p>Gracias</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16906</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 28 Dec 2017 23:09:54 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-16906</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16898&quot;&gt;JAvi&lt;/a&gt;.
+
+Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero &quot;index.html&quot; que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).
+
+Supongamos que este es el contenido del fichero index.html en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)
+
+&lt;code&gt;
+# index.html Commit1 
+&#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
+&lt;/code&gt;
+
+&lt;code&gt;
+# index.html Commit2
+&#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
+&#060;a href=&quot;pagina2.html&quot; rel=&quot;nofollow&quot;&gt;Página 2&#060;/a&gt;
+&lt;/code&gt;
+
+&lt;code&gt;
+# index.html Commit3
+&#060;a href=&quot;pagina1.html&quot; rel=&quot;nofollow&quot;&gt;Página 1&#060;/a&gt;
+&#060;a href=&quot;pagina2.html&quot; rel=&quot;nofollow&quot;&gt;Página 2&#060;/a&gt;
+&#060;a href=&quot;pagina3.html&quot; rel=&quot;nofollow&quot;&gt;Página 3&#060;/a&gt;
+&lt;/code&gt;
+
+Si quieres borrar el fichero &quot;index.html&quot; del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción &quot;edit&quot; del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:
+
+Imagina que este es tu repositorio:
+
+* d36db1d (master) Commit 3
+* d7c982c Commit 2
+* ac1a1c8 Commit 1
+* 49bbab1 Commit inicial
+
+Quieres borrar el fichero index del Commit 1 (ac1a1c8). El comando sería
+
+&lt;code&gt;
+#git rebase -i 49bbab1
+&lt;/code&gt;
+
+Y en la interfaz que te sale para seleccionar las acciones del rebase interactivo estas quedarían:
+
+edit ac1a1c8 Commit 1
+pick d7c982c Commit 2
+pick d36db1d Commit 3
+
+Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero index.html. También podrías usar la opción &quot;exec&quot; del rebase interactivo y borrar el fichero ejecutando un comando rm.
+
+Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero index.html que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.
+
+¿Te he respondido a la pregunta?]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16898">JAvi</a>.</p>
+<p>Creo que ahora entiendo mejor la pregunta. Según me indicas, imagina tienes un fichero «index.html» que modificas en 3 commits consecutivos (según el ejemplo que me has puesto).</p>
+<p>Supongamos que este es el contenido del fichero index.html en cada commit según me has indicado en el comentario anterior (en cada commit que haces modificas el fichero)</p>
+<p><code><br />
+# index.html Commit1<br />
+&lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
+</code></p>
+<p><code><br />
+# index.html Commit2<br />
+&lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
+&lt;a href="pagina2.html" rel="nofollow">Página 2&lt;/a><br />
+</code></p>
+<p><code><br />
+# index.html Commit3<br />
+&lt;a href="pagina1.html" rel="nofollow">Página 1&lt;/a><br />
+&lt;a href="pagina2.html" rel="nofollow">Página 2&lt;/a><br />
+&lt;a href="pagina3.html" rel="nofollow">Página 3&lt;/a><br />
+</code></p>
+<p>Si quieres borrar el fichero «index.html» del primer commit, podrías hacerlo con un rebase interactivo en el que seleccionas la opción «edit» del primer commit para borrarlo. Eso sí, cuando regenere el segundo commit durante el rebase te va a dar conflictos ya que estarás modificando un fichero que en el paso anterior del rebase has borrado. Te pongo un ejemplo como hacerlo con un repo con commits reales:</p>
+<p>Imagina que este es tu repositorio:</p>
+<p>* d36db1d (master) Commit 3<br />
+* d7c982c Commit 2<br />
+* ac1a1c8 Commit 1<br />
+* 49bbab1 Commit inicial</p>
+<p>Quieres borrar el fichero index del Commit 1 (ac1a1c8). El comando sería</p>
+<p><code><br />
+#git rebase -i 49bbab1<br />
+</code></p>
+<p>Y en la interfaz que te sale para seleccionar las acciones del rebase interactivo estas quedarían:</p>
+<p>edit ac1a1c8 Commit 1<br />
+pick d7c982c Commit 2<br />
+pick d36db1d Commit 3</p>
+<p>Como te he comentado antes, en el primer paso del rebase al poner edit git te permite editar el commit en lugar de hacerlo automáticamente y ahí podrías borrar el fichero index.html. También podrías usar la opción «exec» del rebase interactivo y borrar el fichero ejecutando un comando rm.</p>
+<p>Cuando termines el primer paso del rebase interactivo y git genere el siguiente commit, te dará un conflicto ya que estarías intentando modificar el fichero index.html que acabas de borrar. Lo resuelves y continúas el rebase hasta que aplique todos los commits.</p>
+<p>¿Te he respondido a la pregunta?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: JAvi		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16898</link>
+
+		<dc:creator><![CDATA[JAvi]]></dc:creator>
+		<pubDate>Thu, 28 Dec 2017 12:40:03 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-16898</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16897&quot;&gt;admin&lt;/a&gt;.
+
+Muy buenas,
+no es que quiera borrar un fichero.
+
+Pongamos siguiente ejemplo de ficheros que subo por commit:
+
+Commit 1 --&#062; fichero a modificado
+Commit 2 --&#062; fichero a modificado
+Commit 3 --&#062; fichero a modificado
+Commit 4 --&#062; fichero a modificado
+
+De alguna manera sé, que el fichero &quot;a&quot; del commit 1 ya no lo voy a necesitar nunca mas.
+La pregunta viene en como podría borrar ese fichero.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16897">admin</a>.</p>
+<p>Muy buenas,<br />
+no es que quiera borrar un fichero.</p>
+<p>Pongamos siguiente ejemplo de ficheros que subo por commit:</p>
+<p>Commit 1 &#8211;&gt; fichero a modificado<br />
+Commit 2 &#8211;&gt; fichero a modificado<br />
+Commit 3 &#8211;&gt; fichero a modificado<br />
+Commit 4 &#8211;&gt; fichero a modificado</p>
+<p>De alguna manera sé, que el fichero «a» del commit 1 ya no lo voy a necesitar nunca mas.<br />
+La pregunta viene en como podría borrar ese fichero.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16897</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 28 Dec 2017 11:44:38 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-16897</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16896&quot;&gt;JAvi&lt;/a&gt;.
+
+Hola Javi:
+
+Si lo que quieres es borrar ciertos ficheros debes usar el comando &quot;git rm&quot;. Por ejemplo:
+
+&lt;code&gt;
+#git rm fichero1.txt app/fichero2.txt
+#git commit -m&#039;Borrando ficheros!!&#039;
+&lt;/code&gt;
+
+A partir de este commit, los ficheros ya no estarán. Ten en cuenta, es sí, que si haces checkout de un commit anterior los ficheros volverán a aparecer en tu área de trabajo.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16896">JAvi</a>.</p>
+<p>Hola Javi:</p>
+<p>Si lo que quieres es borrar ciertos ficheros debes usar el comando «git rm». Por ejemplo:</p>
+<p><code><br />
+#git rm fichero1.txt app/fichero2.txt<br />
+#git commit -m'Borrando ficheros!!'<br />
+</code></p>
+<p>A partir de este commit, los ficheros ya no estarán. Ten en cuenta, es sí, que si haces checkout de un commit anterior los ficheros volverán a aparecer en tu área de trabajo.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: JAvi		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-16896</link>
+
+		<dc:creator><![CDATA[JAvi]]></dc:creator>
+		<pubDate>Thu, 28 Dec 2017 10:36:40 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-16896</guid>
+
+					<description><![CDATA[Buenos días,
+en mi caso no es que me interese borrar un commit tal cual, sino que tengo la problemática de que necesito borrar ciertos ficheros que he subido en un commit.
+
+Son ficheros que nunca mas voy a utilizar, ni siquiera para hacer un rollback ¿Como podría hacer ese borrado?
+
+
+un saludo
+Javi]]></description>
+			<content:encoded><![CDATA[<p>Buenos días,<br />
+en mi caso no es que me interese borrar un commit tal cual, sino que tengo la problemática de que necesito borrar ciertos ficheros que he subido en un commit.</p>
+<p>Son ficheros que nunca mas voy a utilizar, ni siquiera para hacer un rollback ¿Como podría hacer ese borrado?</p>
+<p>un saludo<br />
+Javi</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Mis Comandos Gits &#8211; Pedro Caicedo		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-12198</link>
+
+		<dc:creator><![CDATA[Mis Comandos Gits &#8211; Pedro Caicedo]]></dc:creator>
+		<pubDate>Mon, 28 Aug 2017 17:48:27 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-12198</guid>
+
+					<description><![CDATA[[&#8230;] Fuente: aprendegit-como-deshacer-el-ultimo-commit-en-git [&#8230;]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] Fuente: aprendegit-como-deshacer-el-ultimo-commit-en-git [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-12153</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 25 Aug 2017 05:34:21 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-12153</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-12104&quot;&gt;hector&lt;/a&gt;.
+
+Hola Hector:
+
+cuando has ejecutado el comando git reset ¿la consola sólo te ha mostrado el mensaje &quot;¿Más?&quot; ? No recuerdo haber visto ese mensaje.
+
+En cualquier caso, si has ejecutado &quot;git reset HEAD^&quot; estás utilizando la opción --mixed del comando reset de manera implícita y esto hace que tras ejecutar el comando que has puesto, el último commit se &quot;elimine&quot; y que las modificaciones del mismo permanecen en tu área de trabajo. De esta manera, aunque el commit lo dejes de ver, el código fuente sigue disponible en tu área de trabajo. Al ejecutar este comando de git, no te sale ningún mensaje por consola, git lo ejecuta y ya está.
+
+Si quieres &quot;eliminar&quot; completamente ese commit y que el código fuente que se ha modificado vuelva estar como estaba antes de hacerlo, tendrías que ejecutar el comando &quot;git reset --hard HEAD^&quot;. Pero ten mucho cuidado porque la opción --hard del comando reset &lt;strong&gt;borra cualquier cambio que tengas en tu área de trabajo&lt;/strong&gt;. Antes de hacerlo asegurate de que tu área de trabajo está limpia y si no lo está usa el comando git stash para guardarla. Los comandos serían:
+&lt;ul&gt;
+	&lt;li&gt;git stash&lt;/li&gt;
+	&lt;li&gt;git reset --hard HEAD^&lt;/li&gt;
+	&lt;li&gt;git stash pop&lt;/li&gt;
+&lt;/ul&gt;
+
+¿Te he aclarado un poco lo que me estabas preguntando?]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-12104">hector</a>.</p>
+<p>Hola Hector:</p>
+<p>cuando has ejecutado el comando git reset ¿la consola sólo te ha mostrado el mensaje «¿Más?» ? No recuerdo haber visto ese mensaje.</p>
+<p>En cualquier caso, si has ejecutado «git reset HEAD^» estás utilizando la opción &#8211;mixed del comando reset de manera implícita y esto hace que tras ejecutar el comando que has puesto, el último commit se «elimine» y que las modificaciones del mismo permanecen en tu área de trabajo. De esta manera, aunque el commit lo dejes de ver, el código fuente sigue disponible en tu área de trabajo. Al ejecutar este comando de git, no te sale ningún mensaje por consola, git lo ejecuta y ya está.</p>
+<p>Si quieres «eliminar» completamente ese commit y que el código fuente que se ha modificado vuelva estar como estaba antes de hacerlo, tendrías que ejecutar el comando «git reset &#8211;hard HEAD^». Pero ten mucho cuidado porque la opción &#8211;hard del comando reset <strong>borra cualquier cambio que tengas en tu área de trabajo</strong>. Antes de hacerlo asegurate de que tu área de trabajo está limpia y si no lo está usa el comando git stash para guardarla. Los comandos serían:</p>
+<ul>
+<li>git stash</li>
+<li>git reset &#8211;hard HEAD^</li>
+<li>git stash pop</li>
+</ul>
+<p>¿Te he aclarado un poco lo que me estabas preguntando?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: hector		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-12104</link>
+
+		<dc:creator><![CDATA[hector]]></dc:creator>
+		<pubDate>Tue, 15 Aug 2017 15:56:29 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-12104</guid>
+
+					<description><![CDATA[Hola cuando realizo un git rebase -i HEAD~2 y utlilizo el edit en el ultimo commit
+y me di cuenta que quiero eliminar el ultimo commit realizo git reset HEAD^ 
+apreto enter y me sale por consola ¿Más? por lo que no se que estoy haciendo mal.
+Si me pueden orientar se los agradeceria.
+Saludos]]></description>
+			<content:encoded><![CDATA[<p>Hola cuando realizo un git rebase -i HEAD~2 y utlilizo el edit en el ultimo commit<br />
+y me di cuenta que quiero eliminar el ultimo commit realizo git reset HEAD^<br />
+apreto enter y me sale por consola ¿Más? por lo que no se que estoy haciendo mal.<br />
+Si me pueden orientar se los agradeceria.<br />
+Saludos</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Azeroth		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-2330</link>
+
+		<dc:creator><![CDATA[Azeroth]]></dc:creator>
+		<pubDate>Thu, 26 Feb 2015 12:34:33 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-2330</guid>
+
+					<description><![CDATA[Gracias, justo lo que estaba buscando y muy bien explicado.]]></description>
+			<content:encoded><![CDATA[<p>Gracias, justo lo que estaba buscando y muy bien explicado.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1281</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 28 Jan 2014 06:46:03 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-1281</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1280&quot;&gt;Mario&lt;/a&gt;.
+
+¡¡De nada!! Gracias a tí por el feedback.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1280">Mario</a>.</p>
+<p>¡¡De nada!! Gracias a tí por el feedback.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Mario		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1280</link>
+
+		<dc:creator><![CDATA[Mario]]></dc:creator>
+		<pubDate>Sat, 25 Jan 2014 06:12:03 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-1280</guid>
+
+					<description><![CDATA[Hola!
+
+Vengo de Subversion y se me esta haciendo muy complicado comprender git. Esta explicación me lo ha dejado claro. Gracias!
+
+Un saludo!:)]]></description>
+			<content:encoded><![CDATA[<p>Hola!</p>
+<p>Vengo de Subversion y se me esta haciendo muy complicado comprender git. Esta explicación me lo ha dejado claro. Gracias!</p>
+<p>Un saludo!:)</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1155</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Sun, 15 Sep 2013 05:46:09 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-1155</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1148&quot;&gt;Rafa&lt;/a&gt;.
+
+Hola Rafa:
+
+Efectivamente, como bien pones en tu post está la opción git reset --soft HEAD~1. La opción por defecto es --mixed. La diferencia entre las dos:
+
+	--mixed: mantiene los ficheros pero no los marca como para hacer commit
+	--soft: mantiene los ficheros y los marca para hacer commit. Si ejecutas un git status, te aparecerán en la sección &quot;Changes to be commited&quot;
+
+
+¡Gracias por la aclaración!
+
+P.D. En la página de manual están las tres opciones: --hard --soft --mixed (https://www.kernel.org/pub/software/scm/git/docs/git-reset.html)]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1148">Rafa</a>.</p>
+<p>Hola Rafa:</p>
+<p>Efectivamente, como bien pones en tu post está la opción git reset &#8211;soft HEAD~1. La opción por defecto es &#8211;mixed. La diferencia entre las dos:</p>
+<p>	&#8211;mixed: mantiene los ficheros pero no los marca como para hacer commit<br />
+	&#8211;soft: mantiene los ficheros y los marca para hacer commit. Si ejecutas un git status, te aparecerán en la sección «Changes to be commited»</p>
+<p>¡Gracias por la aclaración!</p>
+<p>P.D. En la página de manual están las tres opciones: &#8211;hard &#8211;soft &#8211;mixed (<a href="https://www.kernel.org/pub/software/scm/git/docs/git-reset.html" rel="nofollow ugc">https://www.kernel.org/pub/software/scm/git/docs/git-reset.html</a>)</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Rafa		</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comment-1148</link>
+
+		<dc:creator><![CDATA[Rafa]]></dc:creator>
+		<pubDate>Wed, 11 Sep 2013 17:19:54 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630#comment-1148</guid>
+
+					<description><![CDATA[Yo descubrí 3 formas, y seguro que alguna forma más ;-)
+
+http://xthefull.blogspot.com.es/2013/08/git-reset-viaje-en-el-tiempo-local.html?m=1]]></description>
+			<content:encoded><![CDATA[<p>Yo descubrí 3 formas, y seguro que alguna forma más 😉</p>
+<p><a href="http://xthefull.blogspot.com.es/2013/08/git-reset-viaje-en-el-tiempo-local.html?m=1" rel="nofollow ugc">http://xthefull.blogspot.com.es/2013/08/git-reset-viaje-en-el-tiempo-local.html?m=1</a></p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

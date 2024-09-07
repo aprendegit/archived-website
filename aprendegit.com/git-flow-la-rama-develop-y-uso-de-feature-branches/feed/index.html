@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: git-flow: la rama develop y uso de feature branches	</title>
+	<atom:link href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:49 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-34697</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 29 Mar 2019 07:19:55 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-34697</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-32957&quot;&gt;Alexander&lt;/a&gt;.
+
+Hola Alexander:
+
+Gracias por tu pregunta y perdona que haya tardado tanto en responderte.
+
+Es una buena pregunta y la respuesta depende de cómo estáis trabajando; si usáis pull request o no o si estáis usando rebase o merge, por ejemplo. Por concretar un poco, y asumiendo que utilizas merge y no trabajáis con pull requests, a mi modo de verlo tendrías dos opciones:
+&lt;ol&gt;
+	&lt;li&gt;Mantener la rama hasta que sepas los resultados de las pruebas y el veredicto de QA. Si está todo OK, la borras. Si no, vuelves a la rama, haces los cambios que te piden, negreas de nuevo en develop y esperas los resultados. Vas repitiendo el proceso hasta que esté todo Ok y entonces borras la rama.&lt;/li&gt;
+	&lt;li&gt;Cierras la rama y si tienes que hacer modificaciones, creas una nueva rama para implementarlas&lt;/li&gt;
+&lt;/ol&gt;
+
+Si trabajase en las condiciones que te he indicado arriba, seguramente optaría por la primera opción.
+
+¡Un saludo!]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-32957">Alexander</a>.</p>
+<p>Hola Alexander:</p>
+<p>Gracias por tu pregunta y perdona que haya tardado tanto en responderte.</p>
+<p>Es una buena pregunta y la respuesta depende de cómo estáis trabajando; si usáis pull request o no o si estáis usando rebase o merge, por ejemplo. Por concretar un poco, y asumiendo que utilizas merge y no trabajáis con pull requests, a mi modo de verlo tendrías dos opciones:</p>
+<ol>
+<li>Mantener la rama hasta que sepas los resultados de las pruebas y el veredicto de QA. Si está todo OK, la borras. Si no, vuelves a la rama, haces los cambios que te piden, negreas de nuevo en develop y esperas los resultados. Vas repitiendo el proceso hasta que esté todo Ok y entonces borras la rama.</li>
+<li>Cierras la rama y si tienes que hacer modificaciones, creas una nueva rama para implementarlas</li>
+</ol>
+<p>Si trabajase en las condiciones que te he indicado arriba, seguramente optaría por la primera opción.</p>
+<p>¡Un saludo!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Alexander		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-32957</link>
+
+		<dc:creator><![CDATA[Alexander]]></dc:creator>
+		<pubDate>Sun, 03 Mar 2019 18:39:22 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-32957</guid>
+
+					<description><![CDATA[Hola tengo una duda. Entiendo que cuando se acaba de desarrollar la historia pasa a la rama develop para ejecucion de pruebas y QA, mientras se comienza a desarrollar la historia 2. Que pasa si la historia subida a develop tiene errores?]]></description>
+			<content:encoded><![CDATA[<p>Hola tengo una duda. Entiendo que cuando se acaba de desarrollar la historia pasa a la rama develop para ejecucion de pruebas y QA, mientras se comienza a desarrollar la historia 2. Que pasa si la historia subida a develop tiene errores?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-4141</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 22 Apr 2016 16:20:25 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-4141</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-4134&quot;&gt;Sergio&lt;/a&gt;.
+
+Hola Sergio:
+
+La respuesta a la primera pregunta es que sí. Si abres el caso 1, lo desarrollas y lo cierras. Luego abres el caso 2 lo desarrollas y lo cierras. El último commit de develop tendrá los dos casos. Tu grafo quedará parecido a esto:
+
+&lt;code&gt;
+
+master
+o------------o------------o development
+ \o--o--o--o/ \o--o--o--o/  
+     
+..^^^^^^^^^.....^^^^^^^^^
+....caso 1.......caso 2
+&lt;/code&gt;
+
+Si luego no queremos publicar lo que se ha hecho en el caso 1, hay varias formas de proceder. Una de ellas es reaplicar con un rebase todos los commits del caso 1 sobre master y hacer lo mismo con lo del caso 2 de forma que tu repositorio quede así
+
+&lt;code&gt;
+
+development
+master                       
+   o
+   &#124;\o--o--o--o  caso 1
+   &#124; 
+    \o--o--o--o caso 2
+&lt;/code&gt;
+
+Una vez hecho esto, mergeas en develop solo el caso 2 y ya lo tendrías. Eso sí, si el código que has hecho en el caso 2 depende del código que está en el caso 1, no te resultará tan fácil. Por ejemplo, puede que alguna función del caso 2 dependa de una función nueva que hiciste del caso 1. En ese caso habría que hacer alguna cosa más, como reorganizar el código del caso 1 para sacar un commit que contenga sólo esa función y hacer un cherry-pick de ese commit en el caso 2. Estoy poniéndote diferentes opciones que se me ocurren te pueden servir.
+
+Y por último, con respecto a crear features a partir de master: no habría ningún problema, los creas y cuando terminas los mergeas. Lo único es que eso ya no es &quot;git-flow&quot; ;-) porque te estás saltando el flujo. Si no haces ninguna cosa rara con las ramas y sólo te dedicas a hacer un caso desde master y cerrarlo, seguramente git-flow ni se entere (para él será como si hubieses hecho un hotfix).
+
+Espero haberte ayudado.
+
+Un saludo,
+
+Alfonso
+
+Nota: los puntos en los esquemas son como espacios, no consigo que el editor no los colapse...]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-4134">Sergio</a>.</p>
+<p>Hola Sergio:</p>
+<p>La respuesta a la primera pregunta es que sí. Si abres el caso 1, lo desarrollas y lo cierras. Luego abres el caso 2 lo desarrollas y lo cierras. El último commit de develop tendrá los dos casos. Tu grafo quedará parecido a esto:</p>
+<p><code></p>
+<p>master<br />
+o------------o------------o development<br />
+ \o--o--o--o/ \o--o--o--o/  </p>
+<p>..^^^^^^^^^.....^^^^^^^^^<br />
+....caso 1.......caso 2<br />
+</code></p>
+<p>Si luego no queremos publicar lo que se ha hecho en el caso 1, hay varias formas de proceder. Una de ellas es reaplicar con un rebase todos los commits del caso 1 sobre master y hacer lo mismo con lo del caso 2 de forma que tu repositorio quede así</p>
+<p><code></p>
+<p>development<br />
+master<br />
+   o<br />
+   |\o--o--o--o  caso 1<br />
+   |<br />
+    \o--o--o--o caso 2<br />
+</code></p>
+<p>Una vez hecho esto, mergeas en develop solo el caso 2 y ya lo tendrías. Eso sí, si el código que has hecho en el caso 2 depende del código que está en el caso 1, no te resultará tan fácil. Por ejemplo, puede que alguna función del caso 2 dependa de una función nueva que hiciste del caso 1. En ese caso habría que hacer alguna cosa más, como reorganizar el código del caso 1 para sacar un commit que contenga sólo esa función y hacer un cherry-pick de ese commit en el caso 2. Estoy poniéndote diferentes opciones que se me ocurren te pueden servir.</p>
+<p>Y por último, con respecto a crear features a partir de master: no habría ningún problema, los creas y cuando terminas los mergeas. Lo único es que eso ya no es «git-flow» 😉 porque te estás saltando el flujo. Si no haces ninguna cosa rara con las ramas y sólo te dedicas a hacer un caso desde master y cerrarlo, seguramente git-flow ni se entere (para él será como si hubieses hecho un hotfix).</p>
+<p>Espero haberte ayudado.</p>
+<p>Un saludo,</p>
+<p>Alfonso</p>
+<p>Nota: los puntos en los esquemas son como espacios, no consigo que el editor no los colapse&#8230;</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Sergio		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-4134</link>
+
+		<dc:creator><![CDATA[Sergio]]></dc:creator>
+		<pubDate>Fri, 22 Apr 2016 09:21:57 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-4134</guid>
+
+					<description><![CDATA[Buenas, 
+
+Tengo una duda respecto al uso de gitflow, y sobre &quot;a partir de que rama&quot; hacer los desarrollos.
+
+Ejemplo: 
+Entra el caso numero 1, partimos de develop, creamos una feature y hacemos merge a develop (todavía no lo publicamos con release, ni master...)
+Entra el caso número 2 (mismo proyecto pero tematica distinta a numero 1), ¿¿si partimos de develop, no estariamos arrastrando los cambios del caso 1?? Y si luego no queremos publicar lo que se ha hecho en el caso 1, estariamos arrastrandolo, no?
+
+¿Que inconveniente hay en crear Features siempre a partir de la rama Master para cada ticket?
+
+Gracias, saludos.]]></description>
+			<content:encoded><![CDATA[<p>Buenas, </p>
+<p>Tengo una duda respecto al uso de gitflow, y sobre «a partir de que rama» hacer los desarrollos.</p>
+<p>Ejemplo:<br />
+Entra el caso numero 1, partimos de develop, creamos una feature y hacemos merge a develop (todavía no lo publicamos con release, ni master&#8230;)<br />
+Entra el caso número 2 (mismo proyecto pero tematica distinta a numero 1), ¿¿si partimos de develop, no estariamos arrastrando los cambios del caso 1?? Y si luego no queremos publicar lo que se ha hecho en el caso 1, estariamos arrastrandolo, no?</p>
+<p>¿Que inconveniente hay en crear Features siempre a partir de la rama Master para cada ticket?</p>
+<p>Gracias, saludos.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: joel		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-3919</link>
+
+		<dc:creator><![CDATA[joel]]></dc:creator>
+		<pubDate>Wed, 06 Apr 2016 16:10:09 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-3919</guid>
+
+					<description><![CDATA[2 dudas utilizando git-flow
+
+1. una vez terminado el desarrollo de la rama feature/rama1, ¿se puede volver a crear?
+
+2. si mi ubicacion está en la rama feature/rama1 ¿Puedo realizar un git push origin develop?]]></description>
+			<content:encoded><![CDATA[<p>2 dudas utilizando git-flow</p>
+<p>1. una vez terminado el desarrollo de la rama feature/rama1, ¿se puede volver a crear?</p>
+<p>2. si mi ubicacion está en la rama feature/rama1 ¿Puedo realizar un git push origin develop?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Daniel		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-3553</link>
+
+		<dc:creator><![CDATA[Daniel]]></dc:creator>
+		<pubDate>Fri, 04 Mar 2016 09:24:53 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-3553</guid>
+
+					<description><![CDATA[Hola muy buenas!
+
+Me gustaría darte la enhorabuena por el artículo, git flow es sencillo, he leído un montón de veces sobre gitflow, pero nunca recaes en la importancia cuándo lo ves en comparación con el flujo normal, el que usamos todavía en nuestro equipo.
+
+Desde hace tiempo, quiero implantar este flujo de trabajo en nuestro equipo, pero tengo miedo de que sea demasiada complicación dado que hay perfiles muy diferentes en el proyecto, maquetadores, desarrolladores Junior, senior... y no sé si vamos a ir hacia delante, o hacia atrás.
+
+¿Qué nos recomiendas?
+
+Creo además sinceramente, como bien indicas, que git flow, con un desarrollo muy medido y establecido de ante mano, puede ser muy beneficioso y organizado, pero nosotros trabajamos en 3/4 proyectos al mismo tiempo y creo que puede dar más problemas que beneficios.]]></description>
+			<content:encoded><![CDATA[<p>Hola muy buenas!</p>
+<p>Me gustaría darte la enhorabuena por el artículo, git flow es sencillo, he leído un montón de veces sobre gitflow, pero nunca recaes en la importancia cuándo lo ves en comparación con el flujo normal, el que usamos todavía en nuestro equipo.</p>
+<p>Desde hace tiempo, quiero implantar este flujo de trabajo en nuestro equipo, pero tengo miedo de que sea demasiada complicación dado que hay perfiles muy diferentes en el proyecto, maquetadores, desarrolladores Junior, senior&#8230; y no sé si vamos a ir hacia delante, o hacia atrás.</p>
+<p>¿Qué nos recomiendas?</p>
+<p>Creo además sinceramente, como bien indicas, que git flow, con un desarrollo muy medido y establecido de ante mano, puede ser muy beneficioso y organizado, pero nosotros trabajamos en 3/4 proyectos al mismo tiempo y creo que puede dar más problemas que beneficios.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-2337</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Tue, 03 Mar 2015 20:53:13 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-2337</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-2336&quot;&gt;Xavier Araque&lt;/a&gt;.
+
+Los dos comandos son equivalentes (en realidad cuando ejecutas git flow se llama a git-flow). Gracias por la aclaración.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-2336">Xavier Araque</a>.</p>
+<p>Los dos comandos son equivalentes (en realidad cuando ejecutas git flow se llama a git-flow). Gracias por la aclaración.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Xavier Araque		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-2336</link>
+
+		<dc:creator><![CDATA[Xavier Araque]]></dc:creator>
+		<pubDate>Tue, 03 Mar 2015 15:41:11 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-2336</guid>
+
+					<description><![CDATA[A mi me funciona en vez de el comando git-flow init
+uso:
+
+git flow init
+
+Dentro del proyecto Git
+Saludos]]></description>
+			<content:encoded><![CDATA[<p>A mi me funciona en vez de el comando git-flow init<br />
+uso:</p>
+<p>git flow init</p>
+<p>Dentro del proyecto Git<br />
+Saludos</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1871</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 01 Dec 2014 06:24:07 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-1871</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1870&quot;&gt;Murray Greer&lt;/a&gt;.
+
+¡De nada! Gracias a ti por tus comentarios. Soy organizador de un grupo de meetup en Madrid donde intentamos juntarnos una vez al mes para dar una charla. Cuando nos es posible, la grabamos, la colgamos en internet y lo pongo aquí en el blog. Si sigues el blog estarás al tanto de cualquier contenido que generemos sobre git.
+
+Con respecto a lo del libro, no, no he escrito ninguno... pero todo se andará ;-).
+
+Un saludo,
+
+Alfonso]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1870">Murray Greer</a>.</p>
+<p>¡De nada! Gracias a ti por tus comentarios. Soy organizador de un grupo de meetup en Madrid donde intentamos juntarnos una vez al mes para dar una charla. Cuando nos es posible, la grabamos, la colgamos en internet y lo pongo aquí en el blog. Si sigues el blog estarás al tanto de cualquier contenido que generemos sobre git.</p>
+<p>Con respecto a lo del libro, no, no he escrito ninguno&#8230; pero todo se andará ;-).</p>
+<p>Un saludo,</p>
+<p>Alfonso</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Murray Greer		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1870</link>
+
+		<dc:creator><![CDATA[Murray Greer]]></dc:creator>
+		<pubDate>Fri, 28 Nov 2014 16:51:14 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-1870</guid>
+
+					<description><![CDATA[Hola,
+
+Gracias! por tu tiempo en explicarme.
+
+Muy beno tu blog sobre git, me gustaria saber si aparte de este blog das charlas (online) sobre git, si has escrito algun libre sobre git para comprarlo! etc... 
+Saludos desde Panamá!]]></description>
+			<content:encoded><![CDATA[<p>Hola,</p>
+<p>Gracias! por tu tiempo en explicarme.</p>
+<p>Muy beno tu blog sobre git, me gustaria saber si aparte de este blog das charlas (online) sobre git, si has escrito algun libre sobre git para comprarlo! etc&#8230;<br />
+Saludos desde Panamá!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1869</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 28 Nov 2014 07:30:41 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-1869</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1585&quot;&gt;Murray Greer&lt;/a&gt;.
+
+...con respecto a lo que comentas de que te crea dos ramas, eso ocurre cuando ejecutas git-flow init en un directorio que no tiene un repositorio en git. En ese caso, hace algo parecido a lo siguiente 
+&lt;ul&gt;
+	&lt;li&gt;git-init -&gt; git-commit &lt;/li&gt;
+	&lt;li&gt;git commit -m&#039;Initial commit&#039; --allow-empty (para crear un commit sólo con un mensaje)&lt;/li&gt;
+	&lt;li&gt;git branch master&lt;/li&gt;
+	&lt;li&gt;git branch develop&lt;/li&gt;
+&lt;/ul&gt;]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1585">Murray Greer</a>.</p>
+<p>&#8230;con respecto a lo que comentas de que te crea dos ramas, eso ocurre cuando ejecutas git-flow init en un directorio que no tiene un repositorio en git. En ese caso, hace algo parecido a lo siguiente </p>
+<ul>
+<li>git-init -> git-commit </li>
+<li>git commit -m&#8217;Initial commit&#8217; &#8211;allow-empty (para crear un commit sólo con un mensaje)</li>
+<li>git branch master</li>
+<li>git branch develop</li>
+</ul>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1868</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 28 Nov 2014 07:24:26 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-1868</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1585&quot;&gt;Murray Greer&lt;/a&gt;.
+
+Hola Murray:
+
+Los comandos exactos no los sé, pero los puedes encontrar en el código fuente: https://github.com/nvie/gitflow/blob/develop/git-flow-init. Si echas un vistazo rápido verás que básicamente se utiliza git config. Lo que hace básicamente el comando es crear la configuración en base a las respuestas que le das.
+
+Un saludo.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1585">Murray Greer</a>.</p>
+<p>Hola Murray:</p>
+<p>Los comandos exactos no los sé, pero los puedes encontrar en el código fuente: <a href="https://github.com/nvie/gitflow/blob/develop/git-flow-init" rel="nofollow ugc">https://github.com/nvie/gitflow/blob/develop/git-flow-init</a>. Si echas un vistazo rápido verás que básicamente se utiliza git config. Lo que hace básicamente el comando es crear la configuración en base a las respuestas que le das.</p>
+<p>Un saludo.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Murray Greer		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-1585</link>
+
+		<dc:creator><![CDATA[Murray Greer]]></dc:creator>
+		<pubDate>Wed, 19 Nov 2014 07:23:45 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-1585</guid>
+
+					<description><![CDATA[Hola,
+
+Tengo una duda... que comandos utiliza git-flow para iniciar un proyecto ?
+
+me gustaria replicar este flujo de trabajo pero usando git normal.
+
+al iniciar con git-flow, este me crea dos ramas (develop y master) con un commit de inicio, los dos iguales.]]></description>
+			<content:encoded><![CDATA[<p>Hola,</p>
+<p>Tengo una duda&#8230; que comandos utiliza git-flow para iniciar un proyecto ?</p>
+<p>me gustaria replicar este flujo de trabajo pero usando git normal.</p>
+<p>al iniciar con git-flow, este me crea dos ramas (develop y master) con un commit de inicio, los dos iguales.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: git-flow: hotfix branches &#124; Aprende GIT		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-461</link>
+
+		<dc:creator><![CDATA[git-flow: hotfix branches &#124; Aprende GIT]]></dc:creator>
+		<pubDate>Mon, 15 Apr 2013 08:12:57 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-461</guid>
+
+					<description><![CDATA[[...] que ya llevamos unos cuantos días trabajando en el sprint. Habremos creado una (o varias) feature branches y el estado de nuestro repositorio puede ser algo parecido a [...]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] que ya llevamos unos cuantos días trabajando en el sprint. Habremos creado una (o varias) feature branches y el estado de nuestro repositorio puede ser algo parecido a [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: git-flow: release branches &#124; Aprende GIT		</title>
+		<link>https://aprendegit.com/git-flow-la-rama-develop-y-uso-de-feature-branches/#comment-418</link>
+
+		<dc:creator><![CDATA[git-flow: release branches &#124; Aprende GIT]]></dc:creator>
+		<pubDate>Tue, 02 Apr 2013 07:04:31 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=466#comment-418</guid>
+
+					<description><![CDATA[[...] la entrada anterior vimos cómo utilizamos la rama develop y las features branches para desarrollar la primera versión [...]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] la entrada anterior vimos cómo utilizamos la rama develop y las features branches para desarrollar la primera versión [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>bitbucket Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/category/bitbucket/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/category/bitbucket/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:52:13 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Creando nuestro primer repositorio en Bitbucket – Parte II: Subiendo el primer fichero</title>
+		<link>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-ii-subiendo-el-primer-fichero/</link>
+					<comments>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-ii-subiendo-el-primer-fichero/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 11 Dec 2012 13:00:40 +0000</pubDate>
+				<category><![CDATA[bitbucket]]></category>
+		<category><![CDATA[sourcetree]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=85</guid>
+
+					<description><![CDATA[En la primera parte de esta serie vimos cómo crear en bitbucket nuestro primer repositorio. Partiendo este punto, en esta entrada veremos cómo: Subir el código fuente al repositorio Crear un fichero README con información sobre el repositorio Enviar el fichero README a Bitbucket mediante push Paso 1: Clonar el respositorio en nuestro ordenador Lo [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En la <a title="Creando nuestro primer repositorio en Bitbucket – Parte I: registro y creación del repositorio" href="https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-i-registro-y-creacion-del-repositorio/">primera parte</a> de esta serie vimos cómo crear en bitbucket nuestro primer repositorio. Partiendo este punto, en esta entrada veremos cómo:</p>
+<ul>
+<li>Subir el código fuente al repositorio</li>
+<li>Crear un fichero README con información sobre el repositorio</li>
+<li>Enviar el fichero README a Bitbucket mediante push</li>
+</ul>
+<h2>Paso 1: Clonar el respositorio en nuestro ordenador</h2>
+<p>Lo primero que tenemos que hacer, una vez creado el repositorio en bitbucket, es <a title="¿qué significa clonar un repositorio?" href="https://aprendegit.com/que-signifeic-clonar-un-repositorio/">clonar el repositorio</a> en nuestra máquina. Si estáis trabajando con un Mac, como es mi caso, y habéis instalado previamente SourceTree, podéis hacer clic en la parte superior derecha derecha en el botón «Clone» y posteriormente sobre el botón «Clone in SourceTree».</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture241.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-91" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture241.png" alt="Clonar el repositorio en SourceTree" width="980" height="546" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture241.png 980w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture241-300x167.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture241-624x347.png 624w" sizes="(max-width: 980px) 100vw, 980px" /></a></p>
+<p>Cuando hagáis clic sobre el botón, se abrirá la aplicación y nos pedirá que seleccionemos una ruta en la que guardar el repositorio y un nombre corte (Bookmark Name) para localizarla rápidamente en el listado de repositorios de SourceTree:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture244.png"><img decoding="async" class="aligncenter size-full wp-image-93" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture244.png" alt="Clonar repositorio en SourceTree" width="696" height="325" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture244.png 696w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture244-300x140.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture244-624x291.png 624w" sizes="(max-width: 696px) 100vw, 696px" /></a></p>
+<p>Una vez le demos al botón «Clone», SourceTree nos mostrará el repositorio en el listado:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture245.png"><img decoding="async" class="aligncenter size-full wp-image-94" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture245.png" alt="Repositorio en SourceTree" width="543" height="379" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture245.png 543w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture245-300x209.png 300w" sizes="(max-width: 543px) 100vw, 543px" /></a></p>
+<p>Si todo ha ido bien, ya estamos listos para dar el siguiente paso.</p>
+<h2>Paso 2: Crear el fichero README</h2>
+<p>Siempre que trabajemos con Bitbucket o github, es muy conveniente tener un fichero README en la raíz de nuestro repositorio, así que vamos a crearlo.</p>
+<p>Lo primero y muy importante es que SourceTree no es un editor de código, tampoco es un IDE, es decir, <strong>no nos sirve para modificar el contenido de los ficheros:</strong></p>
+<ul>
+<li>Cuando programes tus tests y clases, ajustes tus ficheros de configuración o maquetes la nueva versión de la web, seguirás usando tu editor o IDE favorito para hacer tu trabajo</li>
+<li>Cuando tus tests estén todos en verde, hayas terminado una una versión de tu página HTML, o tengas la configuración adecuada de tu sistema, cambiaremos a SourceTree para guardar en el repositorio el trabajo que hemos realizado [1]</li>
+</ul>
+<p>Vamos a la carpeta en la que hemos clonado el repositorio y creamos un fichero README.md con el siguiente contenido:</p>
+<script src="https://gist.github.com/4233794.js"></script><noscript><pre><code class="language-markdown markdown">My New App
+==========
+
+Este es el README de mi nueva aplicaci&oacute;n MyNewApp.
+
+Este fichero se usa de ejemplo dentro del blog de aprendegit.com para crear un primer repositorio.
+
+Ejemplos de markdown
+--------------------
+
+As&iacute; se crean secciones y subsecciones. Para crear una enumeraci&oacute;n utilizamos:
++ Elemento 1
++ Elemento 2
++ Elemento 3
+</code></pre></noscript>
+<p>Una vez creado el fichero, dejamos el IDE o editor de texto que hayamos utilizado y volvemos a SourceTree. En la pantalla principal, abrimos el repositorio que acabamos de crear haciendo doble clic sobre él en el listado. Al hacerlo, se nos abrirá una pantalla similar a la que se muestra a continuación:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-105" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246.png" alt="El nuevo fichero README.md en el área de trabajo" width="1156" height="751" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246.png 1156w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246-300x194.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246-1024x665.png 1024w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture246-624x405.png 624w" sizes="(max-width: 1156px) 100vw, 1156px" /></a></p>
+<p>En el área de trabajo, situada en la parte inferior, vemos el fichero README.md que acabamos de crear. ¡Ha llegado el momento de subirlo a Bitbucket!</p>
+<h2>Paso 3: Subir el fichero a Bitbucket</h2>
+<p>Para hacerlo, seleccionamos el fichero README.md en el área de trabajo y le damos al botón «Add» que tenemos en el menú superior. También podemos arrastrarlo a la sección «Files staged in the index» que está justo encima:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture247.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-106" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture247.png" alt="Añadir fichero al staging area" width="674" height="564" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture247.png 674w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture247-300x251.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture247-624x522.png 624w" sizes="(max-width: 674px) 100vw, 674px" /></a></p>
+<p>Una vez tenemos el fichero en el área de ensayo (staging area) hacemos un commit presionando el botón «Commit» de la barra de herramientas. Se abrirá la siguiente ventana en la que debemos escribir un mensaje que describa qué hemos hecho. En este caso es sencillo: «Añadiendo el fichero README.md»:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-107" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248.png" alt="Haciendo un commit desde SourceTree" width="1052" height="634" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248.png 1052w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248-300x180.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248-1024x617.png 1024w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture248-624x376.png 624w" sizes="(max-width: 1052px) 100vw, 1052px" /></a></p>
+<p>Cuando terminemos, presionamos el botón «Commit». Al cerrase la ventana, fíjate que a la izquierda, en la sección «Branches» nos aparece una nueva rama que SourceTree por defecto ha llamado «master»:<a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture249.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-108" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture249.png" alt="Pantalla tras hacer commit del fichero README.md" width="650" height="376" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture249.png 650w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture249-300x173.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture249-624x360.png 624w" sizes="(max-width: 650px) 100vw, 650px" /></a></p>
+<p>El último paso es enviar el commit a Bitbucket. Presionamos el icono Push en la barra de herramientas, en la ventana emergente seleccionamos la rama local master y a continuación presionamos OK:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-109" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250.png" alt="Haciendo pull desde SourceTree" width="1043" height="359" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250.png 1043w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250-300x103.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250-1024x352.png 1024w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture250-624x214.png 624w" sizes="(max-width: 1043px) 100vw, 1043px" /></a></p>
+<p>Nos pedirá la contraseña de nuestro usuario de Bitbucket, la introducimos y presionamos «Aceptar». Si tenemos conexión de red y no nos hemos equivocado al poner la contraseña, la ventana emergente se cerrará y volveremos a la pantalla del repositorio. Si se produce algún error, SourceTree nos avisará y nos mostrará el mensaje que git ha generado.</p>
+<p>Pues ya está, si no nos ha avisado SourceTree de que algo ha ido mal, significará que nuestro commit ha sido correctamente enviado al repositorio remoto. Volvemos al navegador web y recargamos la página del repositorio, que tendrá un aspecto similar a este:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture252.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-110" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture252.png" alt="Página de inicio del repositorio no vacío en bitbucket" width="981" height="705" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture252.png 981w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture252-300x215.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture252-624x448.png 624w" sizes="(max-width: 981px) 100vw, 981px" /></a></p>
+<p>donde vemos cómo Bitbucket nos muestra el contenido del fichero README.md, la actividad reciente del repositorio y la información general del repositorio en la parte derecha.</p>
+<p>Esto es todo, ya hemos subido el primer fichero y tenemos el repositorio listo para empezar a trabajar en nuestro proyecto. Si tenéis consultas, preguntas o comentarios sobre este procedimiento, no dudéis en preguntarnos.</p>
+<p>&#8212;&#8212;&#8212;&#8212;-</p>
+<p>[1] Este tener que cambiar del IDE al SourceTree y del SourceTree al IDE no siempre es necesario: a día de hoy casi cualquier entorno de desarrollo dispone de módulos de integración con sistemas de gestión de código. Con estos módulos es posible hacer el commit y el push que hemos hecho en este artículo sin necesidad de abandonar el IDE.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-ii-subiendo-el-primer-fichero/feed/</wfw:commentRss>
+			<slash:comments>17</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">85</post-id>	</item>
+		<item>
+		<title>Creando nuestro primer repositorio en Bitbucket &#8211; Parte I: registro y creación del repositorio</title>
+		<link>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-i-registro-y-creacion-del-repositorio/</link>
+					<comments>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-i-registro-y-creacion-del-repositorio/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 04 Dec 2012 08:00:01 +0000</pubDate>
+				<category><![CDATA[bitbucket]]></category>
+		<category><![CDATA[sourcetree]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=66</guid>
+
+					<description><![CDATA[En este artículo, primero de una serie de dos, vamos a ver cuáles son los pasos para crear nuestro primer repositorio en bitbucket, clonarlo en nuestra máquina de trabajo y subir nuestro código fuente. Paso 1 &#8211; Registrándonos en Bitbucket Si ya dispones de una cuenta, puedes pasar directamente al siguiente paso. Lo primero que [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En este artículo, primero de una serie de dos, vamos a ver cuáles son los pasos para crear nuestro primer repositorio en bitbucket, clonarlo en nuestra máquina de trabajo y subir nuestro código fuente.</p>
+<h2>Paso 1 &#8211; Registrándonos en Bitbucket</h2>
+<p style="text-align: left">Si ya dispones de una cuenta, puedes pasar directamente al siguiente paso. Lo primero que haremos será <a title="Página de registro en bitbucket" href="https://bitbucket.org/account/signup/">acceder a la página de registro</a> y completar el formulario que nos aparece en pantalla:</p>
+<p style="text-align: left"><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture226.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-68" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture226.png" alt="" width="994" height="534" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture226.png 994w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture226-300x161.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture226-624x335.png 624w" sizes="(max-width: 994px) 100vw, 994px" /></a></p>
+<ul>
+<li>El nombre de usuario que escojas es el que te identificará en la aplicación. Cualquier actividad que realices en Bitbucket, tanto pública como privada, mostrará este nombre de usuario como un enlace a tu perfil.</li>
+<li>Como lo que queremos es crear nuestra cuenta de usuario personal, vamos a seleccionar «Individual». En unaentrada posterior veremos cómo trabajar con equipos (teams).</li>
+<li>Si ya dispones de una cuenta en OpenID, puedes utilizarla para crear la cuenta de Bitbucket empleando el enlace que te aparece en la parte superior derecha del formulario.</li>
+</ul>
+<p>Sigamos con el proceso de registro normal rellenando el formulario y enviándolo, haciendo clic en SignUp. Cuando lo hagamos, ocurrirán dos cosas:</p>
+<ul>
+<li>Se nos remitirá un correo electrónico para confirmar nuestra cuenta, cosa que deberemos hacer para acceder a toda la funcionalidad de Bitbucekt</li>
+<li>El sistema nos logeará automáticamente, presentándonos la pantalla de bienvenida</li>
+</ul>
+<h2>Paso 2 &#8211; Creando el repositorio</h2>
+<p>Este es un buen momento para, antes de seguir, revisar nuestro correo y confirmar la cuenta que hemos utilizado. Una vez lo hagamos, volvemos a esta pantalla en la que haremos clic sobre el botón «Create your first repository»</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture227.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-70" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture227.png" alt="Atajo para crear nuestro primer repositorio" width="989" height="595" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture227.png 989w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture227-300x180.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture227-624x375.png 624w" sizes="(max-width: 989px) 100vw, 989px" /></a></p>
+<p>A continuación, se nos mostrará el formulario para crear nuestro primer repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture232.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-71" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture232.png" alt="Creando nuestro primer repositorio" width="989" height="758" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture232.png 989w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture232-300x229.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture232-624x478.png 624w" sizes="(max-width: 989px) 100vw, 989px" /></a></p>
+<p>En este formulario es importante ajustar las siguientes opciones:</p>
+<ul>
+<li>Darle un nombre al repositorio, así como una descripción. Esta descripción se mostrará en la página del repositorio. Conviene escribir un texto conciso y breve. Luego podremos crear un fichero README con información más detallada.</li>
+<li>Quitar la casilla «Access Level» si queremos que nuestro repositorio sea público, lo que significa que cualquier usuario, registrado o no, podrá ver el contenido. Esta opción se puede cambiar a posteriori.</li>
+<li>Marcar Git como tipo de repositorio</li>
+<li>Activar la gestión de tickets (Issue tracking) y la Wiki, si es que queremos utilizar estas secciones en nuestro proyecto</li>
+<li>Seleccionar el lenguaje de programación</li>
+</ul>
+<p>Rellenados todos los campos, hacemos clic sobre el botón «Create repository» y se nos mostrará la siguiente pantalla:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-72" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233.png" alt="Pizarra del repositorio" width="1098" height="679" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233.png 1098w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233-300x185.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233-1024x633.png 1024w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture233-624x385.png 624w" sizes="(max-width: 1098px) 100vw, 1098px" /></a></p>
+<p>Ya tenemos todo listo para empezar a trabajar con nuestro repositorio en nuestro ordenador. En la siguiente entrega veremos cómo subir nuestro código al repositorio que acabamos de crear.</p>
+<p>Con respecto a la pizarra, veremos en posteriores entradas qué son los botones de Clone o Fork así como qué herramientas nos facilita Bitbucket para trabajar con nuestro repositorio.</p>
+<p>¡Happy gitting!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/creando-nuestro-primer-repositorio-en-bitbucket-parte-i-registro-y-creacion-del-repositorio/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">66</post-id>	</item>
+	</channel>
+</rss>

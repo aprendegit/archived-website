@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>backup Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/tag/backup/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/tag/backup/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:41 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>6 motivos por los que git no es un sistema de backup</title>
+		<link>https://aprendegit.com/6-motivos-por-los-que-git-no-es-un-sistema-de-backup/</link>
+					<comments>https://aprendegit.com/6-motivos-por-los-que-git-no-es-un-sistema-de-backup/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 11 Jun 2013 05:51:35 +0000</pubDate>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[backup]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=608</guid>
+
+					<description><![CDATA[Esta es una frase que escucho muy a menudo:  “Yo tengo backup de mi repositorio git en github”. Siempre que la escucho acabo teniendo la misma conversación con la persona que la ha dicho. Intento hacerle ver porqué github, bitbucket o cualquier otro servicio de hosting de repositorios no son una copia de seguridad de [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p><span style="line-height: 1.714285714; font-size: 1rem;">Esta es una frase que escucho muy a menudo:</span></p>
+<pre> “Yo tengo backup de mi repositorio git en github”.</pre>
+<p>Siempre que la escucho acabo teniendo la misma conversación con la persona que la ha dicho. Intento hacerle ver porqué github, bitbucket o cualquier otro servicio de hosting de repositorios no son una copia de seguridad de tu repositorio y cómo en determinadas circunstancias (muy habituales cuando trabajas en equipo) puedes perder información por usarlos para lo que no son.</p>
+<p>Esto desde el punto de vista práctico. Si escarbamos un poco, lo normal es que detrás de esta frase se esconda un uso no del todo correcto de git o un desconocimiento de ciertas funcionalidades de la herramienta que espero corregir con este artículo.</p>
+<p>En adelante me referiré a tu cuenta de github, bitbucket o cualquier otro sistema de hosting de repositorios git como <em>servidor git</em>.</p>
+<h2>1- Git es algo más que hacer un commit al final de nuestra jornada</h2>
+<p>El flujo más básico de uso de git que me he encontrado es el siguiente:</p>
+<ul>
+<li><span style="line-height: 14px;">Llego a trabajar por la mañana y trabajo</span></li>
+<li>Antes de irme hago un commit</li>
+<li>Después del commit hago un push</li>
+</ul>
+<p>Así, tienes en tu servidor git la última versión del código fuente. Si respetas este flujo, efectivamente tienes una copia de la última versión de tu código fuente en tu servidor. Ahora bien, <strong>no tienes una copia de tu repositorio, porque el repositorio del servidor al que haces push y el de tu máquina local son diferentes. ¡Por eso haces push!</strong></p>
+<p>Este forma de trabajo viola varias de las buenas prácticas de git:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">No estás haciendo commits atómicos, pequeños y muy a menudo. Lo que significa que no estás pensando en cómo gestionar tu código sino en guardar la última versión en un «cajón de sastre» que es tu servidor</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">No estás trabajando con ramas locales para desarrollar funcionalidad</span></li>
+<li>Probablemente, no tienes definido ningún flujo de trabajo que te permita gestionar cambios de contexto a la hora de trabajar</li>
+</ul>
+<h2>2- No estás guardando una copia de tus ramas locales</h2>
+<p>Las ramas locales, son eso, ramas locales. Las usas para muchas cosas, entre ellas para hacer pruebas, hacer refactorings del código o desarrollar funcionalidades en paralelo. Al no hacer push, de estas ramas, no tienes copia de los commits en tu servidor git.</p>
+<p>Sé lo que estás pensando, basta con hacer push de todas las ramas y ya está. Bien, eso es correcto si estás tu solo con tu repositorio. Ahora bien, si estás trabajando en equipo y todos vosotros compartís el mismo repositorio git, la cosa cambia ¿Te imaginas a 5 personas todas subiendo sus ramas de prueba al servidor git para tener copia de seguridad? El caos está garantizado si no se organiza todo muy, muy, muy bien.</p>
+<h2>3- No estás guardando una copia del reflog</h2>
+<p>El reflog es un fichero de log que está en la carpeta .git de tu repositorio local donde se guarda un log de todos los cambios de referencias que ocurren en tu repositorio. Cada vez que cambias de rama, haces un merge, un rebase, un pull o un cherry-pick (entre otros) se guarda en el reflog lo que ha pasado.</p>
+<p>Este fichero es el que te permite dar marcha atrás cuando la lías parda. Échale un vistazo a <a title="Git: la he liado parda" href="https://aprendegit.com/git-la-he-liado-parda/">este hangout</a> para un ejemplo sobre cómo se usa.</p>
+<p>Tu reflog no está en tu servidor git. El servidor git tiene su propio reflog que no tiene porqué coincidir con el tuyo. De nuevo, si estás tu solo y haces push de todas tus ramas, el reflog del servidor se parecerá mucho al tuyo. Eso sí, en caso de desastre, tendrás que entrar al servidor a verlo o copiartelo a tu máquina local&#8230; oh, vaya, espera, que estás trabajando con github / bitbucket y no te dejan entrar a sus servidores a descargarte el reflog, desde luego qué tíos perros ¿no?.</p>
+<p>Si estás trabajando en equipo, el reflog del servidor tiene todas las modificaciones de referencias hechas por tí y el resto del equipo. ¡Intentar encontrar algo en ese reflog es garantía de diversión durante horas!</p>
+<h2>4- No tienes backup de los hooks de tu repositorio git</h2>
+<p>Dentro de la carpeta .git/hooks de tu repositorio puedes poner <a href="http://git-scm.com/book/es/Personalizando-Git-Puntos-de-enganche-Git">hooks</a>. Estos hooks no son más que scripts que se ejecutan antes o después de los comandos git y que te permiten interceptar la ejecución para hacer «cosas». Por ejemplo, el &#8216;pre-commit&#8217; te permite manipular dinámicamente el mensaje del commit que se genera por defecto.</p>
+<p>Cualquier hook que hayas puesto en tu máquina local en la carpeta .git/hooks, no tiene copia de seguridad en tu servidor git.</p>
+<h2>5- No tienes backup de tu configuración local</h2>
+<p>Dentro de tu repositorio tienes un fichero con la configuración local de tu repositorio: .git/config. En este fichero puedes guardar varias cosas, entre ellas el nombre y correo electrónico del autor de los commits, alisas de comandos de esos molones que te has bajado de internet y, en general, opciones de configuración específicas de ese repositorio en esa máquina.</p>
+<p>Este fichero tampoco se sube a tu servidor git, así que en caso de desastre, lo pierdes y tienes que volver a generar la configuración del repositorio.</p>
+<h2>6- git permite sobreescribir la historia de tu repositorio</h2>
+<p>Si trabajas con más gente, en tu repositorio no vas a estar hurgando solo tú. Tendrás código de otras personas, harás merges o pull requests. Hay alguien que puede estar tocando el repositorio detrás de tí así que entre el momento que ocurre el desastre y «recuperas» el repositorio haciendo un clon, muchas cosas pueden haber cambiado.</p>
+<p>Ponte en esta situación: te vas de vacaciones mientras tus compañeros trabajan en el repositorio. A la vuelta tu disco duro ha muerto, o durante el viaje te roban el portátil, así que clonas de nuevo el repositorio y te pones a trabajar… Lo que vas a clonar no es lo que tenías antes de irte, el repositorio contendrá todos los cambios que tus compañeros han hecho en tu ausencia.</p>
+<p>Me dirás: “tío, no tienes ni idea. Una vez clonado hago un reset al commit de antes de irme de vacaciones y ya está”… Y yo te digo ¿Y no sabes que tus compañeros del alma pueden haberse cargado esos commits con un rebase, por ejemplo?. Recuerda: git, a diferencia de mercurial, permite sobreescribir la historia del repositorio así que ¡¡nada te garantiza que cuando vuelvas de tus vacaciones los commits sigan ahí!!</p>
+<h1><span style="line-height: 1.714285714; font-size: 1rem;">Conclusión</span></h1>
+<p><span style="line-height: 1.714285714; font-size: 1rem;">Según la </span><a style="line-height: 1.714285714; font-size: 1rem;" href="http://en.wikipedia.org/wiki/Backup">wikipedia</a><span style="line-height: 1.714285714; font-size: 1rem;">:</span></p>
+<pre>a backup, or the process of backing up, refers to the copying and archiving of 
+computer data so it may be used to restore the original after a data loss event.</pre>
+<p>Si pierdes tu disco duro, y recuperas un repositorio haciendo un nuevo clon, no estás recuperando el repositorio como lo tenías antes del desastre así que según esta definición, no es una copia de seguridad. Además ¿Tú crees que Linus Torvalds hizo git para esto? ¿Para hacer backup? ¡eso ya lo tenía con los ficheros tar con los que empezó! Si solo lo usas para hacer copias de respaldo te estás perdiendo muchas cosas.</p>
+<p><span style="line-height: 1.714285714; font-size: 1rem;">Git no es un sistema de copia de seguridad de nuestro código. Ahora bien, si se dan estas condiciones:</span></p>
+<ol>
+<li>Estás trabajando tú solo</li>
+<li>Haces push de todos los commits al repositorio remoto</li>
+<li>Todas las ramas que creas son remotas</li>
+<li>Tienes un repositorio que llamas scripts_y_configuracion en el que guardas los hooks, alias, pro-tips y configuraciones personalizadas de tus repositorios.</li>
+</ol>
+<p>y eres consciente de lo que estás haciendo, <strong>puedes utilizar github como un backup (parcial) de tu código fuente, no de tu repositorio.</strong></p>
+<p>De igual manera, si trabajas en equipo y cada integrante tiene su propio repositorio, cada uno de vosotros podría usar git de esta manera. Aunque es un flujo muy básico que sirve para empezar a trabajar, no lo recomiendo en casi ningún caso: en seguida se te queda corto.</p>
+<p>En mi caso particular, TimeMachine me ha salvado ya en varias ocasiones de problemas, ahorrándome mucho tiempo y trabajo. <b>Aquí tienes mi consejo: usa una herramienta de backups para hacer backups y una herramienta de gestión de código para gestionar código.</b></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/6-motivos-por-los-que-git-no-es-un-sistema-de-backup/feed/</wfw:commentRss>
+			<slash:comments>7</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">608</post-id>	</item>
+	</channel>
+</rss>

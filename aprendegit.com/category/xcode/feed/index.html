@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>XCode Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/category/xcode/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/category/xcode/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:49 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Añadiendo un remoto a un proyecto en XCode5</title>
+		<link>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/</link>
+					<comments>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 04 Oct 2013 07:34:17 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=659</guid>
+
+					<description><![CDATA[En uno de los comentarios de la al post sobre las novedades de XCode 5, nos comentaba un lector que estaba teniendo algún problema para añadir un repositorio remoto a un proyecto en XCode 5. A continuación os indico cómo hacerlo usando la interfaz gráfica. Para ello, necesitamos lo siguiente: Un proyecto XCode 5 que [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En uno de los comentarios de la <a title="Repaso rápido a las novedades de git en XCode 5" href="https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/">al post sobre las novedades de XCode 5</a>, nos comentaba un lector que estaba teniendo algún problema para añadir un repositorio remoto a un proyecto en XCode 5. A continuación os indico cómo hacerlo usando la interfaz gráfica. Para ello, necesitamos lo siguiente:</p>
+<ul>
+<li><span style="line-height: 14px;">Un proyecto XCode 5 que ya está bajo git.</span></li>
+<li>La URL de un repositorio remoto, ya sea en BItbucket, Github, gitolite o el que sea en vuestro caso</li>
+</ul>
+<h1>Añadiendo un repositorio remoto git en Xcode 5</h1>
+<p>Desplegamos el menú «Source Control» dentro de XCode en nuestro proyecto. Dentro de este menú, en la sección «Working Copies», seleccionáis la única que inicialmente tendréis y que contiene el nombre del proyecto y la rama (normalmente master). En el submenú que se despliega, debéis seleccionar la última opción, que se llama «Configure [nombre del proyecto]».</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-660" alt="Menú &quot;Source Control&quot; desplegado" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png" width="576" height="318" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png 576w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294-300x165.png 300w" sizes="(max-width: 576px) 100vw, 576px" /></a>Al hacer esto, nos aparecerá una ventana emergente con tres pestañas. Seleccionamos la pestaña «remotes» que mostrará un listado vacío. En la parte inferior derecha, hacemos clic sobre el icono «+» y se desplegará un menú con dos opciones:</p>
+<ul>
+<li><span style="line-height: 14px;">Add remote</span></li>
+<li>Create new remote</li>
+</ul>
+<p>Seleccionamos la primera opción: «Add remote»</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png"><img decoding="async" class="aligncenter size-full wp-image-661" alt="menú re repositorios remotos" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png" width="691" height="478" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png 691w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297-300x207.png 300w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297-624x431.png 624w" sizes="(max-width: 691px) 100vw, 691px" /></a>En la siguiente ventana emergente que nos aparecerá, añadimos el nombre del repositorio remoto en el campo «Name» y la URL del repositorio en el campo «Address»</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png"><img decoding="async" class="aligncenter size-full wp-image-662" alt="Selección de nombre del remoto y URL" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png" width="479" height="145" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png 479w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300-300x90.png 300w" sizes="(max-width: 479px) 100vw, 479px" /></a>Presionáis en «Add Remote» y listo, ya tenéis el repositorio remoto configurado.</p>
+<p>Para terminar, desplegáis el menú «Source Control», y seleccionáis push. En la ventana emergente seleccionáis el repositorio remoto que acabáis de crear, pulsáis el botón «Push» y ya tenéis el repositorio en vuestro remoto.</p>
+<h2>«Create New Remote»</h2>
+<p>En el menú de creación del repositorio remoto, hay una opción adicional «Create new remote» que está relacionada con las nuevas funcionalidades que nos traerá Mavericks y de la que hablaremos en un futuro.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">659</post-id>	</item>
+		<item>
+		<title>Repaso rápido a las novedades de git en XCode 5</title>
+		<link>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/</link>
+					<comments>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 25 Sep 2013 21:35:06 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=647</guid>
+
+					<description><![CDATA[Hace ya una semana que la nueva versión de XCode, la versión 5, está disponible públicamente en la Mac App Store. En la presentación de la NSSpain de Logroño la semana pasada comenté que el soporte para git dentro de XCode ha mejorado en esta nueva versión aunque no pude entrar en detalles (cosas del [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hace ya una semana que la nueva versión de XCode, la versión 5, está disponible públicamente en la Mac App Store. En <a href="http://www.slideshare.net/aprendegit/nsspain2013">la presentación</a> de la <a href="http://nsspain.com/">NSSpain de Logroño</a> la semana pasada comenté que el soporte para git dentro de XCode ha mejorado en esta nueva versión aunque no pude entrar en detalles (cosas del NDA). Voy a empezar a destripar cuáles son las novedades que tenemos a nuestra disposición.</p>
+<h2>La cosa ha mejorado pero&#8230;</h2>
+<p>La verdad es que no es para echar cohetes. El cliente git sigue estando a años luz de otros IDEs que lo tienen integrado como Eclipse, Netbeams o los productos de <a href="http://www.jetbrains.com/">jetbrains</a>. Y si lo comparamos con <a href="http://www.sourcetreeapp.com/">SourceTree</a>, <a href="http://www.git-tower.com/">Git Tower</a> o <a href="http://www.syntevo.com/smartgithg/">Smart Git</a> te das cuenta de que los ingenieros de Apple todavía tienen mucho trabajo por hacer.</p>
+<p>Ahora bien, con las novedades que hay disponibles lo cierto es que hay algunas tareas más o menos recurrentes que ahora sí podemos hacer desde XCode, ahorrándonos unos cuantos cambios de pantalla al día.</p>
+<h2>Hacer commits desde XCode</h2>
+<p>Esta es una opción que ya estaba disponible en las versiones anteriores. Basta pulsar CMD-ALT-C para que se abra la interfaz, escribamos el mensaje y hagamos el commit. Esta pantalla no ha cambiado prácticamente nada con respecto a la versión 4.</p>
+<h2>Operaciones más habituales</h2>
+<p><span style="line-height: 1.714285714; font-size: 1rem;">Una de las características que tiene que tener cualquier SCM es la de «desaparecer», es decir, no darte cuenta de que lo estás usando. Las operaciones que hagas con él deben de ser rápidas y ágiles. Pues bien, XCode 4 estaba diseñado justo para lo contrario: </span>para crear una rama era necesario abrir el organizador. El proceso era lento y suponía tener que cambiar de ventana, buscar un botón por ahí escondido, crear la rama, cambiarnos a ella y volver a la ventana del proyecto.</p>
+<p>Aquí hay una sustancial mejoría. Ahora disponemos de un menú en la parte superior desde el que podemos hacer las operaciones más comunes: crear ramas, cambiarnos de rama, hacer push y hacer pull, deshacer cambios, resolver conflictos e incluso gestionar los remotos.<a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-648" alt="Nuevo menú SCM en XCode5" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png" width="307" height="318" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png 307w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288-289x300.png 289w" sizes="(max-width: 307px) 100vw, 307px" /></a></p>
+<p>Estas son las tareas más comunes así que cuando estamos trabajando nosotros solos o tenemos un flujo de trabajo muy simple, este menú nos puede ahorrar el tener que estar cambiando de aplicación para hacer cosas sencillas.</p>
+<h2>Gestión de repositorios remotos</h2>
+<p>La gestión de repositorios remotos del proyecto es ahora mucho más cómoda. En las pruebas que he realizado, he podido añadir el repositorio remoto de bitbucket y ha cogido mi clave SSH sin tener que hacer nada. En cuestión de un minuto tenía el remoto configurado y haciendo push/pull. En una entrada posterior veremos cómo hacerlo.</p>
+<h2>Mejoras sustanciales en la estructura de los ficheros XML</h2>
+<p>Esta es posiblemente la parte que más expectación ha despertado en los últimos meses desde que las versiones para desarrolladores han estado disponibles: ¡ahora se pueden hacer merges de los Story Boards!</p>
+<p>Las mejoras más evidentes son:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Si ahora abres el story board o el fichero xib </span><strong><span style="line-height: 1.714285714; font-size: 1rem;">y no tocas nada</span></strong><span style="line-height: 1.714285714; font-size: 1rem;">, el fichero no aparece como modificado (lo que significa que no da conflictos).</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Por otro lado, el formado de los ficheros ha cambiado y el XML, aunque sigue teniendo su miga, es más legible.</span></li>
+<li>Este formato permite resolver conflictos en los XIB/Story Boards con mucha más facilidad, incluso de forma automática en algunos casos. En una primera prueba muy sencilla en la que creé dos botones en el mismo lugar en dos ramas diferentes dentro de un fichero .xib, pude resolver el conflicto muy fácilmente copiando un trozo del XML.</li>
+</ul>
+<p>Aunque hay mejoras en este sentido, yo sigo siendo muy escéptico  En una prueba más elaborada en la que modifiqué un story board en dos ramas diferentes, la resolución del conflicto no era ya tan evidente y el XML no estaba tan claro. Me imagino que con un poco de práctica y experiencia será más fácil resolver los conflictos. Os iré contando cómo evoluciono según vaya usando más la herramienta.</p>
+<h2>¡El commit inicial incluye la configuración del IDE (xcuserdata)!</h2>
+<p>En XCode 4, cuando creabas un proyecto, había algunos ficheros que XCode no añadía al repositorio, en particular las carpetas xcuserdata. Pues bien, eso ya no es así y cuando creas un proyecto y marcas la casilla para que se cree el repositorio, XCode añade al repositorio todos los ficheros, incluido las carpetas xcuserdata.</p>
+<p>A mi personalmente no me gusta tener esta información en el repositorio. Es cierto que existen algunos casos en los que puede ser útil: si queréis que todo el mundo comparta la configuración del IDE o para compartir breakpoints entre los miembros de un equipo. Mi experiencia es que en general, suele ser una fuente de conflictos que me quitan mucho tiempo y por eso ignoro estas carpetas en el .gitignore.</p>
+<h2>La que se lleva la palma&#8230;</h2>
+<p>La funcionalidad que más me gusta de todas las novedades que incluye XCode 5 en cuanto a la gestión de código fuente se refiere es&#8230;<strong>¡¡Poder desactivarla!!</strong></p>
+<p>Si abris las preferencias y vais a «Source Control», podéis desactivar el soporte SCM. Si lo hacéis, lo único que ocurre es que XCode ignora el repositorio git del proyecto, las opciones del menú «Source Control» aparecen desactivadas y el soporte para git deja de funcionar. El repositorio git queda intacto, así que podéis seguir usando la línea de comandos o vuestro cliente favorito para seguir gestionando el código fuente fuera de XCode.</p>
+<p>Si después queréis activarlo, deshacéis los pasos y listo; eso sí, tuve que cerrar el proyecto y volverlo a abrir para que la interfaz volviera a mostrar los ficheros modificados y añadidos.</p>
+<p style="text-align: center;"><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png"><img loading="lazy" decoding="async" alt="Voila_Capture289" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png" width="244" height="282" /></a></p>
+<h2></h2>
+<h2>Lo que sigo echando en falta</h2>
+<p>Aunque la cosa ha mejorado mucho, todavía echo en falta algunas cosas:</p>
+<ul>
+<li><span style="line-height: 14px;">No entiendo la obsesión por ocultar el grafo. El grafo es ese típico dibujito lleno de pelotas, líneas y etiquetas que al principio no se entiende bien. Una vez sabes cómo funciona, cuesta trabajar en un repositorio sin él y en XCode no está.</span></li>
+<li>Stashing</li>
+<li>Rebasing</li>
+<li>Poder hacer commits de parte de un fichero (interactive staging)</li>
+<li>Más documentación acerca del formato XML de los xib y story boards (si alguien sabe dónde está que por favor nos lo diga). Eso nos permitiría resolver los conflictos más fácilmente.</li>
+<li>Poder trabajar con flujos de trabajo un poco más elaborados. Si habéis trabajado o estáis trabajando con git-flow, vais a necesitar línea de comandos o Sourcetree necesariamente.<a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png"><br />
+</a></li>
+</ul>
+<h2>Conclusión</h2>
+<p>Si no te quieres complicar y el uso que haces de git se limita a hacer commits, push y pull, crear ramas y hacer merge, estás de enhorabuena: estas operaciones puedes hacerlas ya de manera rápida y efectiva en la nueva interfaz.</p>
+<p>Ahora bien, si os soy sincero, la mayoría del tiempo sigo teniendo desactivado el soporte git y usando SourceTree y la línea de comandos, como hacía antes. El motivo principal: en cuanto quieres hacer cosas «normales» como un rebase, se te queda corto.</p>
+<p>Por último, aunque el formato del fichero hace más sencillo el merging de ramas, sigo siendo escéptico en cuanto al uso de Story Boards. Sólo espero que esto no desemboque en Apple eliminando el soporte para ficheros xib en XCode ¡me tocará hacerlo todo por código!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">647</post-id>	</item>
+		<item>
+		<title>.gitignore en XCode</title>
+		<link>https://aprendegit.com/gitignore-en-xcode/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 12 Dec 2012 11:30:14 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<category><![CDATA[xcode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=155</guid>
+
+					<description><![CDATA[Cuando creamos un proyecto nuevo en XCode y marcamos la opción para que utilice el control de versiones, ¿qué está haciendo XCode por debajo? Básicamente sigue los siguientes pasos: Crea e inicializa un repositorio git en la carpeta raíz del proyecto Añade todos los ficheros al repositorio excepto las carpetas [nombre].xcodeproj/project.xcworkspace y [nombre].xcodeproj/xcuserdata/ Hace un [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Cuando creamos un proyecto nuevo en XCode y marcamos la opción para que utilice el control de versiones, ¿qué está haciendo XCode por debajo?</p>
+<p>Básicamente sigue los siguientes pasos:</p>
+<ul>
+<li>Crea e inicializa un repositorio git en la carpeta raíz del proyecto</li>
+<li>Añade todos los ficheros al repositorio excepto las carpetas [nombre].xcodeproj/project.xcworkspace y [nombre].xcodeproj/xcuserdata/</li>
+<li>Hace un commit con el comentario «Initial Commit»</li>
+</ul>
+<p>Para ver en qué estado ha quedado el repositorio vamos a seguir los siguientes pasos:</p>
+<ul>
+<li>Creamos proyecto nuevo en XCode, cualquiera de las plantillas que vienen por defecto nos vale (tanto de iOS como de Mac)</li>
+<li>Abrimos SourceTree</li>
+<li>En la ventana «bookmarks» hacemos clic sobre el icono para añadir repositorio</li>
+</ul>
+<p style="text-align: center"><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-156" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png" alt="Añadiendo repositorio de XCode a SourceTree paso 1" width="519" height="163" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png 519w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259-300x94.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></a></p>
+<ul>
+<li>A continuación seleccionamos «Add working copy», ya que XCode ya ha inicializado el repositorio por nosotros. En el campo «Working copy path» buscamos la carpeta en la que está nuestro proyecto e introducimos un alias campo «»Bookmark Name» si el que crea SourceTree no nos gusta. Hacemos clic sobre «Add» cuando hayamos terminado</li>
+</ul>
+<p><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-157" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260.png" alt="Añadiendo repositorio XCode a SourceTree paso 2" width="613" height="261" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260.png 613w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260-300x127.png 300w" sizes="(max-width: 613px) 100vw, 613px" /></p>
+<div>
+<ul>
+<li><span style="line-height: 14px">Cuando se cierre la ventana y volvamos al listado de repositorios de SourceTree, hacemos doble clic sobre el repositorio que acabamos de crear</span></li>
+</ul>
+<h2>Los ficheros que XCode no incluye</h2>
+<p>Cuando git crea el repositorio, añade el siguiente contenido al fichero .git/info/exclude</p>
+<blockquote><p>.DS_Store<br />
+UserInterface.xcuserstate</p></blockquote>
+<p>Este fichero, a diferencia de .gitignore, contiene reglas que se aplican sólo a nuestro repositorio local (si compartimos el repositorio con otros usuarios a través de github o bitbucket, no verán estas reglas).</p>
+<p>Aparte de estas dos reglas, ¿qué más no ha incluido XCode en el repositorio nada más crearlo?</p>
+<p>Si no habéis abierto todavía el repositorio en SourceTree (haced doble clic sobre él en la ventana de Bookmarks) hacedlo ahora. A la izquierda haced clic sobre la rama master, veréis que en la sección «Files in the working tree» nos aparecen los ficheros que XCode no ha añadido al repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-158" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png" alt="Ficheros nos incluidos por XCode en el repositorio" width="715" height="493" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png 715w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261-300x206.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261-624x430.png 624w" sizes="(max-width: 715px) 100vw, 715px" /></a></p>
+<p>Si os fijáis, estos ficheros no están incluidos y no se están ignorando. Eso significa que cualquiera podría añadirlos al repositorio en cualquier momento, veamos cómo.</p>
+<p>Dejemos la ventana del SourceTree como está (luego volveremos a ella) y volvamos a XCode para modificar alguno de los ficheros (como si estuviésemos trabajando en algo serio). Una vez modificado, vamos a Archivo -&gt; Source Control -&gt; Commit (u OPCIÓN-CMD-C) para acceder a la pantalla para enviar un commit:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-159" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png" alt="Commit desde XCode" width="770" height="220" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png 770w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262-300x85.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262-624x178.png 624w" sizes="(max-width: 770px) 100vw, 770px" /></a></p>
+<p>Como podemos ver, en la parte de arriba a la izquierda tenemos los ficheros que no están incluidos inicialmente en el repositorio, y que son los mismos que hemos visto con SourceTree. Si los marcáis junto a los otros tres ficheros que he modificado, los añadiríamos al repositorio.</p>
+<p>La pregunta es&#8230;</p>
+<h2>¿Deben estar los «Workspace Settings» y «User Data» en el repositorio?</h2>
+<p>«Workspace Settings» contiene información relacionada con los proyectos, así que a no ser que sea algo que estrictamente sólo vamos a usar nosotros, conviene incluirlo en el repositorio.</p>
+<p>Sin embargo, la carpeta «User Data» que contiene la configuración propia de nuestro usuario, sí conviene ignorarla ya que si no lo hacemos y trabajamos con otras personas, vamos a encontrarnos constantemente con conflictos difíciles de resolver sobre el IDE, no sobre el proyecto en sí.</p>
+<p>Para ignorar estos ficheros, abrimos un editor de textos cualquiera y dentro de la raíz del proyecto creamos un fichero de texto plano al que llamaremos «.gitignore» (no os olvidéis del «punto» delante del nombre del fichero) y añadimos las siguientes líneas:</p>
+<blockquote><p>.DS_Store<br />
+UserInterface.xcuserstate<br />
+xcuserdata</p></blockquote>
+<ul>
+<li>Las dos primeras reglas son el mismo contenido que teníamos en .git/info/exclude. Las ponemos aquí para asegurarnos de que todo el mundo que se descargue el repositorio ignora estos ficheros</li>
+<li>La tercera línea es la que ignora las preferencias de usuario</li>
+</ul>
+<p>Una vez creado el fichero, volvemos a la pantalla de commit del XCode y veremos lo siguiente:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-160" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png" alt="Ignorando User Data" width="667" height="261" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png 667w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263-300x117.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263-624x244.png 624w" sizes="(max-width: 667px) 100vw, 667px" /></a></p>
+<p>¡Ya no podemos enviar la carpeta «User Data» por error!. Marcamos la carpeta «Workspace Settings» junto al resto de ficheros y hacemos el commit.</p>
+<h2>¿Ya está?</h2>
+<p>No, todavía no. Cuando he creado el fichero .gitignore, no lo he creado usando XCode así que si habéis hecho los commits desde XCode como yo, <strong>el fichero .gitignore no está incluido en el repositorio</strong>. ¿No me crees? Vuelve a la ventana del SourceTree que hemos dejado olvidada hace unos minutos y verás:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-161" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png" alt="Añadiendo .gitignore al repositorio" width="661" height="317" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png 661w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264-300x143.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264-624x299.png 624w" sizes="(max-width: 661px) 100vw, 661px" /></a></p>
+<p>Efectivamente, no está incluido. En otro post os contaré porqué necesitamos incluirlo; para no desviarnos del tema de esta entrada, vamos a incluirlo arrastrándolo al área «Files staged in the index» y haciendo clic sobre «Commit».</p>
+<p>(Nota: si preferís añadir el fichero por línea de comandos os resumo los pasos. Abrís una terminal, vais a la carpeta raíz del proyecto de XCode, ejecutáis «git add .gitignore» y luego ejecutáis «git commit -m&#8217;Añadiendo .gitignore&#8217; «)</p>
+<p>Ahora sí, ya tenemos la versión más sencilla del fichero .gitignore.</p>
+<h2>¿La versión más sencilla? ¿&#8230;es que faltan más cosas?</h2>
+<p>Sí, en función del proyecto en el que estéis trabajando podéis necesitar no incluir otros ficheros como .nib, clases obsoletas, etc. La comunidad ha generado ya un fichero de reglas estándar que <a href="http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects">podéis consultar en Stack Overflow</a>, y que copio un poco más abajo para que las tengáis a mano.</p>
+<p>¿Usáis vosotros alguna regla que no esté en este fichero? ¿Cuáles son las reglas que utilizáis normalmente? Compartid vuestro .gitignore como un gist en github y poned aquí el enlace. ¡Compartir es vivir!</p>
+<p><div>Could not embed GitHub Gist 4260145: Not Found</div>.</p>
+<p>¡Happy gitting!</p>
+</div>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">155</post-id>	</item>
+	</channel>
+</rss>

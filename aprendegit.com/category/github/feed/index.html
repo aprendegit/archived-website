@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>github Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/category/github/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/category/github/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:48 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Uso avanzado de referencias: github y pull requests</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/</link>
+					<comments>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 22 Apr 2013 08:00:38 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[configuración]]></category>
+		<category><![CDATA[pull-request]]></category>
+		<category><![CDATA[referencias]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544</guid>
+
+					<description><![CDATA[El viernes pasado (19 de abril de 2013) Jesús Espino dio una charla titulada «Git internals» en Kaleidos. Lo primero que es digno de mención es que una empresa de una «charla interna» e invite a cualquiera que quiera asistir «de fuera». Iniciativas como esta deberían estar a la orden del día en empresas en todo [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>El viernes pasado (19 de abril de 2013) <a href="http://twitter.com/jespinog">Jesús Espino</a> dio una charla titulada «Git internals» en <a href="http://kaleidos.net">Kaleidos</a>. Lo primero que es digno de mención es que una empresa de una «charla interna» e invite a cualquiera que quiera asistir «de fuera». Iniciativas como esta deberían estar a la orden del día en empresas en todo nuestro país. Desde aquí animo a cualquier colega de profesión, trabaje donde trabaje (cárnicas, startups o lo que se tercie) a que comparta lo que sabe, bien sea en un blog, dando charlas en grupos locales o imitando este tipo de iniciativas aunque sea internamente dentro de su empresa. «Hay que subir el nivel» como dice <a href="http://www.freniche.com/Inicio.html">Diego Freniche</a>. Y como me gusta repetirme a mi mismo todos los días: «si quieres cambiar las cosas, empieza cambiando tú y tu entorno».</p>
+<p>La charla, que está escrita en TeX, podéis <a href="https://github.com/jespino/ponencias/tree/master/2013/kaleidos/git-internals">encontrarla en github</a>. Independientemente de los recuerdos que me trajo ver el código fuente (la tesis la escribí en LaTeX) el contenido de la misma no tiene desperdicio. Si os interesa el tema, aunque sea árido, y queréis profundizar en él os recomiendo que leáis el <a href="http://git-scm.com/book/es/Los-entesijos-internos-de-Git">capítulo 9 del libro de Scott Chacon</a>.</p>
+<p>Durante la charla se habló bastante de las referencias. Cuando Jesús acabó su magistral intervención, comenté un pequeño truco que aprendí en twitter para poder descargarnos a nuestra máquina los pull requests que recibimos desde github. Llevaba tiempo queriendo sacar un rato para contarlo y Jesús me dio el empujón que me faltaba.</p>
+<h1>Accediendo a los pull requests</h1>
+<p>En este artículo usaremos como base el <a href="https://github.com/aprendegit/fork">repositorio</a> que utilizamos para la <a title="¿Qué es un pull request?" href="https://aprendegit.com/que-es-un-pull-request/">serie de artículos sobre pull requests</a>.</p>
+<p>Cuando un usuario hace un pull request desde su fork al repositorio original, github crea en el repositorio orignal una referencia a los commits cuya incorporación se ha solicitado. El repositorio original, el que recibe el pull request, guarda estas referencias en refs/pull/*/head. Recordad que las referencias en git no son más que ficheros que contienen hashes a objetos de git. Estos ficheros están en los servidores de github.</p>
+<p>Para poder acceder a esas referencias, y por lo tanto a esos commits, lo único que hay que hacer es decirle a git que se descargue los ficheros con las referencias cuando ejecutamos el comando fetch. Para ello, abrimos el fichero .git/config de nuestro repositorio y modificamos la sección correspondiente al remoto «origin», añadiendo la línea en cursiva que os pongo a continuación:</p>
+<pre>[remote "origin"]
+ url = https://github.com/aprendegit/fork
+ fetch = +refs/heads/*:refs/remotes/origin/*
+ <em><strong>fetch = +refs/pull/*/head:refs/remotes/origin/pr/*/head</strong></em></pre>
+<p>Antes de ejecutar git-fetch, veamos cómo están las referencias remotas del repositorio en SourceTree:</p>
+<div id="attachment_548" style="width: 282px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture188.png"><img decoding="async" aria-describedby="caption-attachment-548" class="size-full wp-image-548" alt="Referencias remotas antes de importar los pull-requests" src="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture188.png" width="272" height="146" /></a><p id="caption-attachment-548" class="wp-caption-text">Referencias remotas antes de importar los pull-requests</p></div>
+<p>Hagamos un fetch:</p>
+<pre>$ git fetch
+From https://github.com/aprendegit/fork
+ * [new ref]         refs/pull/1/head -&gt; origin/pr/1/head
+ * [new ref]         refs/pull/2/head -&gt; origin/pr/2/head
+ * [new ref]         refs/pull/3/head -&gt; origin/pr/3/head</pre>
+<p>¡Ahí las tenéis! Si actualizáis la pantalla de SourceTree:</p>
+<div id="attachment_556" style="width: 946px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png"><img fetchpriority="high" decoding="async" aria-describedby="caption-attachment-556" class="size-full wp-image-556" alt="El repositorio después de hacer fetch de los pull requests" src="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png" width="936" height="474" srcset="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png 936w, https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190-300x151.png 300w, https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190-624x316.png 624w" sizes="(max-width: 936px) 100vw, 936px" /></a><p id="caption-attachment-556" class="wp-caption-text">El repositorio después de hacer fetch de los pull requests</p></div>
+<p>En la captura podéis ver los dos pull requests que ha recibido el proyecto y cómo ha evolucionado cada uno de ellos.</p>
+<p>¿Y esto para qué sirve? Pues para probar el código que estáis recibiendo antes de aceptar el pull request, por ejemplo.</p>
+<p>Para terminar, quería dar las gracias de nuevo a Jesús por su charla, a Kaleidos por la iniciativa y a <a href="https://github.com/piscisaureus">Bert Belder (piscisaureus)</a> por colgar el <a href="https://gist.github.com/piscisaureus/3342247">gist</a> con la información que ha dado pie a este artículo.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">544</post-id>	</item>
+		<item>
+		<title>¿Qué es un pull request?</title>
+		<link>https://aprendegit.com/que-es-un-pull-request/</link>
+					<comments>https://aprendegit.com/que-es-un-pull-request/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Thu, 14 Feb 2013 15:23:57 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[workflow]]></category>
+		<category><![CDATA[pull-request]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=378</guid>
+
+					<description><![CDATA[En esta entrada, la tercera de una serie de tres, explicamos qué es un pull request y cómo funciona en github. Recordamos brevemente qué es lo que nuestros usuarios aalbagarcia y aprendegit-user1 hicieron en las dos entradas anteriores: El usuario aalbagarcia crea un repositorio en github: https://github.com/aprendegit/fork El usuario aprendegit-user1 crea un fork (bifurcación) para trabajar [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En esta entrada, la tercera de una serie de tres, explicamos qué es un pull request y cómo funciona en github.</p>
+<p>Recordamos brevemente qué es lo que nuestros usuarios aalbagarcia y aprendegit-user1 hicieron en las <a title="Fork de repositorios en Github" href="https://aprendegit.com/fork-de-repositorios-para-que-sirve/">dos entradas anteriores</a>:</p>
+<ul>
+<li>El usuario aalbagarcia crea un repositorio en github: <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a></li>
+<li>El usuario aprendegit-user1 crea un fork (bifurcación) para trabajar en él: <a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a></li>
+<li>Los dos usuarios realizan modificaciones cada uno en su repositorio, cada uno de ellos hace un commit y posteriormente un push. Cada uno sube los cambios a su correspondiente repositorio</li>
+<li>El usuario aprendegit-user1 configura un repositorio remoto adicional (upstream) e incorpora, haciendo un merge, los cambios en el código que hizo aalbagarcia. Después de hacer el merge, aprendegit-user1 hace un push para actualizar su repositorio remoto.</li>
+</ul>
+<p>Lo último que nos falta por hacer es que el usuario aalbagarcia, que es el propietario del repositorio inicial (<a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>), incorpore el trabajo del usuario aprendegit-user1 que se encuentra en el fork <a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a>.</p>
+<h1>¿Qué es un pull request?</h1>
+<p>Un pull request es una petición que el propietario de un fork de un repositorio hace al propietario del repositorio original para que este último incorpore los commits que están en el fork. En el caso que nos ocupa, el usuario aprendegit-user1 le enviará la petición a aalbagarcia para que este último incorpore los commits que tiene en su fork.</p>
+<p>Lo primero que hará el usuario aprendegit-user1 será crear una rama que apuntará al último commit que ha hecho y que contiene las modificaciones a la página de inicio. El procedimiento es el de siempre:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture2.png"><img decoding="async" class="aligncenter size-full wp-image-381" title="Creando una rama antes de hacer el pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture2.png" alt="Creando una rama antes de hacer el pull request" width="916" height="563" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture2.png 916w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture2-300x184.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture2-624x383.png 624w" sizes="(max-width: 916px) 100vw, 916px" /></a></p>
+<ul>
+<li>Se selecciona a la izquierda la rama master y se hace clic sobre el último commit de la rama</li>
+<li>Se hace click sobre el icono «Branch»</li>
+<li>Se introduce el nombre de la rama, en este maso mycommits</li>
+<li>Se hace clic sobre «Create Branch»</li>
+</ul>
+<p>Si se usa la línea de comandos, la secuencia sería:</p>
+<pre>$ git checkout master
+Switched to branch 'master'
+$ git checkout -b mycommits
+Switched to a new branch 'mycommits'</pre>
+<p>Una vez creada la rama, el usuario aprendegit-user1 hace push de la rama «mycommits» a su fork:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture4.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-382" title="Empujando la rama mycommits al fork" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture4.png" alt="" width="916" height="564" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture4.png 916w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture4-300x184.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture4-624x384.png 624w" sizes="(max-width: 916px) 100vw, 916px" /></a></p>
+<ul>
+<li>Se selecciona la rama mycommits a la izquierda asegurándonos de que esta queda como rama activa haciendo doble clic sobre ella</li>
+<li>Se selecciona el último commit de la rama</li>
+<li>Se hace clic sobre el icono Push de la bara de herramientas</li>
+<li>En el desplegable, se selecciona en la columna «Push?» la rama mycommits y se marca en la columna de la derecha (Track) la rama local como tracking branch.</li>
+<li>Se hace clic sobre OK.</li>
+</ul>
+<div><span style="line-height: 24px;">La secuencia de comandos sería </span></div>
+<pre>$ git checkout mycommits
+$ git push -u origin mycommits
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github-aprendegit-user1:aprendegit-user1/fork
+    * [new branch] mycommits -&gt; mycommits
+Branch mycommits set up to track remote branch mycommits from origin.</pre>
+<p>Al terminar, el estado del repositorio es el siguiente:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture5.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-383" title="Estado del fork de aprendegit-user1 antes de solicitar el pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture5.png" alt="" width="920" height="563" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture5.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture5-300x183.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture5-624x381.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<h1>Solicitando el pull request</h1>
+<p>En este momento, el usuario aprendegit-user1 accede a su cuenta de github y abre en su navegador la página de su fork <a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a>.</p>
+<p>Una vez hemos accedido, cambiamos a la rama mycommits como se indica en la siguiente captura:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture6.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-384" title="Acceder a github y cambiar a la rama mycommits" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture6.png" alt="Acceder a github y cambiar a la rama mycommits" width="883" height="514" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture6.png 883w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture6-300x174.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture6-624x363.png 624w" sizes="(max-width: 883px) 100vw, 883px" /></a></p>
+<p>Una vez se ha cambiado a la rama mycommits, aprendegit-user1 hace clic sobre el botón «Pull Request»<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture7.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-385" title="El botón pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture7.png" alt="El botón pull request" width="914" height="80" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture7.png 914w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture7-300x26.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture7-624x54.png 624w" sizes="(max-width: 914px) 100vw, 914px" /></a></p>
+<p>Esta es la pantalla que se presenta a aprendegit-user1:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture8.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-386" title="Pantalla para enviar el pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture8.png" alt="Pantalla para enviar el pull request" width="901" height="626" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture8.png 901w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture8-300x208.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture8-624x433.png 624w" sizes="(max-width: 901px) 100vw, 901px" /></a></p>
+<p>En la parte superior, aprendegit-user1 selecciona la rama que contiene los commits que aalbagarcia (el destinatario del pull request) debe incorporar en su repositorio. En la parte de abajo se ven tres pestañas en las que se puede:</p>
+<ul>
+<li>Poner un título y descripción al pull request</li>
+<li>Ver los commits que aalbagarcia incorporará al repositorio si acepta el pull request (pestaña Commits)</li>
+<li>Ver un diff que los cambios que se incluyen en los commits (pestaña Files Changed)</li>
+</ul>
+<p>Es una buena práctica poner un título y descripción que reflejen el motivo del commit. Estos pull requests los ven todos los colaboradores del proyecto (si el proyecto es público lo ve todo el mundo) Así que aunque aalbagarcia y aprendegit-user1 hayan hablado por teléfono acerca de este pull request, el resto del mundo seguramente no ha escuchado la conversación. <strong>Pensando en el resto del equipo, aprendegit-user1 incluye un mensaje descriptivo de qué contiene el pull request</strong>. Cuando termina, hace clic sobre el botón «Send Pull Request». Esta es la pantalla a la que aprendegit-user1 llega después de enviarlo:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture9.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-387" title="Pantalla del pull request que ve aprendegit-user1" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture9.png" alt="Pantalla del pull request que ve aprendegit-user1" width="897" height="726" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture9.png 897w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture9-300x242.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture9-624x505.png 624w" sizes="(max-width: 897px) 100vw, 897px" /></a></p>
+<p>La captura es bastante sencilla de entender. Vemos el título y descripción introducidos por aprendegit-user1, los commits y una interfaz para intercambiar comentarios con el equipo.</p>
+<p>Aunque en pequeño, se nos indica qué es lo que tendríamos que hacer para añadir commits a este pull request: enviar más commits a la rama «mycommits» del fork de aprendegit-user1.</p>
+<p>¿Porqué podemos necesitar añadir más commits? Imagínate que el equipo revisa el pull request y se determina que todavía queda trabajo pendiente de hacer. ¿Cómo se procede? aprendegit-user1 continúa el trabajo en la rama rama «mycommits» de su fork y cuando termina lo sube a su repositorio remoto. El pull request se actualiza y todo el equipo puede ver el nuevo código. Esto lo veremos en detalle en otro artículo, de momento, seguimos con el proceso.</p>
+<h1>Aceptando el pull request</h1>
+<p>Cuando aprendegit-user1 envía el pull request, Github envía al propietario un email avisándole de que tiene un pull request listo para revisar. En este caso, el usuario aalbagarcia recibe el email, accede a su cuenta de Github y va a su repositorio <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture10.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-389" title="Página del propietario del repositorio después del pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture10.png" alt="Página del propietario del repositorio después del pull request" width="884" height="428" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture10.png 884w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture10-300x145.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture10-624x302.png 624w" sizes="(max-width: 884px) 100vw, 884px" /></a></p>
+<p>En esta pantalla, seleccionamos la pestaña «Pull Requests» y accedemos a una interfaz que nos muestra todos los que tenemos. Dado que este es el primero, en este listado seleccionamos el único que hay:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture11.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-390" title="Listado de pull requests del repositorio" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture11.png" alt="Listado de pull requests del repositorio" width="883" height="320" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture11.png 883w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture11-300x108.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture11-624x226.png 624w" sizes="(max-width: 883px) 100vw, 883px" /></a></p>
+<p>Cuando aalbagarcia selecciona «Añadiendo logotipo», accede a una pantalla muy parecida a la que hemos visto con el usuario aprendegit-user1. En la siguiente captura indico cuáles son las diferencias:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-391" title="La página del pull request vista por el propietario" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12.png" alt="La página del pull request vista por el propietario" width="741" height="737" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12.png 741w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12-150x150.png 150w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12-300x298.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture12-624x620.png 624w" sizes="(max-width: 741px) 100vw, 741px" /></a></p>
+<p>Las diferencias son:</p>
+<ul>
+<li>Existe un botón «Merge pull request» que el propietario aalbagarcia utilizará para incorporar los commits al repositorio</li>
+<li>Existe un botón «Close» que el propietario utiliza para cerrar el pull request sin incorporar los cambios</li>
+</ul>
+<p>Una vez revisado el código y confirmado que todo está bien, aalbagarcia hace clic sobre el botón «Merge Pull Request». En ese momento Github le pedirá que introduzca un comentario para el merge commit. Una vez introducido, aalbagarcia hace clic sobre el botón «Commit merge» y ya está, Github automáticamente cierra el pull request. También envía un email a los dos interesados (aalbagarcia y aprendegit-user1) avisándoles de que se han incorporado los cambios en el repositorio.</p>
+<p>Si volvéis a la página de commits del repositorio en github (<a href="https://github.com/aprendegit/fork/commits/master">https://github.com/aprendegit/fork/commits/master</a>) veréis que tras hacer el pull request, aparece un nuevo commit en el repositorio:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture15.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-392" title="Merge commit tras el pull request" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture15.png" alt="Merge commit tras el pull request" width="754" height="289" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture15.png 754w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture15-300x114.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture15-624x239.png 624w" sizes="(max-width: 754px) 100vw, 754px" /></a></p>
+<h1>¿Cómo quedan los repositorios de aalbagarcia y aprendegit-user1?</h1>
+<p>En este momento, el repositorio remoto de aalbagarcia ya contiene el merge commit que se ha creado a través del pull request. La pregunta es ¿el de aprendegit-user1 también? ¿verán estos nuevos commits los dos usuarios?</p>
+<p>&#8230;la respuesta es que, efectivamente, no lo verán hasta que hagan un fetch en sus respetivos repositorios. <strong>Tras hacer los dos usuarios un fetch de todos sus repositorios remotos</strong> (recuerda que aprendegit-user1 tiene 2 remotos,  origin y upstream) así quedan sus respectivas copias de trabajo:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture18.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-393" title="Copias de trabajo después del pull request y el fetch" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture18.png" alt="Copias de trabajo después del pull request y el fetch" width="915" height="737" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture18.png 915w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture18-300x241.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture18-624x502.png 624w" sizes="(max-width: 915px) 100vw, 915px" /></a></p>
+<p>Para terminar:</p>
+<ul>
+<li>aalbagarcia tiene que hacer un merge de la rama origin/master a la rama master</li>
+<li>aprendegit-user1 tiene que hacer un merge de la rama upstream/master a la rama master y después hacer un push de su rama master</li>
+</ul>
+<p>Una vez hecho esto, los repositorios quedan de la siguiente manera:</p>
+<p><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-394" title="Copias de trabajo después de macer merge de las ramas remotas" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture19.png" alt="Copias de trabajo después de macer merge de las ramas remotas" width="918" height="704" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture19.png 918w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture19-300x230.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture19-624x478.png 624w" sizes="(max-width: 918px) 100vw, 918px" /></p>
+<p>Y como podéis ver, están sincronizados.</p>
+<h1>¿Quieres hace un pull request?</h1>
+<p>Si quieres hacer tú mismo el proceso para ver cómo funciona, ve al repositorio <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>, haz un fork y envíanos las modificaciones siguiendo los pasos que hemos seguido en esta serie de artículos. Si tienes alguna duda no dudes en preguntarnos.</p>
+<p>Seguiremos hablando de pull requests, aunque eso ya será en otros artículos.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/que-es-un-pull-request/feed/</wfw:commentRss>
+			<slash:comments>43</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">378</post-id>	</item>
+		<item>
+		<title>Mantener tu fork al día</title>
+		<link>https://aprendegit.com/mantener-tu-fork-al-dia/</link>
+					<comments>https://aprendegit.com/mantener-tu-fork-al-dia/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Thu, 31 Jan 2013 10:01:23 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[workflow]]></category>
+		<category><![CDATA[fork]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=359</guid>
+
+					<description><![CDATA[En la entrada anterior vimos qué significa hacer un fork y cómo hacerlo desde github. Resumo brevemente los pasos que dimos: El usuario aprendegit-user1 hizo un fork del repositorio https://github.com/aprendegit/fork El usuario aprendegit-user1 modificó la página de inicio del proyecto (ficticio) que estamos usando e hizo un push de sus modificaciones a su fork (https://github.com/aprendegit-user1/fork) Vimos cómo [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En la <a title="Fork de repositorios en Github" href="https://aprendegit.com/fork-de-repositorios-para-que-sirve/">entrada anterior</a> vimos qué significa hacer un fork y cómo hacerlo desde github. Resumo brevemente los pasos que dimos:</p>
+<ol>
+<li>El usuario aprendegit-user1 hizo un fork del repositorio <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a></li>
+<li>El usuario aprendegit-user1 modificó la página de inicio del proyecto (ficticio) que estamos usando e hizo un push de sus modificaciones a su fork (<a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a>)</li>
+<li>Vimos cómo las modificaciones que aprendegit-user1 hizo a su fork no se «sincronizan» automáticamente con el repositorio original</li>
+</ol>
+<p>A la vez que prendegit-user1 ha avanzado con su tarea, nuestro primer usuario (aalbagarcia) y administrador del repositorio original (<a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>), ha continuado también trabajando. A la vez que el usuario aprendegit-user1 ha cambiado la página de inicio, aalbagarcia ha añadido un nuevo campo a la clase Post de nuestro blog. Cuando aalbagarcia ha acabado su trabajo, lo sube al repositorio original (<a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>) haciendo un push.</p>
+<p>El estado de ambos repositorios es el siguiente:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-362" title="Situación de los repositorios de aalbagarcia y aprendegit-user1" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325.png" alt="Situación de los repositorios de aalbagarcia y aprendegit-user1" width="1049" height="465" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325.png 1049w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325-300x132.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325-1024x453.png 1024w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture325-624x276.png 624w" sizes="(max-width: 1049px) 100vw, 1049px" /></a></p>
+<p>En la parte superior de la imagen tenemos una captura del estado del repositorio de aprendegit-user1 (fork) y en la parte inferior una captura del repositorio de aalbagarcia. Vemos que cada uno tiene en su repositorio su trabajo. Ha llegado la hora de sincronizarlos, cosa que haremos en dos pasos:</p>
+<ul>
+<li>Paso 1: aprendegit-usuario1 traerá a su fork el trabajo de aalbagarcia (en este caso el commit c3e3f5b que podéis ver arriba)</li>
+<li>Paso 2: aalbagarcia incluirá en el repositorio original el trabajo de aprendegit a través de un pull request.</li>
+</ul>
+<div><span style="line-height: 24px;">¡Empezamos por el Paso 1!</span></div>
+<h1>Trabajando con múltiples repositorios remotos</h1>
+<p><strong>Lo primero que aprendgit-user1 tiene que hacer es añadir el repositorio original a su lista de remotes</strong>. El usuario aprendegit-user1 abre SourceTree y va a Repository-&gt;Repository settings:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-363" title="Preferencias del repositorio" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326.png" alt="Preferencias del repositorio" width="1051" height="417" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326.png 1051w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326-300x119.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326-1024x406.png 1024w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture326-624x247.png 624w" sizes="(max-width: 1051px) 100vw, 1051px" /></a></p>
+<p>Dentro de la pantalla de «Repository settings», selecciona la pestaña «Remotes». En esta pantalla está su fork (origin). Se hace clic sobre el botón «Add» para añadir el repositorio original:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture327.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-364" title="Seleccionando nombre y URL de nuevo remote" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture327.png" alt="Seleccionando nombre y URL de nuevo remote" width="586" height="117" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture327.png 586w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture327-300x59.png 300w" sizes="(max-width: 586px) 100vw, 586px" /></a></p>
+<p>En la ventana emergente, se introduce «upstream» como nombre del remote (upstream es una sugerencia, podéis poner otro si lo preferís) y se pone la URL del repositorio original (<a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>). Rellenado el formulario, se hace clic en OK y de nuevo clic en OK en la ventana de preferencias. Una vez cerradas todas las ventanas de diálogo, el repositorio de aprendegit-user1 tendrá este aspecto:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture328.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-365" title="Aspecto del repositorio tras añadir upstream" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture328.png" alt="Aspecto del repositorio tras añadir upstream" width="918" height="331" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture328.png 918w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture328-300x108.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture328-624x224.png 624w" sizes="(max-width: 918px) 100vw, 918px" /></a></p>
+<p>En la sección «REMOTES» aparece junto a origin el nuevo origen upstream, pero si se despliega el contenido veremos que está vacío. Pulsando sobre «Fetch» descargaremos el contenido del repositorio remoto «upstream»:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture329.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-367" title="Fetch" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture329.png" alt="Fetch" width="537" height="214" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture329.png 537w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture329-300x119.png 300w" sizes="(max-width: 537px) 100vw, 537px" /></a></p>
+<p>&#8230;y cuando el fetch finaliza, el repositorio queda de la siguiente manera:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3301.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-369" title="Situación del fork después de hacer fetch de upstream" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3301.png" alt="Situación del fork después de hacer fetch de upstream" width="918" height="427" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3301.png 918w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3301-300x139.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3301-624x290.png 624w" sizes="(max-width: 918px) 100vw, 918px" /></a></p>
+<p>El fork de aprendegit-user1 ya muestra las ramas del repositorio original ¿véis el commit c3e3f5b? ¡ya lo tenemos ahí!. ¿Qué nos falta? Pues tan sólo hacer un merge de la rama upstream/master a la rama master para «sincronizar» el fork con el original. Aprendegit-user1 selecciona el commit correspondiente a nuestra rama master (en la captura anterior ya está seleccionado) y hace clic sobre el icono merge en la barra de herramientas:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture331.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-370" title="Incorporando (merge) del repositorio original al fork" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture331.png" alt="Incorporando (merge) del repositorio original al fork" width="916" height="807" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture331.png 916w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture331-300x264.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture331-624x549.png 624w" sizes="(max-width: 916px) 100vw, 916px" /></a></p>
+<p>En la pantalla de merge, se selecciona el commit correspondiente a la rama upstream/master y se hace clic sobre OK. Cuando el merge termina, así queda el repositorio de aprendegit-user1:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture332.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-371" title="Estado del fork tras incorporar los cambios de aalbagarcia" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture332.png" alt="Estado del fork tras incorporar los cambios de aalbagarcia" width="916" height="567" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture332.png 916w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture332-300x185.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture332-624x386.png 624w" sizes="(max-width: 916px) 100vw, 916px" /></a></p>
+<p>¡Ya está! aprendegit-user1 ya tiene su rama sincronizada con el repositorio original. Ahora sólo queda hacer un push; como se puede ver el propio SourceTree nos avisa de que la rama master de aprendegit-user1 está dos commits por delante de la rama remota origin/master. Basta con hacer clic sobre el icono push para que aprendegit-user1 actualice su repositorio remoto.</p>
+<p>Cuando aprendegit-user1 termina, así quedan su repositorio (fork) y el de aalbagarcia (original):</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture333.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-373" title="Estado del fork y repositorio original tras el merge" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture333.png" alt="Estado del fork y repositorio original tras el merge" width="920" height="512" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture333.png 920w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture333-300x166.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture333-624x347.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p><strong>¡aalbagarcia todavía no tiene en su repositorio el trabajo de aprendegit-user1! </strong>Para eso, aprendegit-user1 hará un pull request&#8230; en la <a title="¿Qué es un pull request?" href="https://aprendegit.com/que-es-un-pull-request/">siguiente entrada</a>.</p>
+<p>¡Happy gitting!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/mantener-tu-fork-al-dia/feed/</wfw:commentRss>
+			<slash:comments>27</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">359</post-id>	</item>
+		<item>
+		<title>Fork de repositorios en Github</title>
+		<link>https://aprendegit.com/fork-de-repositorios-para-que-sirve/</link>
+					<comments>https://aprendegit.com/fork-de-repositorios-para-que-sirve/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 29 Jan 2013 08:39:17 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[workflow]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=337</guid>
+
+					<description><![CDATA[¿Qué es un fork? La palabra fork se traduce al castellano, dentro del contexto que nos ocupa, como bifurcación. Cuando hacemos un fork de un repositorio, se hace una copia exacta en crudo (en inglés «bare») del repositorio original que podemos utilizar como un repositorio git cualquiera. Después de hacer fork tendremos dos repositorios git idénticos [&#8230;]]]></description>
+										<content:encoded><![CDATA[<h1>¿Qué es un fork?</h1>
+<p>La palabra fork se traduce al castellano, dentro del contexto que nos ocupa, como bifurcación. Cuando hacemos un fork de un repositorio, <strong>se hace una copia exacta en crudo (en inglés «bare») del repositorio original que podemos utilizar como un repositorio git cualquiera. </strong>Después de hacer<strong> </strong>fork tendremos dos repositorios git idénticos pero con distinta URL. Justo después de hacer el fork, estos dos repositorios tienen exactamente la misma historia, son una copia idéntica. Finalizado el proceso, tendremos dos repositorios independientes que pueden cada uno evolucionar de forma totalmente autónoma. De hecho, los cambios que se hacen el repositorio original NO se transmiten automáticamente a la copia (fork). Esto tampoco ocurre a la inversa: las modificaciones que se hagan en la copia (fork) NO se transmiten automáticamente al repositorio original.</p>
+<h1>¿Y en qué se diferencia un fork de un clon?</h1>
+<p>Cuando hacemos un clon de un repositorio, te bajas una copia del mismo a tu máquina. Empiezas a trabajar, haces modificaciones y haces un push. Cuando haces el push estás modificando el repositorio que has clonado.</p>
+<p>Cuando haces un fork de un repositorio, se crea un nuevo repositorio en tu cuenta de Github o Bitbucket, con una URL diferente (fork). Acto seguido tienes que hacer un clon de esa copia sobre la que empiezas a trabajar de forma que cuando haces push, estás modificando TU COPIA (fork). El repositorio original sigue intacto. Lo vamos a ver en breve con un ejemplo.</p>
+<h1>¿Para qué sirve?</h1>
+<p>Tiene varios usos. El más común es el de<strong> permitir a los desarrolladores contribuir a un proyecto de forma segura.</strong></p>
+<p>¿Porqué decimos de forma segura? Imaginaos un super proyecto como puede ser el código fuente de Apache. ¿Cómo se trabajaba antes de existir git? con Subversion o CVS existía un servidor centralizado que tenía dos tipos de usuarios: lo que podían «escribir» en el repositorio (subir cambios al código fuente) y los que sólo podían «leer» el repositorio. Estos últimos sólo podían bajarse el código a su máquina y podían modificarlo sólo en su copia local. No podían subir ninguna modificación al servidor central.</p>
+<p>¿Qué tenías que hacer para contribuir? Tenías que solicitar permiso de escritura y que alguien te lo diese. Una vez te lo concedían, ya podías subir tus modificaciones y, por supuesto, liarla si no sabías lo que estabas haciendo. Otra opción era enviar parches, trabajar con ramas&#8230; había varias formas pero todas bastante engorrosas.</p>
+<p>Además, este procedimiento de dar acceso de escritura a un repositorio centralizado es un poco arriesgado. Siguiendo con el ejemplo que he puesto de Apache ¿cómo sé yo, responsable del repositorio, que esta persona que está a 10000Km de mí en la otra punta del planeta sabe lo que está haciendo? ¿puedo confiar en él?. Al final, contribuir a un proyecto se convertía en una tarea tediosa tanto para el que pretendía contribuir como para el que lo tenía que gestionar. Y no hablemos de lo divertido que era hacer un merge&#8230;</p>
+<p>Git, al tratarse de un sistema distribuido, resuelve este tipo de problemas de una forma muy elegante a través de los forks. Digamos que Pepito es una persona quiere contribuir al proyecto. Ha encontrado un bug y sabe cómo corregirlo. Como propietario del repositorio me interesa que Pepito pueda enviarme el parche de forma rápida, que no pierda mucho tiempo. Si es así ¡Pepito estará encantado de colaborar con nosotros! ;-). Además, necesito que el proceso sea ágil, no quiero tener que invertir 5 horas de mi tiempo cada vez que tenga que hacer un merge del trabajo que Pepito me envíe. ¿Cómo resuelve git el problema?</p>
+<ol>
+<li>Pepito hace un fork de mi repositorio, para lo que sólo necesito darle permiso de lectura.</li>
+<li>Pepito trabaja en SU COPIA (fork) del repositorio. Como es suya, puede hacer lo que quiera, la puede borrar, corromper, dinamitar, reescribir la historia del proyecto&#8230; nos da lo mismo, es SU COPIA (fork).</li>
+<li>Cuando Pepito termina de programar y testear el parche, me avisa de que ya lo tiene y me dice «En la rama parche_de_pepito de MI COPIA (fork), tienes el parche que corrige el Bug XXXX».</li>
+<li>Yo voy a su repositorio, miro lo que ha hecho y si está bien lo incorporo (merge) a mi repositorio, que es el original.</li>
+</ol>
+<p>Las ventajas de este proceso son las siguientes:</p>
+<ol>
+<li> Pepito trabaja con SU COPIA. En ningún momento le tengo que dar acceso al repositorio central.</li>
+<li>El proceso de incorporación de los cambios de Pepito es muy sencillo. Si no hay conflictos en los ficheros puede que sea tan simple como ejecutar un par de comandos git.</li>
+<li>Pepito tiene muy fácil contribuir, no le cuesta esfuerzo.</li>
+<li>Yo puedo gestionar muy fácilmente las contribuciones de muchas personas ¡me cuesta muy poco trabajo!</li>
+</ol>
+<div><span style="line-height: 24px;">Ahora cierra los ojos e imagina que esto mismo lo pudieses hacer con tus compañeros de trabajo, en tu equipo&#8230;</span></div>
+<h1>Haciendo Fork de un repositorio en Github</h1>
+<p>Bueno, vamos a ver esto con un ejemplo práctico. La situación es la siguiente: en nuestra organización, www.aprendegit.com, tenemos un repositorio de un proyecto RubyOnRails y que usaremos a modo de ejemplo. Este repositorio se encuentra en la siguiente URL: <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>. Podéis reproducir los pasos que vamos a dar a continuación con vuestra cuenta de github.</p>
+<p>Para ayudarnos con el desarrollo de este proyecto, contamos con la ayuda de varias personas:</p>
+<ol>
+<li>El usuario aalbagarcia (que soy yo) y que es uno de los administradores del repositorio y de la organización.</li>
+<li>El usuario aprendegit-user1, que es un colaborador altruista que quiere ayudarnos con la web.</li>
+<li>Vosotros: si hacéis el tutorial y seguís los pasos (tened en cuenta que habrá dos entregas más) acabaréis enviándonos vuestras «mejoras ficticias» a través de un pull request.</li>
+</ol>
+<p>No dudamos de las buenas intenciones de aprendegit-user1 ni de sus capacidades y aptitudes (ni de las vuestras tampoco). Aún así, siguiendo las buenas prácticas en el uso de git, <strong>aprendegit-user1 sólo tendrá permiso de lectura en el repositorio <a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>.</strong></p>
+<p>Si no tiene permiso de escritura, el usuario aprendegit-user1 podrá clonar el repositorio (porque es público) pero no podrá hacer un push. De poco le va a servir clonarlo y trabajar sobre él si luego no va a poder hacer un push ¿qué debe hacer? Hacer un fork.</p>
+<p>El usuario aprendegit-user1 va a github, accede con su usuario y contraseña y abre la URL del repositorio original <strong><a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a></strong>: <a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture319.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-342" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture319.png" alt="" width="849" height="468" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture319.png 849w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture319-300x165.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture319-624x343.png 624w" sizes="(max-width: 849px) 100vw, 849px" /></a></p>
+<p>En la página del repositorio, aprendegit-user1 hace clic sobre el botón fork. Al hacer clic, Github va a crear un nuevo repositorio en su cuenta que es una copia del repositorio aprendegit/fork:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture322.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-343" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture322.png" alt="github está haciendo un fork del repositorio de aprendegit" width="926" height="498" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture322.png 926w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture322-300x161.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture322-624x335.png 624w" sizes="(max-width: 926px) 100vw, 926px" /></a></p>
+<p>Cuando el proceso de forking termina (puede durar varios minutos si el repositorio que estamos bifurcando es muy grande) aprendegit-user1 acaba en la siguiente pantalla:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3232.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-346" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3232.png" alt="" width="888" height="467" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3232.png 888w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3232-300x157.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture3232-624x328.png 624w" sizes="(max-width: 888px) 100vw, 888px" /></a></p>
+<p>&nbsp;</p>
+<p>Este repositorio es una copia del original (<strong><a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a></strong>). Si comparáis la historia de los dos repositorios veréis que es idéntica.</p>
+<p>Este nuevo repositorio (<a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a>) es el que nuestro usuario aprendegit-user1 va a utilizar para trabajar y, cuando termine, enviarnos sus modificaciones.</p>
+<h1>aprendegit-user1 empieza a colaborar con nosotros</h1>
+<p>La primera tarea que aprendegit-user1 va a hacer como colaborador nuestro es modificar la página de inicio añadiendo nuestro logo. Para ello, <strong>clonará su fork y trabajará sobre él como si fuese un repositorio normal</strong>. Dado que el fork está en su cuenta, él es el propietario y como tal  podrá hacer push sin ningún problema. Recordad que al repositorio original (<strong><a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a></strong>) este usuario no puede hacer push.</p>
+<p>Al cabo de unos minutos, aprendegit-user1 ha clonado su repositorio (<a href="https://github.com/aprendegit-user1/fork">https://github.com/aprendegit-user1/fork</a>) en su máquina, ha añadido el logo y ha hecho un push a su fork:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture324.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-347" src="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture324.png" alt="" width="892" height="637" srcset="https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture324.png 892w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture324-300x214.png 300w, https://aprendegit.com/wp-content/uploads/2013/01/Voila_Capture324-624x445.png 624w" sizes="(max-width: 892px) 100vw, 892px" /></a></p>
+<p>Si volvéis al repositorio original (<strong><a href="https://github.com/aprendegit/fork">https://github.com/aprendegit/fork</a>)</strong> veréis que este sigue igual, las modificaciones que aprendegit-user1 ha subido están sólo en el fork de aprendegit-user1.</p>
+<p>Misión cumplida: aprendegit-user1 ya está trabajando en su repositorio sin preocuparnos ninguno de los dos de que algo salga mal.</p>
+<p>Esto es todo por hoy. En la <a title="Mantener tu fork al día" href="https://aprendegit.com/mantener-tu-fork-al-dia/">siguiente entrada</a> veremos qué ocurre si después de que aprendegit-user1 ha hecho un fork, nuestro administrador (aalbagarcia) sube cambios al repositorio original ¿cómo actualiza aprendegit-user1 su fork?.</p>
+<p>¡Happy gitting!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/fork-de-repositorios-para-que-sirve/feed/</wfw:commentRss>
+			<slash:comments>37</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">337</post-id>	</item>
+		<item>
+		<title>Prestashop empieza a utilizar github</title>
+		<link>https://aprendegit.com/prestashop-empieza-a-utilizar-github/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Thu, 13 Dec 2012 18:43:16 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[proyectos]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=198</guid>
+
+					<description><![CDATA[Hace unos días, concretamente el pasado día 11, prestashop anunció que había había empezado su actividad en github. La cuenta se ha creado recientemente, el 16 de noviembre y un vistazo al repositorio muestra que a fecha de hoy ya tienen nada más y nada menos que 107 forks ¡y no ha pasado ni un [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hace unos días, concretamente el pasado día 11, prestashop <a href="http://www.prestashop.com/blog/es/github-informacion-util/">anunció que había había empezado su actividad en github</a>. La cuenta se ha creado recientemente, el 16 de noviembre y un vistazo al <a href="https://github.com/PrestaShop/PrestaShop">repositorio</a> muestra que a fecha de hoy ya tienen nada más y nada menos que 107 forks ¡y no ha pasado ni un mes! Si miráis los pull requests, también se observa bastante actividad con 74 pull requests cerrados en y 16 abiertos.</p>
+<p>Es curioso que en la <a href="http://www.prestashop.com/en/developers-versions">página para descarga de la versión de desarrollo</a> permanecen todavía los enlaces a los repositorios de subversion ¿seguirán manteniendo los dos repositorios? ¿están todavía pensándose el volver a subversion en lugar de seguir con github o sencillamente no han tenido tiempo de cambiar la web <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /> ?</p>
+<p>Estaría muy bien que hiciesen estadísticas sobre el número personas diferentes que contribuye al proyecto antes y después de esta migración. Me aventuro a decir que la diferencia será significativa.</p>
+<p>Otro grande que empieza a usar git ¿y tú todavía te lo estás pensando?</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">198</post-id>	</item>
+		<item>
+		<title>Crear ficheros en repositorios github a través de la web</title>
+		<link>https://aprendegit.com/crear-ficheros-en-repositorios-github-a-traves-de-la-web/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 12 Dec 2012 13:41:10 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=174</guid>
+
+					<description><![CDATA[Recientemente, github ha añadido una nueva funcionalidad a sus usuarios través de la web: la posibilidad de añadir ficheros directamente al repositorio a través del navegador. ¿Significa esto que podremos programar nuestra próxima aplicación usando la web de github? Pues no, aunque para gustos los colores. Bromas aparte, la funcionalidad puede parecer una tontería, pero bien utilizada [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Recientemente, github ha añadido una <a href="https://github.com/blog/1327-creating-files-on-github">nueva funcionalidad</a> a sus usuarios través de la web: la posibilidad de añadir ficheros directamente al repositorio a través del navegador. ¿Significa esto que podremos programar nuestra próxima aplicación usando la web de github? Pues no, aunque para gustos los colores.</p>
+<p>Bromas aparte, la funcionalidad puede parecer una tontería, pero bien utilizada es bastante útil. A modo de ejemplo, la vamos a utilizar en un caso real para crear un fichero README.md en un repositorio que no lo tiene.</p>
+<p>Si lo tuviese que hacer por el procedimiento normal, tendría que hacer lo siguiente:</p>
+<ul>
+<li>Crear el fichero README.md en mi copia local</li>
+<li>git add README.md para añadir el fichero al índice</li>
+<li>git commit -m&#8217;Añadiendo README.md&#8217; para hacer el commit</li>
+<li>git pull para bajarme a mi copia local las últimas modificaciones</li>
+<li>Si en el último paso ha habido algún conflicto, tendríamos que resolverlo (si habéis usado bien las ramas, esto no pasará)</li>
+<li>git push para subir los cambios</li>
+</ul>
+<p>La verdad es que es bastante trabajo para subir un fichero de texto ¿verdad? Bueno, pues vamos a ver cómo lo hacemos desde la web.</p>
+<p>En primer lugar, vamos a la página de github, accedemos con nuestro usuario y contraseña y vamos a la página de nuestro repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-175" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png" alt="Creando ficheros desde github" width="928" height="522" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png 928w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265-300x168.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265-624x351.png 624w" sizes="(max-width: 928px) 100vw, 928px" /></a></p>
+<p>En la captura anterior veis dónde está el botón. Hacemos clic sobre él y se nos abrirá la pantalla para crear el fichero:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-176" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png" alt="Pantalla para crear un fichero en github" width="882" height="874" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png 882w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-150x150.png 150w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-300x297.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-624x618.png 624w" sizes="(max-width: 882px) 100vw, 882px" /></a></p>
+<p>La pantalla no tiene mucho misterio, como podéis ver en la captura:</p>
+<ul>
+<li>Seleccionamos en qué rama lo queremos crear</li>
+<li>Introducimos el nombre y extensión del fichero</li>
+<li>Ponemos el contenido</li>
+<li>Rellenamos el mensaje para el commit (el resumen es obligatorio)</li>
+</ul>
+<p>Una vez tenemos el fichero escrito, hacemos clic sobre «Commit New File» y si no se produce ningún error, volveremos a la pantalla del repositorio con algunos cambios:</p>
+<ul>
+<li>El fichero ya lo tenemos en el repositorio</li>
+<li>Hay un commit más en el repositorio</li>
+</ul>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-177" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png" alt="Tras subir el fichero" width="833" height="409" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png 833w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268-300x147.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268-624x306.png 624w" sizes="(max-width: 833px) 100vw, 833px" /></a></p>
+<p><span style="line-height: 24px">Pues ya está. Para obtener el fichero en nuestra copia local, hacemos un pull de la rama en la que hemos subido el fichero. Como veis, es un poquito más cómodo que el método normal y nos puede ahorrar tiempo en ciertas tareas.</span></p>
+<h2>¿Cuándo conviene usar esta funcionalidad de github?</h2>
+<p>Como pone en la propia <a href="https://github.com/blog/1327-creating-files-on-github">entrada del blog en github</a>, es un método pensado para ficheros como el README, LICENSE, el .gitignore o escribir documentación. Usa el sentido común y sé práctico. Yo, por ejemplo, lo he usado para crear un fichero sencillo con datos de prueba en json y pasárselo a mis compañeros desde el iPad en el sofá o para crear un fichero sencillo con traducciones en formato CSV.</p>
+<h2>Creando .gitignore desde plantillas</h2>
+<p>Los chicos de github están en todo, así que para ahorrarnos un poco de trabajo han creado una serie de plantillas para crear ficheros .gitignore. Para verlas y seleccionarlas, creamos un nuevo fichero como hemos visto antes y en el nombre del mismo escribimos «.gitignore»:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-178" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png" alt="Creando un .gitignore desde plantilla" width="857" height="293" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png 857w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270-300x102.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270-624x213.png 624w" sizes="(max-width: 857px) 100vw, 857px" /></a></p>
+<p>Cuando lo hagamos, veremos a la derecha un desplegable para seleccionar la plantilla. La seleccionamos y ya podemos editar el fichero, quitando reglas o añadiendo las que puedan faltar. Al terminar, no nos olvidamos de hacer clic sobre «Commit New File».</p>
+<h2>¿Y si el repositorio no es mío?</h2>
+<p>Si intentas crea un fichero sobre un repositorio sobre el que no tienes permiso, verás el siguiente mensaje:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-179" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png" alt="Creando fichero sobre repositorio sin permiso de escritura" width="877" height="186" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png 877w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271-300x63.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271-624x132.png 624w" sizes="(max-width: 877px) 100vw, 877px" /></a></p>
+<p>Lo que nos está diciendo es que antes de crear el fichero va a hacer un fork del repositorio en nuestra cuenta y que el fichero será creado en el nuevo repositorio. Una vez creado, podemos hacer un pull request al administrador del repositorio original para que incorpore el nuevo fichero en su repositorio.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">174</post-id>	</item>
+	</channel>
+</rss>

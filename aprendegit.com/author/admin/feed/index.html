@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>admin, autor en Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/author/admin/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/author/admin/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:46 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Usando Git con git-flow</title>
+		<link>https://aprendegit.com/git-con-git-flow/</link>
+					<comments>https://aprendegit.com/git-con-git-flow/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 10 Dec 2014 10:24:08 +0000</pubDate>
+				<category><![CDATA[Eventos / charlas / conferencias]]></category>
+		<category><![CDATA[workflow]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=704</guid>
+
+					<description><![CDATA[Ayer tuvimos una nueva reunión del grupo de usuarios de git (la última de este 2014 que se acaba). En esta ocasión Oscar Vítores compartió con nosotros su experiencia en el uso de git-flow. La presentación&#160;fue muy interesante ya que no sólo se limitó a exponer qué es y cómo funciona, sino que nos contó [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Ayer tuvimos una nueva reunión del <a title="Grupo de usuarios de git" href="http://www.meetup.com/Spanish-Git-Meetup/" target="_blank" rel="noopener">grupo de usuarios de git</a> (la última de este 2014 que se acaba).</p>
+<p>En esta ocasión <a title="Oscar Vítores en twitter" href="https://twitter.com/oxkhar" target="_blank" rel="noopener">Oscar Vítores</a> compartió con nosotros su experiencia en el uso de git-flow. La presentación&nbsp;fue muy interesante ya que no sólo se limitó a exponer qué es y cómo funciona, sino que nos contó cómo la&nbsp;usa con su equipo, qué le sirvió y cuándo git-flow empezó a quedarse corto.</p>
+<p>El meetup estuvo muy bien, con muchas&nbsp;preguntas y comentarios durante la exposición. Gracias a todos los que estuvisteis allí y a Oscar por venir a contarnoslo en persona.</p>
+<p>Aquí tenéis la grabación que hicimos a través de&nbsp;hangout (<a href="http://slides.oxkhar.com/gitflow">y aquí las diapositivas</a>):</p>
+<p><iframe src="//www.youtube.com/embed/b7tp-gx9gIs" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>Una agradecimiento desde la organización de los meetups al <a title="Espacio de coworking Kunlabori" href="http://kunlabori.es/" target="_blank" rel="noopener">espacio de coworking Kunlabori</a> por cedernos la sala, micro y conexión para reunirnos y hacer la grabación.</p>
+<p>Otros enlaces:</p>
+<ul>
+<li>Serie de <a title="¿Qué es git-flow?" href="https://aprendegit.com/que-es-git-flow/">artículos sobre git-flow</a> en aprendegit.com</li>
+<li><a href="https://www.youtube.com/playlist?list=PL7RY1oVPX-_W1u964phYowAFnbhbAOsWI">Taller de git-flow</a> en la Drupalcamp de 2013</li>
+</ul>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/git-con-git-flow/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">704</post-id>	</item>
+		<item>
+		<title>git no borra nada&#8230; hasta que pasa el recolector de basura</title>
+		<link>https://aprendegit.com/ggit-borra-nada-hasta-que-pasa-el-recolector-de-basura/</link>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 01 Aug 2014 06:35:38 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=688</guid>
+
+					<description><![CDATA[La semana pasada (el 21 de julio para ser más concretos) tuvo lugar el tercer meetup del grupo de usuarios de git. En esta reunión estuvimos hablando de una característica muy importante y poco conocida de git: git no borra commits. Cuando hacemos ciertas operaciones, como un commit &#8211;amend, rebase o resets, parece que los commits [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>La semana pasada (el 21 de julio para ser más concretos) tuvo lugar el <a href="http://www.meetup.com/Spanish-Git-Meetup/events/193657692/">tercer meetup</a> del <a href="http://www.meetup.com/Spanish-Git-Meetup/">grupo de usuarios de git</a>.</p>
+<p>En esta reunión estuvimos hablando de una característica muy importante y poco conocida de git: git no borra commits. Cuando hacemos ciertas operaciones, como un commit &#8211;amend, rebase o resets, parece que los commits se modifican o desaparecen. Sin embargo, lo cierto es que git no los borra, ni los modifica: siempre crea commits nuevos a partir de los anteriores.</p>
+<p>Y si no los borra ¿por qué no los veo? ¿dónde están los commits originales? ¿cómo los puedo recuperar? y por último ¿cómo los borro definitivamente si es lo que realmente quiero hacer?. A estas y otras preguntas dimos respuesta en esta reunión.</p>
+<p>Nos veremos de nuevo ya en septiembre ¡que paséis todos un buen verano!</p>
+<h2>Parte I: git no borra nada&#8230;</h2>
+<p>En esta primera parte de la charla, vemos una característica muy poco conocida de git: git mantiene los commits que parece que se han borrado y aunque no los veamos, siguen estando en nuestro repositorio (en la carpeta .git).</p>
+<p>Para mostrarlo, comenzamos viendo cómo la opción &#8211;amend del comando git-commit no «modifica» el último commit sino que crea uno nuevo. Después pasamos a demostrar este comportamiento «rompiendo» un repositorio: ejecutamos una serie de operaciones (rebases y resets) hasta «perder» casi todos los commits y posteriormente utilizamos SmartGit y el reflog para «ver» esos commits que parece que se han perdido y devolver el repositorio a su estado inicial.</p>
+<p><iframe src="//www.youtube.com/embed/oIDyQ1fOeS4" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<p>&nbsp;</p>
+<h2>Parte II: &#8230;hasta que pasa el recolector de basura</h2>
+<p>En esta segunda parte de la charla, vemos cuáles son las condiciones que se deben cumplir para que los commits desaparezcan de y se borren definitivamente del repositorio. Analizamos el comportamiento del comando git-gc, aprendemos a caducar entradas del reflog para poder «limpiar» y finalmente borramos los commits del disco duro.</p>
+<p>Al final de la presentación, hablamos del comando git-fsck y mostramos cómo funciona y qué información nos puede dar.</p>
+<p><iframe src="//www.youtube.com/embed/qwL3lhRwn78" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">688</post-id>	</item>
+		<item>
+		<title>Primera reunión del grupo de usuarios de git</title>
+		<link>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/</link>
+					<comments>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 11 Jun 2014 13:17:35 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=678</guid>
+
+					<description><![CDATA[Después de unos cuantos meses un poco «inactivos» hemos retomado la actividad con fuerza. Hace casi un mes (el 13 de mayo) abrimos el Grupo de usuarios de git en meetup.com contando con Israel Alcazar, uno de los pesos pesados de git,  como coorganizador. En este tiempo se han unido al grupo más de 150 personas y ayer tuvimos la primera [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Después de unos cuantos meses un poco «inactivos» hemos retomado la actividad con fuerza. Hace casi un mes (el 13 de mayo) abrimos el <a href="http://www.meetup.com/Spanish-Git-Meetup/">Grupo de usuarios de git</a> en meetup.com contando con Israel Alcazar, uno de los pesos pesados de git,  como coorganizador. En este tiempo se han unido al grupo más de 150 personas y ayer tuvimos <a href="http://www.meetup.com/Spanish-Git-Meetup/events/183012642/">la primera reunión</a> en el Hogar Extremeño de Madrid.</p>
+<p>Es un sitio atípico, con mucha historia detrás. Situado en el número 59 de la Gran Vía, el Hogar Extremeño se diseñó sobre plano a la vez que se hizo el edificio a finales de los 50. Lo mejor de todo no es lo bien comunicado que está, es que tenemos una barra con cervezas en el mismo salón en el que hacemos las charlas.</p>
+<p>Aparte de git, dedico una buena parte de mi tiempo (la mayoría) al proyecto extremadura.com. Dentro de este proyecto tenemos un «subproyecto» podemos decir que se llama «Extremadura en el mundo» y que tiene como objetivo poner en valor todo lo que tenga que ver con Extremadura fuera de Extremadura. Estamos convencidos de que tradición y tecnología no son incompatibles y la mejor forma de demostrarlo es tener un meetup de git en un lugar tradicionalmente considerado como «para jugar a las cartas y al dominó». Fue muy divertido ver las caras de la gente cuando entraban allí como despistadillos, menos mal que avisamos que era un sitio atípico.</p>
+<p>Desde la organización, queremos agradecer de manera especial al Hogar Extremeño y a todas las personas que hicieron que ayer nos sintiésemos como en casa (o incluso mejor).</p>
+<p>Y ya sin más, os dejo las grabaciones de las dos intervenciones de ayer. Nos vemos en la siguiente.</p>
+<p><iframe loading="lazy" src="//www.youtube.com/embed/W0goZDxQ8EA" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe><br />
+<iframe loading="lazy" src="//www.youtube.com/embed/8WBJ7Ehr3-U" width="853" height="480" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/primera-reunion-del-grupo-de-usuarios-de-git/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">678</post-id>	</item>
+		<item>
+		<title>Añadiendo un remoto a un proyecto en XCode5</title>
+		<link>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/</link>
+					<comments>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Fri, 04 Oct 2013 07:34:17 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=659</guid>
+
+					<description><![CDATA[En uno de los comentarios de la al post sobre las novedades de XCode 5, nos comentaba un lector que estaba teniendo algún problema para añadir un repositorio remoto a un proyecto en XCode 5. A continuación os indico cómo hacerlo usando la interfaz gráfica. Para ello, necesitamos lo siguiente: Un proyecto XCode 5 que [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En uno de los comentarios de la <a title="Repaso rápido a las novedades de git en XCode 5" href="https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/">al post sobre las novedades de XCode 5</a>, nos comentaba un lector que estaba teniendo algún problema para añadir un repositorio remoto a un proyecto en XCode 5. A continuación os indico cómo hacerlo usando la interfaz gráfica. Para ello, necesitamos lo siguiente:</p>
+<ul>
+<li><span style="line-height: 14px;">Un proyecto XCode 5 que ya está bajo git.</span></li>
+<li>La URL de un repositorio remoto, ya sea en BItbucket, Github, gitolite o el que sea en vuestro caso</li>
+</ul>
+<h1>Añadiendo un repositorio remoto git en Xcode 5</h1>
+<p>Desplegamos el menú «Source Control» dentro de XCode en nuestro proyecto. Dentro de este menú, en la sección «Working Copies», seleccionáis la única que inicialmente tendréis y que contiene el nombre del proyecto y la rama (normalmente master). En el submenú que se despliega, debéis seleccionar la última opción, que se llama «Configure [nombre del proyecto]».</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-660" alt="Menú &quot;Source Control&quot; desplegado" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png" width="576" height="318" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294.png 576w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture294-300x165.png 300w" sizes="(max-width: 576px) 100vw, 576px" /></a>Al hacer esto, nos aparecerá una ventana emergente con tres pestañas. Seleccionamos la pestaña «remotes» que mostrará un listado vacío. En la parte inferior derecha, hacemos clic sobre el icono «+» y se desplegará un menú con dos opciones:</p>
+<ul>
+<li><span style="line-height: 14px;">Add remote</span></li>
+<li>Create new remote</li>
+</ul>
+<p>Seleccionamos la primera opción: «Add remote»</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-661" alt="menú re repositorios remotos" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png" width="691" height="478" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297.png 691w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297-300x207.png 300w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture297-624x431.png 624w" sizes="(max-width: 691px) 100vw, 691px" /></a>En la siguiente ventana emergente que nos aparecerá, añadimos el nombre del repositorio remoto en el campo «Name» y la URL del repositorio en el campo «Address»</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-662" alt="Selección de nombre del remoto y URL" src="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png" width="479" height="145" srcset="https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300.png 479w, https://aprendegit.com/wp-content/uploads/2013/10/Voila_Capture300-300x90.png 300w" sizes="(max-width: 479px) 100vw, 479px" /></a>Presionáis en «Add Remote» y listo, ya tenéis el repositorio remoto configurado.</p>
+<p>Para terminar, desplegáis el menú «Source Control», y seleccionáis push. En la ventana emergente seleccionáis el repositorio remoto que acabáis de crear, pulsáis el botón «Push» y ya tenéis el repositorio en vuestro remoto.</p>
+<h2>«Create New Remote»</h2>
+<p>En el menú de creación del repositorio remoto, hay una opción adicional «Create new remote» que está relacionada con las nuevas funcionalidades que nos traerá Mavericks y de la que hablaremos en un futuro.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">659</post-id>	</item>
+		<item>
+		<title>Repaso rápido a las novedades de git en XCode 5</title>
+		<link>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/</link>
+					<comments>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 25 Sep 2013 21:35:06 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=647</guid>
+
+					<description><![CDATA[Hace ya una semana que la nueva versión de XCode, la versión 5, está disponible públicamente en la Mac App Store. En la presentación de la NSSpain de Logroño la semana pasada comenté que el soporte para git dentro de XCode ha mejorado en esta nueva versión aunque no pude entrar en detalles (cosas del [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hace ya una semana que la nueva versión de XCode, la versión 5, está disponible públicamente en la Mac App Store. En <a href="http://www.slideshare.net/aprendegit/nsspain2013">la presentación</a> de la <a href="http://nsspain.com/">NSSpain de Logroño</a> la semana pasada comenté que el soporte para git dentro de XCode ha mejorado en esta nueva versión aunque no pude entrar en detalles (cosas del NDA). Voy a empezar a destripar cuáles son las novedades que tenemos a nuestra disposición.</p>
+<h2>La cosa ha mejorado pero&#8230;</h2>
+<p>La verdad es que no es para echar cohetes. El cliente git sigue estando a años luz de otros IDEs que lo tienen integrado como Eclipse, Netbeams o los productos de <a href="http://www.jetbrains.com/">jetbrains</a>. Y si lo comparamos con <a href="http://www.sourcetreeapp.com/">SourceTree</a>, <a href="http://www.git-tower.com/">Git Tower</a> o <a href="http://www.syntevo.com/smartgithg/">Smart Git</a> te das cuenta de que los ingenieros de Apple todavía tienen mucho trabajo por hacer.</p>
+<p>Ahora bien, con las novedades que hay disponibles lo cierto es que hay algunas tareas más o menos recurrentes que ahora sí podemos hacer desde XCode, ahorrándonos unos cuantos cambios de pantalla al día.</p>
+<h2>Hacer commits desde XCode</h2>
+<p>Esta es una opción que ya estaba disponible en las versiones anteriores. Basta pulsar CMD-ALT-C para que se abra la interfaz, escribamos el mensaje y hagamos el commit. Esta pantalla no ha cambiado prácticamente nada con respecto a la versión 4.</p>
+<h2>Operaciones más habituales</h2>
+<p><span style="line-height: 1.714285714; font-size: 1rem;">Una de las características que tiene que tener cualquier SCM es la de «desaparecer», es decir, no darte cuenta de que lo estás usando. Las operaciones que hagas con él deben de ser rápidas y ágiles. Pues bien, XCode 4 estaba diseñado justo para lo contrario: </span>para crear una rama era necesario abrir el organizador. El proceso era lento y suponía tener que cambiar de ventana, buscar un botón por ahí escondido, crear la rama, cambiarnos a ella y volver a la ventana del proyecto.</p>
+<p>Aquí hay una sustancial mejoría. Ahora disponemos de un menú en la parte superior desde el que podemos hacer las operaciones más comunes: crear ramas, cambiarnos de rama, hacer push y hacer pull, deshacer cambios, resolver conflictos e incluso gestionar los remotos.<a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-648" alt="Nuevo menú SCM en XCode5" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png" width="307" height="318" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288.png 307w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture288-289x300.png 289w" sizes="(max-width: 307px) 100vw, 307px" /></a></p>
+<p>Estas son las tareas más comunes así que cuando estamos trabajando nosotros solos o tenemos un flujo de trabajo muy simple, este menú nos puede ahorrar el tener que estar cambiando de aplicación para hacer cosas sencillas.</p>
+<h2>Gestión de repositorios remotos</h2>
+<p>La gestión de repositorios remotos del proyecto es ahora mucho más cómoda. En las pruebas que he realizado, he podido añadir el repositorio remoto de bitbucket y ha cogido mi clave SSH sin tener que hacer nada. En cuestión de un minuto tenía el remoto configurado y haciendo push/pull. En una entrada posterior veremos cómo hacerlo.</p>
+<h2>Mejoras sustanciales en la estructura de los ficheros XML</h2>
+<p>Esta es posiblemente la parte que más expectación ha despertado en los últimos meses desde que las versiones para desarrolladores han estado disponibles: ¡ahora se pueden hacer merges de los Story Boards!</p>
+<p>Las mejoras más evidentes son:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Si ahora abres el story board o el fichero xib </span><strong><span style="line-height: 1.714285714; font-size: 1rem;">y no tocas nada</span></strong><span style="line-height: 1.714285714; font-size: 1rem;">, el fichero no aparece como modificado (lo que significa que no da conflictos).</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Por otro lado, el formado de los ficheros ha cambiado y el XML, aunque sigue teniendo su miga, es más legible.</span></li>
+<li>Este formato permite resolver conflictos en los XIB/Story Boards con mucha más facilidad, incluso de forma automática en algunos casos. En una primera prueba muy sencilla en la que creé dos botones en el mismo lugar en dos ramas diferentes dentro de un fichero .xib, pude resolver el conflicto muy fácilmente copiando un trozo del XML.</li>
+</ul>
+<p>Aunque hay mejoras en este sentido, yo sigo siendo muy escéptico  En una prueba más elaborada en la que modifiqué un story board en dos ramas diferentes, la resolución del conflicto no era ya tan evidente y el XML no estaba tan claro. Me imagino que con un poco de práctica y experiencia será más fácil resolver los conflictos. Os iré contando cómo evoluciono según vaya usando más la herramienta.</p>
+<h2>¡El commit inicial incluye la configuración del IDE (xcuserdata)!</h2>
+<p>En XCode 4, cuando creabas un proyecto, había algunos ficheros que XCode no añadía al repositorio, en particular las carpetas xcuserdata. Pues bien, eso ya no es así y cuando creas un proyecto y marcas la casilla para que se cree el repositorio, XCode añade al repositorio todos los ficheros, incluido las carpetas xcuserdata.</p>
+<p>A mi personalmente no me gusta tener esta información en el repositorio. Es cierto que existen algunos casos en los que puede ser útil: si queréis que todo el mundo comparta la configuración del IDE o para compartir breakpoints entre los miembros de un equipo. Mi experiencia es que en general, suele ser una fuente de conflictos que me quitan mucho tiempo y por eso ignoro estas carpetas en el .gitignore.</p>
+<h2>La que se lleva la palma&#8230;</h2>
+<p>La funcionalidad que más me gusta de todas las novedades que incluye XCode 5 en cuanto a la gestión de código fuente se refiere es&#8230;<strong>¡¡Poder desactivarla!!</strong></p>
+<p>Si abris las preferencias y vais a «Source Control», podéis desactivar el soporte SCM. Si lo hacéis, lo único que ocurre es que XCode ignora el repositorio git del proyecto, las opciones del menú «Source Control» aparecen desactivadas y el soporte para git deja de funcionar. El repositorio git queda intacto, así que podéis seguir usando la línea de comandos o vuestro cliente favorito para seguir gestionando el código fuente fuera de XCode.</p>
+<p>Si después queréis activarlo, deshacéis los pasos y listo; eso sí, tuve que cerrar el proyecto y volverlo a abrir para que la interfaz volviera a mostrar los ficheros modificados y añadidos.</p>
+<p style="text-align: center;"><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png"><img loading="lazy" decoding="async" alt="Voila_Capture289" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png" width="244" height="282" /></a></p>
+<h2></h2>
+<h2>Lo que sigo echando en falta</h2>
+<p>Aunque la cosa ha mejorado mucho, todavía echo en falta algunas cosas:</p>
+<ul>
+<li><span style="line-height: 14px;">No entiendo la obsesión por ocultar el grafo. El grafo es ese típico dibujito lleno de pelotas, líneas y etiquetas que al principio no se entiende bien. Una vez sabes cómo funciona, cuesta trabajar en un repositorio sin él y en XCode no está.</span></li>
+<li>Stashing</li>
+<li>Rebasing</li>
+<li>Poder hacer commits de parte de un fichero (interactive staging)</li>
+<li>Más documentación acerca del formato XML de los xib y story boards (si alguien sabe dónde está que por favor nos lo diga). Eso nos permitiría resolver los conflictos más fácilmente.</li>
+<li>Poder trabajar con flujos de trabajo un poco más elaborados. Si habéis trabajado o estáis trabajando con git-flow, vais a necesitar línea de comandos o Sourcetree necesariamente.<a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture289.png"><br />
+</a></li>
+</ul>
+<h2>Conclusión</h2>
+<p>Si no te quieres complicar y el uso que haces de git se limita a hacer commits, push y pull, crear ramas y hacer merge, estás de enhorabuena: estas operaciones puedes hacerlas ya de manera rápida y efectiva en la nueva interfaz.</p>
+<p>Ahora bien, si os soy sincero, la mayoría del tiempo sigo teniendo desactivado el soporte git y usando SourceTree y la línea de comandos, como hacía antes. El motivo principal: en cuanto quieres hacer cosas «normales» como un rebase, se te queda corto.</p>
+<p>Por último, aunque el formato del fichero hace más sencillo el merging de ramas, sigo siendo escéptico en cuanto al uso de Story Boards. Sólo espero que esto no desemboque en Apple eliminando el soporte para ficheros xib en XCode ¡me tocará hacerlo todo por código!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/repaso-rapido-a-las-novedades-de-git-en-xcode-5/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">647</post-id>	</item>
+		<item>
+		<title>git-merge 2013: hack day y como no, cerveza</title>
+		<link>https://aprendegit.com/git-merge-2013-hack-day-y-como-no-cerveza/</link>
+					<comments>https://aprendegit.com/git-merge-2013-hack-day-y-como-no-cerveza/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 13 May 2013 19:49:07 +0000</pubDate>
+				<category><![CDATA[Eventos / charlas / conferencias]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=592</guid>
+
+					<description><![CDATA[Hace un par de días os escribía un resumen del Git Merge User Day. Aquí os dejo mis impresiones sobre el Hack Day. Durante el desayuno, compartí mesa, entre otros, con  Thomas Ferris Nicolaisen, que produce el podcast gitminutes.com. Su entusiasmo por lo que hace y cómo lo cuenta es especialmente motivador y me ha [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hace un par de días os escribía un resumen del <a title="git-merge 2013: user day" href="https://aprendegit.com/git-merge-2013-user-day/">Git Merge User Day</a>. Aquí os dejo mis impresiones sobre el Hack Day.</p>
+<p>Durante el desayuno, compartí mesa, entre otros, con  <a title="author profile" href="https://plus.google.com/101470099289717563604" rel="author">Thomas Ferris Nicolaisen</a>, que produce el podcast <a href="gitminutes.com">gitminutes.com</a>. Su entusiasmo por lo que hace y cómo lo cuenta es especialmente motivador y me ha dado un par de buenos consejos para el blog que confío en poner en práctica en breve. Estaba, además, muy interesado en cómo está funcionando tanto este blog como los cursos de git así que estuvimos compartiendo datos de Google Analytics e intercambiando experiencias.</p>
+<p>Compartiendo la mesa estaba con nosotros Scott Chacon, que nos estuvo contando cómo utilizan en github algunas de las herramientas para trabajar colaborativamente. Me quedé con dos ejemplos sobre cómo utilizan <a href="http://campfirenow.com/">campfire</a>:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cuando se nombra a una persona en una sala, esta recibe un aviso y puede eventualmente unirse o responder offline si la sala ya está cerrada cuando se intenta conectar.</span></li>
+<li>Meten las conversaciones de campfire en Elastic Search y luego utilizan el motor para buscar las conversaciones. Antes de esta combinación, aparentemente se perdía mucha información que luego no podía encontrarse de nuevo.</li>
+</ul>
+<p><span style="font-size: 1rem; line-height: 1.714285714;">Curioso ¿verdad? Con estas «simples» modificaciones el ratio de participación en las conversaciones se disparó, así como la utilidad de la herramienta. También interesante cómo han ido evolucionando del «stupid drinking» al «we still drink a lot» con un, digamos, consumo responsable. Scott comentó durante el desayuno dos comandos que no conocía: git-fast-import y git-fast-export. Bastante útiles para mover commits de un sitio a otro sin hacer rebase (básicamente es copiar commits).</span></p>
+<p>Después del desayuno empezamos a trabajar. Yo decidí hablar un poco más con Thomas, que me entrevistó para su podcast. Cuando terminé estuve charlando con algunas de las personas que hablaron el día anterior y aproveché una buena parte de la mañana para organizar las notas y avanzar lo máximo posible en los posts.</p>
+<p>Después de comer empecé un pequeño proyecto en ruby que, utilizando <a href="https://github.com/libgit2/rugged">rugged</a>, me permite generar repositorios con commits y ramas predeterminadas. Situación muy habitual: te preguntan algo sobre un rebase y para responder necesitas un repositorio con dos ramas y varios commits en cada una de ellas. Antes empleaba unos 2-3 minutos en crear los commits y las ramas. Con esta herramienta puedo hacerlo en segundos. Está bastante verde, cuando la tenga un poco más pulida la liberaré. La verdad es que para dos horas que le dediqué al tema no está nada mal. Lo bueno de este tipo de eventos es tener a mano a la persona que te puede sacar del atolladero. En mi caso fue <a href="https://github.com/carlosmn">Carlos Martín Nieto</a>, que me ayudó a desatascarme cuando no veía por dónde seguir.</p>
+<p>Por la noche estuvimos en el <a href="http://www.golgatha-berlin.de/">Golgatha Biergarten</a>. El nombre prometía y el DrinkUp desde luego no defraudó: para alguien que no le gusta la cerveza, beberse un litro y medio en una noche es todo un logro. Lo acompañé de un par de salchichas o tres (ya no me cuerdo). La verdad es que con un par de cervezas de ese tamaño en el cuerpo es más fácil romper el hielo así que seguimos hablando un poco de git, arreglando los problemas de España y comentando la cantidad de Españoles que había últimamente en Berlín. Como dijo <a href="https://github.com/porras">Sergio</a>: es la venganza por la «ocupación» Alemana de Mallorca.</p>
+<p>Os animo a que asistáis a este tipo de eventos, y si es fuera de España mejor. Se aprende mucho compartiendo con gente de otros países. Hacía casi un año que no salía fuera y lo echaba de menos. El próximo viaje es el iOS Dev UK. Ya os contaré.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/git-merge-2013-hack-day-y-como-no-cerveza/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">592</post-id>	</item>
+		<item>
+		<title>Todo listo para el git-merge 2013 de Berlín</title>
+		<link>https://aprendegit.com/todo-listo-para-el-git-merge-2013-de-berlin/</link>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Wed, 08 May 2013 15:00:25 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=573</guid>
+
+					<description><![CDATA[Bueno, pues llegó el día&#8230; o casi. Mañana a estas horas estaré ya en Berlín para asistir al git-merge que ha organizado Github. La verdad es que esto de ir a congresos «de friquis» me encanta, así que estoy como un niño la noche antes de que lleguen los reyes magos. El programa promete&#8230; porque no [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Bueno, pues llegó el día&#8230; o casi. Mañana a estas horas estaré ya en Berlín para asistir al <a href="http://git-merge.com/">git-merge que ha organizado Github</a>.</p>
+<p>La verdad es que esto de ir a congresos «de friquis» me encanta, así que estoy como un niño la noche antes de que lleguen los reyes magos.</p>
+<p>El programa promete&#8230; porque no hay programa así que el evento que va a ser bastante abierto. El primer día, el jueves, está reservado para los «contributors». El segundo tendremos un formato un-conference / lightning talks y el sábado será el hack day. Y como no, el motivo real por el que todos vamos a Berlín, que es el cierre del evento el sábado por la noche en el Golgatha Biergarten ¡Github drinkup!</p>
+<p>Contará con la presencia de <a href="https://twitter.com/matthewmccull">Matthew McCullough</a>, <a href="https://twitter.com/vmg">Vicent Marti</a> o  <a href="http://www.tfnico.com/">Thomas Ferris Nicolaisen</a>, director del podcast «<a href="http://www.gitminutes.com/">Git Minutes</a>«. Con muchas ganas de ponerle cara a personas que llevo tiempo siguiendo y que han cambiado nuestra forma de trabajar. A la vuelta os contaré qué tal ha ido el evento.</p>
+<p>¡Hasta la semana que viene!</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">573</post-id>	</item>
+		<item>
+		<title>Introducción a git en Betabeers Badajoz</title>
+		<link>https://aprendegit.com/introduccion-a-git-en-betabeers-badajoz/</link>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Tue, 07 May 2013 08:00:09 +0000</pubDate>
+				<category><![CDATA[introducción]]></category>
+		<category><![CDATA[presentación]]></category>
+		<category><![CDATA[vídeo]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=569</guid>
+
+					<description><![CDATA[Hola de nuevo: Coincidiendo con el curso de git que impartimos en Badajoz, dimos una presentación de 40 minutos de introducción a git. La charla fue grabada y la podéis ver en youtube. Ese mismo día, Álvaro de la Mata compartió con todos nosotros cómo cambiaron la forma de trabajo de toda la empresa aplicando [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Hola de nuevo:</p>
+<p>Coincidiendo con el <a href="http://www.cursodegit.com/cursos-y-eventos/entendiendo-git-badajoz-abril-2013/">curso de git</a> que impartimos en Badajoz, dimos una presentación de 40 minutos de introducción a git. La charla fue grabada y la podéis <a href="http://www.youtube.com/watch?v=x-YQS7Omrhw">ver en youtube</a>.<br />
+<iframe loading="lazy" src="http://www.youtube.com/embed/x-YQS7Omrhw" height="360" width="640" allowfullscreen="" frameborder="0"></iframe></p>
+<p>Ese mismo día, Álvaro de la Mata compartió con todos nosotros cómo cambiaron la forma de trabajo de toda la empresa aplicando metodologías ágiles en una charla que no tiene desperdicio. Aunque no se habla de git explícitamente, git y agilismo van bastante de la mano así que aquí os <a href="http://www.youtube.com/watch?v=_BBRdeB2bdY">dejo el enlace</a>.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">569</post-id>	</item>
+		<item>
+		<title>Git: la he liado parda</title>
+		<link>https://aprendegit.com/git-la-he-liado-parda/</link>
+					<comments>https://aprendegit.com/git-la-he-liado-parda/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Thu, 25 Apr 2013 06:37:55 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=563</guid>
+
+					<description><![CDATA[Aquí os dejo el vídeo de la presentación que hice ayer (24 de abril de 2013) en el grupo de desarrolladores de Symfony de Madrid. Una presentación de una hora en la que hablamos de las herramientas que nos da git para no tener que recurrir al famoso borrar-y-volver-a-clonar-repositorio para recuperar nuestro repo cuando nos [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Aquí os dejo el vídeo de la presentación que hice ayer (24 de abril de 2013) en el <a href="http://www.symfony-madrid.es/">grupo de desarrolladores de Symfony de Madrid</a>.</p>
+<p>Una presentación de una hora en la que hablamos de las herramientas que nos da git para no tener que recurrir al famoso borrar-y-volver-a-clonar-repositorio para recuperar nuestro repo cuando nos equivocamos.</p>
+<p>Durante la presentación hacemos varias demos:</p>
+<ul>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo detener un merge que nos ha dado conflictos</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo deshacer un merge una vez finalizado</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo deshacer un rebase que hemos hecho al revés, sobreescribiendo la historia del repositorio</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo usar git-bisect para encontrar un bug</span></li>
+<li><span style="line-height: 1.714285714; font-size: 1rem;">Cómo usar git-revert para solucionarlo</span></li>
+</ul>
+<p><span style="font-size: 1rem; line-height: 1.714285714;">¡No está mal para una hora! Espero que os guste y os resulte útil.</span><span style="font-size: 1rem; line-height: 1.714285714;"><br />
+</span></p>
+<p>Aprovechamos para recordaros que en Aprendegit estamos siempre dispuestos para dar charlas y presentaciones sobre nuestra herramienta favorita. Así que si quieres que vayamos a hablar de git a cualquier sitio, sólo tienes que proponernoslo <img src="https://s.w.org/images/core/emoji/15.0.3/72x72/1f609.png" alt="😉" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><iframe loading="lazy" src="http://www.youtube.com/embed/aF-zt73Zm5I" height="315" width="560" allowfullscreen="" frameborder="0"></iframe></p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/git-la-he-liado-parda/feed/</wfw:commentRss>
+			<slash:comments>8</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">563</post-id>	</item>
+		<item>
+		<title>Uso avanzado de referencias: github y pull requests</title>
+		<link>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/</link>
+					<comments>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/#comments</comments>
+		
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 22 Apr 2013 08:00:38 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[configuración]]></category>
+		<category><![CDATA[pull-request]]></category>
+		<category><![CDATA[referencias]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=544</guid>
+
+					<description><![CDATA[El viernes pasado (19 de abril de 2013) Jesús Espino dio una charla titulada «Git internals» en Kaleidos. Lo primero que es digno de mención es que una empresa de una «charla interna» e invite a cualquiera que quiera asistir «de fuera». Iniciativas como esta deberían estar a la orden del día en empresas en todo [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>El viernes pasado (19 de abril de 2013) <a href="http://twitter.com/jespinog">Jesús Espino</a> dio una charla titulada «Git internals» en <a href="http://kaleidos.net">Kaleidos</a>. Lo primero que es digno de mención es que una empresa de una «charla interna» e invite a cualquiera que quiera asistir «de fuera». Iniciativas como esta deberían estar a la orden del día en empresas en todo nuestro país. Desde aquí animo a cualquier colega de profesión, trabaje donde trabaje (cárnicas, startups o lo que se tercie) a que comparta lo que sabe, bien sea en un blog, dando charlas en grupos locales o imitando este tipo de iniciativas aunque sea internamente dentro de su empresa. «Hay que subir el nivel» como dice <a href="http://www.freniche.com/Inicio.html">Diego Freniche</a>. Y como me gusta repetirme a mi mismo todos los días: «si quieres cambiar las cosas, empieza cambiando tú y tu entorno».</p>
+<p>La charla, que está escrita en TeX, podéis <a href="https://github.com/jespino/ponencias/tree/master/2013/kaleidos/git-internals">encontrarla en github</a>. Independientemente de los recuerdos que me trajo ver el código fuente (la tesis la escribí en LaTeX) el contenido de la misma no tiene desperdicio. Si os interesa el tema, aunque sea árido, y queréis profundizar en él os recomiendo que leáis el <a href="http://git-scm.com/book/es/Los-entesijos-internos-de-Git">capítulo 9 del libro de Scott Chacon</a>.</p>
+<p>Durante la charla se habló bastante de las referencias. Cuando Jesús acabó su magistral intervención, comenté un pequeño truco que aprendí en twitter para poder descargarnos a nuestra máquina los pull requests que recibimos desde github. Llevaba tiempo queriendo sacar un rato para contarlo y Jesús me dio el empujón que me faltaba.</p>
+<h1>Accediendo a los pull requests</h1>
+<p>En este artículo usaremos como base el <a href="https://github.com/aprendegit/fork">repositorio</a> que utilizamos para la <a title="¿Qué es un pull request?" href="https://aprendegit.com/que-es-un-pull-request/">serie de artículos sobre pull requests</a>.</p>
+<p>Cuando un usuario hace un pull request desde su fork al repositorio original, github crea en el repositorio orignal una referencia a los commits cuya incorporación se ha solicitado. El repositorio original, el que recibe el pull request, guarda estas referencias en refs/pull/*/head. Recordad que las referencias en git no son más que ficheros que contienen hashes a objetos de git. Estos ficheros están en los servidores de github.</p>
+<p>Para poder acceder a esas referencias, y por lo tanto a esos commits, lo único que hay que hacer es decirle a git que se descargue los ficheros con las referencias cuando ejecutamos el comando fetch. Para ello, abrimos el fichero .git/config de nuestro repositorio y modificamos la sección correspondiente al remoto «origin», añadiendo la línea en cursiva que os pongo a continuación:</p>
+<pre>[remote "origin"]
+ url = https://github.com/aprendegit/fork
+ fetch = +refs/heads/*:refs/remotes/origin/*
+ <em><strong>fetch = +refs/pull/*/head:refs/remotes/origin/pr/*/head</strong></em></pre>
+<p>Antes de ejecutar git-fetch, veamos cómo están las referencias remotas del repositorio en SourceTree:</p>
+<div id="attachment_548" style="width: 282px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture188.png"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-548" class="size-full wp-image-548" alt="Referencias remotas antes de importar los pull-requests" src="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture188.png" width="272" height="146" /></a><p id="caption-attachment-548" class="wp-caption-text">Referencias remotas antes de importar los pull-requests</p></div>
+<p>Hagamos un fetch:</p>
+<pre>$ git fetch
+From https://github.com/aprendegit/fork
+ * [new ref]         refs/pull/1/head -&gt; origin/pr/1/head
+ * [new ref]         refs/pull/2/head -&gt; origin/pr/2/head
+ * [new ref]         refs/pull/3/head -&gt; origin/pr/3/head</pre>
+<p>¡Ahí las tenéis! Si actualizáis la pantalla de SourceTree:</p>
+<div id="attachment_556" style="width: 946px" class="wp-caption aligncenter"><a href="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png"><img loading="lazy" decoding="async" aria-describedby="caption-attachment-556" class="size-full wp-image-556" alt="El repositorio después de hacer fetch de los pull requests" src="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png" width="936" height="474" srcset="https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190.png 936w, https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190-300x151.png 300w, https://aprendegit.com/wp-content/uploads/2013/04/Voila_Capture190-624x316.png 624w" sizes="(max-width: 936px) 100vw, 936px" /></a><p id="caption-attachment-556" class="wp-caption-text">El repositorio después de hacer fetch de los pull requests</p></div>
+<p>En la captura podéis ver los dos pull requests que ha recibido el proyecto y cómo ha evolucionado cada uno de ellos.</p>
+<p>¿Y esto para qué sirve? Pues para probar el código que estáis recibiendo antes de aceptar el pull request, por ejemplo.</p>
+<p>Para terminar, quería dar las gracias de nuevo a Jesús por su charla, a Kaleidos por la iniciativa y a <a href="https://github.com/piscisaureus">Bert Belder (piscisaureus)</a> por colgar el <a href="https://gist.github.com/piscisaureus/3342247">gist</a> con la información que ha dado pie a este artículo.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/uso-avanzado-de-referencias-github-y-pull-requests/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">544</post-id>	</item>
+	</channel>
+</rss>

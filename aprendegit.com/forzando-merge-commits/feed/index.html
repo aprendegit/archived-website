@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Forzando los merge commits	</title>
+	<atom:link href="https://aprendegit.com/forzando-merge-commits/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/forzando-merge-commits/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:37 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: Jose		</title>
+		<link>https://aprendegit.com/forzando-merge-commits/#comment-801</link>
+
+		<dc:creator><![CDATA[Jose]]></dc:creator>
+		<pubDate>Thu, 23 May 2013 06:49:19 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409#comment-801</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/forzando-merge-commits/#comment-739&quot;&gt;alfonso&lt;/a&gt;.
+
+Hola Alfonso,
+
+Muchas gracias por la información me he aclarado mucho mas, yo normalmente utilizo merge para ramas production (compartidas) y rebase para las ramas de desarrollo.
+
+gracias, Un saludo]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/forzando-merge-commits/#comment-739">alfonso</a>.</p>
+<p>Hola Alfonso,</p>
+<p>Muchas gracias por la información me he aclarado mucho mas, yo normalmente utilizo merge para ramas production (compartidas) y rebase para las ramas de desarrollo.</p>
+<p>gracias, Un saludo</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/forzando-merge-commits/#comment-739</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 20 May 2013 16:56:59 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409#comment-739</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/forzando-merge-commits/#comment-683&quot;&gt;Jose&lt;/a&gt;.
+
+Hola Jose:
+
+Gracias por el comentario. Respondiendo a tus preguntas:
+&lt;ul&gt;
+	&lt;li&gt;No, un fast-forward no es lo mismo que un rebase, aunque a veces el resultado sea el mismo lo que hace internamente git con los commits no tiene nada que ver.
+&lt;/li&gt;
+	&lt;li&gt;No, no siempre usamos merge para aplicar cambios, utilizamos merge, rebase y a veces pick y cherry-pick&lt;/li&gt;
+&lt;/ul&gt;
+
+Un merge con fast-forward se produce cuando puedes moverte de una rama a otra por el grapho de objetos en una única dirección, es decir, si puedes ir de una rama a otra sólo bajando o subiendo. Si tienes que subir y luego bajar (o viceversa) necesitas un merge commit para poder incorporar los cambios de una rama en la otra. 
+
+Con respecto al rebase, te pongo un ejemplo real. En un proyecto que tengo ahora tengo tres ramas de pruebas en las que estoy probando cosas. Por otro lado, tengo la rama development en la que voy desarrollando el proyecto. Cada pocos días, incorporo las modificaciones de &quot;development&quot; en las ramas de prueba para estar al día. Esto lo hago con un rebase en lugar de un merge. ¿El motivo? me ahorro un  montón de merge commits que no me aportan nada y me enguarrinan la historia del repositorio. Como son mías y no las usa nadie (están en mi remoto pero nadie las utiliza...y si lo hace ya sabe lo que se va a encontrar) no hay problema.
+
+Por otro lado, cuando hago un hotfix en la rama &quot;production&quot;, me lo llevo a a la rama develop usando un merge. Si lo hiciese con rebase, estaría modificando los commits. Esto supone un problema ya que estas dos ramas están compartidas y al borrar unos commits y cambiarlos por otros con el rebase volvería locos a mis compañeros.
+
+¿Te ha aclarado algo la respuesta?
+
+Un saludo,
+
+Alfonso]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/forzando-merge-commits/#comment-683">Jose</a>.</p>
+<p>Hola Jose:</p>
+<p>Gracias por el comentario. Respondiendo a tus preguntas:</p>
+<ul>
+<li>No, un fast-forward no es lo mismo que un rebase, aunque a veces el resultado sea el mismo lo que hace internamente git con los commits no tiene nada que ver.
+</li>
+<li>No, no siempre usamos merge para aplicar cambios, utilizamos merge, rebase y a veces pick y cherry-pick</li>
+</ul>
+<p>Un merge con fast-forward se produce cuando puedes moverte de una rama a otra por el grapho de objetos en una única dirección, es decir, si puedes ir de una rama a otra sólo bajando o subiendo. Si tienes que subir y luego bajar (o viceversa) necesitas un merge commit para poder incorporar los cambios de una rama en la otra. </p>
+<p>Con respecto al rebase, te pongo un ejemplo real. En un proyecto que tengo ahora tengo tres ramas de pruebas en las que estoy probando cosas. Por otro lado, tengo la rama development en la que voy desarrollando el proyecto. Cada pocos días, incorporo las modificaciones de «development» en las ramas de prueba para estar al día. Esto lo hago con un rebase en lugar de un merge. ¿El motivo? me ahorro un  montón de merge commits que no me aportan nada y me enguarrinan la historia del repositorio. Como son mías y no las usa nadie (están en mi remoto pero nadie las utiliza&#8230;y si lo hace ya sabe lo que se va a encontrar) no hay problema.</p>
+<p>Por otro lado, cuando hago un hotfix en la rama «production», me lo llevo a a la rama develop usando un merge. Si lo hiciese con rebase, estaría modificando los commits. Esto supone un problema ya que estas dos ramas están compartidas y al borrar unos commits y cambiarlos por otros con el rebase volvería locos a mis compañeros.</p>
+<p>¿Te ha aclarado algo la respuesta?</p>
+<p>Un saludo,</p>
+<p>Alfonso</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Jose		</title>
+		<link>https://aprendegit.com/forzando-merge-commits/#comment-683</link>
+
+		<dc:creator><![CDATA[Jose]]></dc:creator>
+		<pubDate>Sat, 18 May 2013 13:41:55 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409#comment-683</guid>
+
+					<description><![CDATA[Hola, Muy interesante el articulo y mu util, queria preguntar algo:
+
+¿El merge con fast-fortward es lo mismo que el rebase?
+¿Utilizais siempre merge apra aplicar cambios?
+
+gracias, Un saludo]]></description>
+			<content:encoded><![CDATA[<p>Hola, Muy interesante el articulo y mu util, queria preguntar algo:</p>
+<p>¿El merge con fast-fortward es lo mismo que el rebase?<br />
+¿Utilizais siempre merge apra aplicar cambios?</p>
+<p>gracias, Un saludo</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: git-flow: la rama develop y uso de feature branches &#124; Aprende GIT		</title>
+		<link>https://aprendegit.com/forzando-merge-commits/#comment-417</link>
+
+		<dc:creator><![CDATA[git-flow: la rama develop y uso de feature branches &#124; Aprende GIT]]></dc:creator>
+		<pubDate>Mon, 01 Apr 2013 16:24:27 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409#comment-417</guid>
+
+					<description><![CDATA[[...] no sabes qué es la opción &#8211;no-ff y porqué la usamos, lee este artículo. Al ejecutar el comando se nos pide el mensaje para el merge [...]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] no sabes qué es la opción &#8211;no-ff y porqué la usamos, lee este artículo. Al ejecutar el comando se nos pide el mensaje para el merge [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

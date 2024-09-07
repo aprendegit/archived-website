@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>.gitignore Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/tag/gitignore/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/tag/gitignore/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:49 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Ignorando ficheros en git – Parte IV: Más patrones</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-iv-mas-patrones/</link>
+					<comments>https://aprendegit.com/ignorando-ficheros-en-git-parte-iv-mas-patrones/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 14 Jan 2013 09:04:31 +0000</pubDate>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=270</guid>
+
+					<description><![CDATA[En la entrega anterior estuvimos analizando los patrones básicos que podemos utilizar para ignorar ficheros a través de .gitignore, .git/info/exclude y .gitignore_local. En esta entrega veremos cómo git utiliza los patrones de la shell dentro de estos ficheros. Todos los patrones que usa git Hagamos un pequeño repaso de lo que ya sabemos: Las líneas [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En la <a title="Ignorando ficheros en git – Parte III: Patrones" href="https://aprendegit.com/ignorando-ficheros-en-git-parte-iii-patrones/">entrega anterior</a> estuvimos analizando los patrones básicos que podemos utilizar para ignorar ficheros a través de .gitignore, .git/info/exclude y .gitignore_local. En esta entrega veremos cómo git utiliza los patrones de la shell dentro de estos ficheros.</p>
+<h1>Todos los patrones que usa git</h1>
+<p>Hagamos un pequeño repaso de lo que ya sabemos:</p>
+<ul>
+<li>Las líneas en blanco no se consideran un patrón. Se usan para hacer los ficheros más legibles</li>
+<li>Si la linea comienza con #, se considera un comentario</li>
+<li>El prefijo <em>!</em> sirve para negar un patrón</li>
+<li>Si el patrón termina en / sólo se aplicará a carpetas, es decir, un patrón «web/» ignorará la carpeta web/ pero no ignorará un fichero que se llame web</li>
+</ul>
+<p>Hasta aquí lo que ya habíamos visto ¿qué nos falta?</p>
+<ul>
+<li>Si el patrón no termina en /, git lo interpreta como un «<em><a href="http://en.wikipedia.org/wiki/Glob_(programming)">shell glob pattern</a></em>«. Internamente git llama a la función <a title="Página de manual de fnmatch (3)" href="http://linux.die.net/man/3/fnmatch">fnmatch</a> con el flag FNM_PATHNAME: esto significa que ni el * ni el ? incluyen el carácter /. En seguida veremos ejemplos.</li>
+<li>Una / al principio del patrón indica el inicio de una ruta relativa a la carpeta en la que se encuentre el fichero .gitignore. Una línea del tipo /config.php ignorará el fichero config.php pero no ignorará web/config.php</li>
+</ul>
+<h1>Shell globs en git</h1>
+<p>Los ficheros .gitignore, .git/info/exclude y .gitignore_local permiten incluir patrones de tipo shell. Si habéis trabajado con cualquier shell de Unix o el CMD de windows, estaréis familiarizados con el funcionamiento de estos patrones. En caso contrario, aquí tenéis las reglas que se siguen.</p>
+<blockquote><p>En una expresión que contenga el símbolo «?», éste se corresponde con uno y sólo un carácter</p></blockquote>
+<p>Ejemplos:</p>
+<pre># Ignora los ficheros bg-01.jpg bg-lt.jpg
+#
+# No ignora los ficheros bg-1.jpg y bg-001.jpg
+#
+bg-??.jpg</pre>
+<p><span style="line-height: 24px;">Este patrón ignorará los ficheros cuyos nombres empiezan por «bg-«, van seguidos exactamente de dos caracteres, y luego van seguidos de «.jpg». Por eso el fichero bg-1.jpg no se ignora, porque entre «bg-» y «.jpg» no hay dos caracteres, sólo uno. <strong>Este ejemplo ilustra que el símbolo «?» no indica un caracter opcional.</strong></span></p>
+<blockquote><p>En una expresión que contenga el símbolo » * «, éste se corresponde con cualquier número de caracteres</p></blockquote>
+<p>Ejemplos:</p>
+<pre># Ignora todos los ficheros acabados en .nib
+#
+# Ignora tanto MainWindow.nib y builds/MainWindow.nib
+*.nib
+
+#Ignora todos los ficheros que empiecen por "bg-" y acaben en ".jpg"
+bg-*.jpg</pre>
+<p>En el primer ejemplo, estamos ignorando cualquier fichero que acabe en .nib, independientemente de la carpeta en la que se encuentre. En el segundo ejemplo, estamos ignorando cualquier fichero que empiece por «bg-» y acabe por «.jpg». Una pregunta: ¿se ignorará el fichero «bg-.jpg» usando este patrón?. La respuesta la tenéis un poco más abajo.</p>
+<div><span style="line-height: 24px;"><br />
+</span></div>
+<blockquote><p>En una expresión que contenga corchetes [ ], éstos se corresponden con uno y sólo un caracter de los que están incluidos en los corchetes.</p></blockquote>
+<p>Ejemplos:</p>
+<pre># Ignora los ficheros *.o y *.a
+*.[ao]
+
+# Ignora los ficheros .nib y .xib
+*.[xn]ib</pre>
+<p>Estos patrones no ignoran los ficheros liberia.so o los ficheros mainwindow.ib. Es necesario que alguno de los caracteres que están entre corchetes aparezcan en el fichero.</p>
+<blockquote><p>Si se necesita utilizar los caracteres ? * [ ] en un patrón, estos deberán escaparse con \</p></blockquote>
+<p>Ejemplo:</p>
+<pre># Ignorando ficheros que contienen [ y ] en el nombre
+#
+# Este patrón ignorará los ficheros
+# cache/cache-[hG7].cache y cache/cache-[009].cache
+cache/cache-\[???\].cache</pre>
+<h1>Shell globs y carpetas</h1>
+<p>¿Qué significa que git utilice el flag FNM_PATHNAME al llamar a la función <a title="Página de manual de fnmatch (3)" href="http://linux.die.net/man/3/fnmatch">fnmatch</a>? <strong>Que los símbolos * ? y [] no incluyen el caracter » / » de separación de directorios.</strong></p>
+<pre># El uso de FNM_PATHNAME hace que el siguiente patrón ignore los ficheros
+# web/fichero.html, pero no ignore el fichero web/admin/fichero.html
+#
+# Como el " * " no incluye " / ", el fichero web/admin/fichero.html no 
+# encaja con el patrón
+web/*.html</pre>
+<p>¿Qué ocurre si necesitamos justo el efecto contrario? es decir, queremos ignorar todos los ficheros .html que están en las subcarpetas de web pero no ignorar los ficheros .html que están en web. El patrón sería el siguiente:</p>
+<pre># Ignora los ficheros .html que están en subcarpetas de la carpeta web
+# No ignora los ficheros web/*.html
+#
+# Con este patrón, el fichero web/fichero.html se incluirá en el repositorio
+# mientras que ficheros con web/admin/fichero.html o web/images/index.html se 
+# ignorarán
+web/**/*.html</pre>
+<p>Otra pregunta: Este patrón ¿ignora el fichero web/admin/subcarpeta/fichero.txt?</p>
+<h1>Rutas relativas</h1>
+<p>Un patrón que comienza por » / «, indica que para decidir si el fichero se ignora o no, se utiliza una ruta relativa al fichero .gitignore:</p>
+<pre># Ignora los fichero *.c en la carpeta raiz del proyecto: memory.c
+# No ignora los ficheros en subcarpetas como modules/cache.c
+/*.c</pre>
+<h1>Conclusiones</h1>
+<p>En esta entrega hemos visto cómo interpreta git los patrones glob shell y los patrones a rutas relativas. En la siguiente entrega veremos cómo podemos usar múltiples ficheros .gitignore. Estos nos ayudarán a salvar las limitaciones que tenemos a la hora de trabajar con múltiples subcarpetas.</p>
+<h1>Respuestas:</h1>
+<ol>
+<li>Efectivamente, el patrón «bg-*.jpg» ignora que fichero «bg-.jpg». Eso es porque a diferencia de símobol «?», el símbolo «*» se corresponde con cualquier número de caracteres, incluido cero caracteres.</li>
+<li>El patrón web/**/*.html no ignora el fichero web/admin/subcarpeta/fichero.txt. Dado que se usa el parámetro FNM_PATHNAME, el » ** » no incluye el caracter » / » y por lo tanto este patrón sólo incluye las carpetas que son hijos de web, no incluye los nietos y niveles de más profundidad en la jerarquía de carpetas.</li>
+</ol>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/ignorando-ficheros-en-git-parte-iv-mas-patrones/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">270</post-id>	</item>
+		<item>
+		<title>Ignorando ficheros en git – Parte III: Patrones</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-iii-patrones/</link>
+					<comments>https://aprendegit.com/ignorando-ficheros-en-git-parte-iii-patrones/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Tue, 08 Jan 2013 09:00:16 +0000</pubDate>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=234</guid>
+
+					<description><![CDATA[En la segunda entrega de esta serie aprendimos en qué orden se aplican los patrones para ignorar cambios en ciertos ficheros del repositorio. En esta tercera entrega veremos los patrones y reglas que git utiliza para interpretar los ficheros it ignore. Comentarios y líneas en blanco Podemos hacer nuestro fichero más legible si incluimos comentarios [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En la <a title="Ignorando ficheros en git – Parte II: Prioridades" href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/">segunda entrega</a> de esta serie aprendimos en qué orden se aplican los patrones para ignorar cambios en ciertos ficheros del repositorio. En esta tercera entrega veremos los patrones y reglas que git utiliza para interpretar los ficheros it ignore.</p>
+<h2>Comentarios y líneas en blanco</h2>
+<p>Podemos hacer nuestro fichero más legible si incluimos comentarios y separadores:</p>
+<ul>
+<li>Cualquier línea que comience por # es un comentario</li>
+<li>Una línea en blanco no se considera un patrón por parte de git, por lo que puede ser usada como un separador</li>
+</ul>
+<p>Sé considerado con el resto de los miembros del equipo y comenta adecuadamente cada uno de los patrones que utilices. Indica el porqué de ese patrón de forma que el resto de compañeros o colaboradores sepan porqué has decidido en un momento dado ignorar ciertos ficheros. Y una cosa más, no todo el mundo usa las mismas herramientas que tú ni tiene tu mismo nivel de conocimientos en determinadas materias así que piensa un poco en los demás y ayúdales:</p>
+<pre># Jetbrains IDEs: PHPStorm / RubyMine  
+# (No todo el mundo tiene que saber que los ficheros .idea son de un 
+# entorno de desarrollo)
+.idea 
+
+# Ficheros de documentación sphynx. Puedes generar tu copia local de la doc
+# en /doc/build utilizando los scripts sphynx en /doc
+/doc/build/</pre>
+<h2>Negación</h2>
+<p>Utilizando el carácter <em>! </em>podemos invertir un patrón ¿Qué significa invertir un patrón? Veamoslo con un ejemplo:</p>
+<pre># Incluir expresamente en el repositorio todos los ficheros con extensión php
+!*.php</pre>
+<p>¿Porqué podemos necesitar este tipo de patrones? Imagina que estás trabajando en un proyecto en PHP; como te puedes imaginar, si tu repositorio sólo tuviese estas dos líneas en los ficheros git/info/exclude, .ignore y .gitignore_local podríamos quitarlas ya que el efecto sería el mismo. Ahora bien ¿para qué podemos necesitar un patrón como este?:</p>
+<ul>
+<li>Tal y como vimos en la <a title="Ignorando ficheros en git – Parte II: Prioridades" href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/">anterior entrega</a>, para invertir patrones de menor prioridad</li>
+<li>Crear excepciones a patrones muy restrictivos</li>
+</ul>
+<p>Veamos un ejemplo del segundo caso. Siguiendo con el ejemplo de un proyecto en PHP, podemos eliminar la línea anterior ya que no hace falta. Ahora bien ¿qué hacemos con los ficheros html?:</p>
+<pre># Ignorar todos los ficheros .html...
+*.html
+
+ #... excepto en la carpeta web
+!web/*.html</pre>
+<p>En este caso, cualquier fichero con extensión .html en cualquier carpeta se ignorará, excepto los ficheros que estén en la carpeta web. Cuidado porque ficheros .html que estén en una subcarpeta de web, como por ejemplo web/archive, también se ignorarán. Más adelante veremos porqué.</p>
+<h2>Ignorando carpetas enteras</h2>
+<p>Si un patrón acaba con una barra /, git ignorará cualquier fichero dentro de esa carpeta:</p>
+<pre># Ignorar el contenido de las carpetas log y cache
+cache/
+log/</pre>
+<p>Git ignorará cualquier fichero que esté dentro de cache/ o log/ o en cualquier subcarpeta que cuelgue de ellas.</p>
+<p>Este patrón no se lleva muy bien con la negación ¿Por qué decimos esto? Imagina que quieres ignorar el contenido de la carpeta web entera (incluyendo todas las subcarpetas que cuelgan de ella) excepto el fichero web/index.php. Con lo que sabemos hasta ahora, intentaríamos una combinación de patrones como la siguiente:</p>
+<pre>#Esto no funciona:
+# git ignorará también el fichero index.php
+web/
+!web/index.php</pre>
+<p>Desafortunadamente esto no funciona y git ignorará fichero index.php. Veremos en una futura entrega cómo resolver este problema.</p>
+<p>Una última nota sobre el uso de /. Si usamos el siguiente patrón</p>
+<pre>#Ignorar el contenido de la carpeta web
+web/</pre>
+<p>y web no es una carpeta sino un enlace simbólico o un fichero regular:</p>
+<pre>total 16
+-rw-r--r-- 1 aalba staff 0 22 dic 14:42 Alumno.php
+-rw-r--r-- 1 aalba staff 0 22 dic 14:41 Curso.php
+-rw-r--r-- 1 aalba staff 0 22 dic 14:42 Licencia.php
+-rw-r--r-- 1 aalba staff 339 7 dic 16:39 README.md
+drwxr-xr-x 3 aalba staff 238 29 dic 08:29 builds
+lrwxr-xr-x 1 aalba staff 11 29 dic 08:29 web -&gt; builds/html</pre>
+<p>¡el fichero no se ignora!</p>
+<pre>$ git status
+# On branch master
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+# web
+  ^^^ -&gt; el enlace simbólico o fichero regular no se ignora ya que el patrón
+         web/ sólo se aplica a carpetas</pre>
+<p>Esto es todo por hoy, en la <a title="Ignorando ficheros en git – Parte IV: Más patrones" href="https://aprendegit.com/ignorando-ficheros-en-git-parte-iv-mas-patrones/">siguiente entrega</a> de la serie veremos los patrones shell que podemos utilizar.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/ignorando-ficheros-en-git-parte-iii-patrones/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">234</post-id>	</item>
+		<item>
+		<title>.gitkeep &#8211; Incluyendo carpetas en los repositorios</title>
+		<link>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/</link>
+					<comments>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 02 Jan 2013 09:24:15 +0000</pubDate>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=248</guid>
+
+					<description><![CDATA[¿Has visto esos ficheros .gitkeep que Ruby on Rails crea cuando generas un proyecto nuevo? ¿por qué están ahí? Git sólo gestiona ficheros, no carpetas. Esto es así por la forma en la que el índice (o staging area) de git se ha diseñado: sencillamente no lo permite. Tal y como se dice en la [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>¿Has visto esos ficheros .gitkeep que Ruby on Rails crea cuando generas un proyecto nuevo? ¿por qué están ahí? Git sólo gestiona ficheros, no carpetas. Esto es así por la forma en la que el índice (o <em>staging area</em>) de git se ha diseñado: sencillamente no lo permite. Tal y como se dice en la <a href="https://git.wiki.kernel.org/index.php/GitFaq#Can_I_add_empty_directories.3F">FAQ</a>, nadie lo suficientemente competente se ha ocupado de implementar el soporte para carpetas. Aún así, nos encontraremos con que en muchas ocasiones nos vendría muy bien poder añadir carpetas vacías al repositorio.</p>
+<h2>¿Porqué carpetas vacías?</h2>
+<p>Hay muchas herramientas, aplicaciones y frameworks que requieren de la existencia de ciertas carpetas para funcionar. Un ejemplo: tanto Symfony como Ruby on Rails necesitan disponer de directorios en los que almacenar cachés y logs. El contenido de estas carpetas se ignora siempre del repositorio; son archivos locales que sólo tienen sentido en cada copia local ¿pará que queremos distribuir a nuestros compañeros de trabajo los archivos de log creados por nuestro portátil mientras estamos desarrollando la aplicación? Es un derroche inútil de recursos y una fuente de conflictos que nos quitará mucho tiempo y no nos aportará nada.</p>
+<p>El problema que se deriva de esto es que si ignoramos toda la carpeta completa utilizando un patrón de este tipo:</p>
+<pre>#Ignorando cache y log
+cache/
+log/</pre>
+<p>cuando otra persona clone el repositorio esas carpetas no se crearán. A no ser que las cree manualmente, la aplicación no funcionará.</p>
+<p>La solución es decirle a git que cree las carpetas cuando clone el repositorio y luego que ignore su contenido. ¿Cómo se hace? creamos un fichero vacío dentro de la carpeta, lo añadimos al repositorio y le decimos a git que ignore el resto de archivos que están dentro. Esto se puede hacer de dos maneras:</p>
+<ul>
+<li>A través de un fichero .gitkeep</li>
+<li>A través de un fichero .gitignore</li>
+</ul>
+<h2>.gitkeep</h2>
+<p>Lo primero que debemos tener claro es que el uso del fichero .gitkeep es un convenio. En ningún lugar de la documentación de git veréis que se haga referencia a este fichero. De hecho, si no os gusta el nombre nada os impide cambiarlo y usar cualquier otro.</p>
+<p>Veamos cómo usar este fichero:</p>
+<ul>
+<li>Antes de añadir al fichero .gitignore el patrón que ignore la carpeta cache, creamos el fichero cache/.gitkeep, bien usando el comando touch o con nuestro editor de texto o entorno de desarrollo.</li>
+</ul>
+<pre># touch cache/.gitkeep</pre>
+<ul>
+<li>Una vez creado el fichero lo añadimos al repositorio y hacemos el commit:</li>
+</ul>
+<div><span style="line-height: 24px;"><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-250" title="Añadiendo .gitkeep al repositorio con Bitbucket" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png" alt="Añadiendo .gitkeep al repositorio con Bitbucket" width="713" height="318" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277.png 713w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277-300x133.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture277-624x278.png 624w" sizes="(max-width: 713px) 100vw, 713px" /></a><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png"><img decoding="async" class="aligncenter size-full wp-image-251" title="Commit del fichero .gitkeep" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png" alt="" width="570" height="456" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278.png 570w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture278-300x240.png 300w" sizes="(max-width: 570px) 100vw, 570px" /></a></span></div>
+<pre># git add cache/.gitkeep 
+# git commit -m'Añadiendo el fichero cache/.gitkeep</pre>
+<ul>
+<li>Editamos el fichero .gitignore (o lo creamos si no existe) y añadimos el patrón para ignorar la carpeta cache:</li>
+</ul>
+<pre># Ignorando los ficheros de la carpeta cache/
+cache/</pre>
+<ul>
+<li> Hacemos commit del fichero .gitignore</li>
+</ul>
+<p>Ya está, la próxima vez que alguien cree el repositorio, se creará el fichero cache/.gitkeep a la vez que se ignora cualquier otro fichero que esté en la carpeta cache/.</p>
+<p>Esta técnica utiliza la siguiente característica de git: si un fichero ya está en el índice (es decir, git ya está haciendo seguimiento de las modificaciones de ese fichero) a pesar de que el .gitignore lo ignore, git lo seguirá monitorizando.</p>
+<h2>Utilizar un fichero .gitignore</h2>
+<p>El método anterior tiene una pega: tenemos patrones para ignorar ficheros que requieren que tengamos varias excepciones en el índice de git (cache/.gitkeep, log/.gitkeep, etc). No hay problema con ello, aunque si no os gusta podemos utilizar otra de las características de git para no tener excepciones en el índice: utilizar un fichero .gitignore dentro de la carpeta que queremos ignorar.</p>
+<ul>
+<li>Crear el fichero cache/.gitignore con los siguientes patrones</li>
+</ul>
+<pre># Ignorar todos los ficheros...
+*
+
+# ...excepto el fichero .gitignore
+!.gitignore</pre>
+<ul>
+<li>Añadir el fichero cache/.gitignore al repositorio y hacer un commit</li>
+</ul>
+<p>Si repetís esta operación con las carpetas cuyos ficheros queráis ignorar, no tendréis necesidad de andar incluyendo excepciones en el índice.</p>
+<p>Cualquiera de los dos métodos nos permite tener carpetas «vacías» en el repositorio, aunque vacías, vacías del todo no lo están. ¿Qué método usáis vosotros normalmente? ¡Esperamos vuestros comentarios!</p>
+<p>¡Happy gitting!</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/gitkeep-incluyendo-carpetas-en-los-repositorios/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">248</post-id>	</item>
+		<item>
+		<title>Ignorando ficheros en git &#8211; Parte I: Formas de ignorar ficheros</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-i-formas-de-ignorar-ficheros/</link>
+					<comments>https://aprendegit.com/ignorando-ficheros-en-git-parte-i-formas-de-ignorar-ficheros/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 24 Dec 2012 08:03:10 +0000</pubDate>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=207</guid>
+
+					<description><![CDATA[En esta serie vamos a profundizar un poco más en el fichero .gitignore, para qué sirve y cómo podemos usarlo, empezando por cómo decide git si ignorar un fichero o no. En cualquier proyecto, existen ficheros que no deben incluirse en el repositorio. Por nombrar algunos de ellos: Ficheros de log Cachés Ficheros que contienen [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>En esta serie vamos a profundizar un poco más en el fichero .gitignore, para qué sirve y cómo podemos usarlo, empezando por cómo decide git si ignorar un fichero o no.</p>
+<p>En cualquier proyecto, existen ficheros que no deben incluirse en el repositorio. Por nombrar algunos de ellos:</p>
+<ul>
+<li>Ficheros de log</li>
+<li>Cachés</li>
+<li>Ficheros que contienen claves privadas (App keys y App secrets) para acceder a las API o servicios web</li>
+<li>Ficheros de configuración con contraseñas de bases de datos</li>
+<li>Ficheros binarios compilados</li>
+<li>Ficheros de configuración del entorno de desarrollo</li>
+</ul>
+<p>Cuando empiezas a utilizar git, tardas muy poco en preguntarte cómo puedes evitar subir estos ficheros al repositorio. Si <a href="http://menudoproblema.es/blog/entries/2011/09/14/ignorar-ficheros-en-git/">buscas la respuesta en google</a>, encontrarás en todos sitios que lo que tienes que hacer es crear un fichero .gitignore que hay que subir al repositorio o crear un fichero .git/info/exclude para poner las reglas locales. Tú lo creas y entonces empiezan las preguntas: ¿Y cuál de los dos tiene preferencia? ¿Y porqué lo tengo que incluir en el repositorio?  ¿Y porqué subo uno sí y otro no? ¿Un fichero, no son propiedades como en subversion? ¿Y si yo quiero usar un .gitignore y el resto del mundo otro?</p>
+<p>Para responder a estas preguntas debemos platearnos la pregunta adecuada que es&#8230;</p>
+<h1>¿Cómo decide git qué ficheros incluir o no en el repositorio?</h1>
+<p>La respuesta a esta pregunta está en la <a href="http://www.kernel.org/pub/software/scm/git/docs/gitignore.html">página de manual de gitignore</a>. Por orden de prioridad, git busca patrones para excluir ficheros en los siguientes lugares:</p>
+<ol>
+<li>En la línea de comandos: ciertos comandos, como por ejemplo git ls-files o git read-tree, permiten excluir ficheros a través de argumentos. Estos patrones tendrán la máxima prioridad.</li>
+<li>En los ficheros .gitignore</li>
+<li>En el fichero $GIT_DIR/info/exclude</li>
+<li>En el fichero definido en la variable de configuración <em>core.excludesfile</em></li>
+</ol>
+<div><span style="line-height: 24px;">Todos los ficheros mencionados arriba incluyen en su interior un conjunto de patrones de ficheros que se van a ignorar. Cada patrón va en una línea. Por ejemplo, si incluimos la siguiente línea en alguno de estos ficheros:</span></div>
+<pre>*.jar</pre>
+<p>git ignorará cualquier fichero con extensión .jar en cualquier directorio.</p>
+<h1>¿Qué quiere decir que git ignora ficheros?</h1>
+<p>Veamos qué ocurre cuando ignoramos un fichero en un repositorio. Imagina que acabas de empaquetar tu aplicación PHP en un fichero .phar en la carpeta builds. Esto es lo que veríamos en SourceTree:<a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture273.png"><img decoding="async" class="aligncenter size-full wp-image-210" title="Fichero phar marcado como untracked" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture273.png" alt="Fichero phar marcado como untracked" width="618" height="308" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture273.png 618w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture273-300x149.png 300w" sizes="(max-width: 618px) 100vw, 618px" /></a></p>
+<p>Si no hacemos nada, tendremos que acordarnos siempre de no incluir este fichero al hacer commit. Esto es peligroso, ya que si alguna vez tenemos muchos ficheros pendientes de añadir o excluir del commit, puede que se nos «cuele» mynewapp.phar sin darnos cuenta.</p>
+<p>Para evitar el estar pendiente de subir o no estos ficheros, usamos un editor de texto y abrimos el fichero .git/info/exclude de nuestro repositorio. Añadimos el siguiente patrón al final del fichero:</p>
+<pre>*.phar</pre>
+<p>Cuando volvamos al SourceTree, veremos que el fichero ya no está:<a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture274.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-211" title="SourceTree después de ignorar *.phar" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture274.png" alt="SourceTree después de ignorar *.phar" width="619" height="323" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture274.png 619w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture274-300x156.png 300w" sizes="(max-width: 619px) 100vw, 619px" /></a></p>
+<p>Ya está, ya estamos tranquilos: no añadiremos por accidente el fichero al repositorio.</p>
+<p>Seguro que os estaréis preguntando: «¿Porqué no lo ha puesto en .gitignore, como dice nuestro gran San Google?». A lo largo de la serie veremos si poner este patrón en el fichero .git/info/exclude es la mejor opción o conviene ponerlo en otro lugar. De momento lo dejaremos así.</p>
+<p>Esto ha sido todo por hoy. En la siguiente entrega veremos qué patrones incluir en cada uno de los tres métodos que podemos utilizar y cómo trabajar con el orden de prioridades descrito anteriormente.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/ignorando-ficheros-en-git-parte-i-formas-de-ignorar-ficheros/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">207</post-id>	</item>
+		<item>
+		<title>Crear ficheros en repositorios github a través de la web</title>
+		<link>https://aprendegit.com/crear-ficheros-en-repositorios-github-a-traves-de-la-web/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 12 Dec 2012 13:41:10 +0000</pubDate>
+				<category><![CDATA[github]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=174</guid>
+
+					<description><![CDATA[Recientemente, github ha añadido una nueva funcionalidad a sus usuarios través de la web: la posibilidad de añadir ficheros directamente al repositorio a través del navegador. ¿Significa esto que podremos programar nuestra próxima aplicación usando la web de github? Pues no, aunque para gustos los colores. Bromas aparte, la funcionalidad puede parecer una tontería, pero bien utilizada [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Recientemente, github ha añadido una <a href="https://github.com/blog/1327-creating-files-on-github">nueva funcionalidad</a> a sus usuarios través de la web: la posibilidad de añadir ficheros directamente al repositorio a través del navegador. ¿Significa esto que podremos programar nuestra próxima aplicación usando la web de github? Pues no, aunque para gustos los colores.</p>
+<p>Bromas aparte, la funcionalidad puede parecer una tontería, pero bien utilizada es bastante útil. A modo de ejemplo, la vamos a utilizar en un caso real para crear un fichero README.md en un repositorio que no lo tiene.</p>
+<p>Si lo tuviese que hacer por el procedimiento normal, tendría que hacer lo siguiente:</p>
+<ul>
+<li>Crear el fichero README.md en mi copia local</li>
+<li>git add README.md para añadir el fichero al índice</li>
+<li>git commit -m&#8217;Añadiendo README.md&#8217; para hacer el commit</li>
+<li>git pull para bajarme a mi copia local las últimas modificaciones</li>
+<li>Si en el último paso ha habido algún conflicto, tendríamos que resolverlo (si habéis usado bien las ramas, esto no pasará)</li>
+<li>git push para subir los cambios</li>
+</ul>
+<p>La verdad es que es bastante trabajo para subir un fichero de texto ¿verdad? Bueno, pues vamos a ver cómo lo hacemos desde la web.</p>
+<p>En primer lugar, vamos a la página de github, accedemos con nuestro usuario y contraseña y vamos a la página de nuestro repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-175" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png" alt="Creando ficheros desde github" width="928" height="522" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265.png 928w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265-300x168.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture265-624x351.png 624w" sizes="(max-width: 928px) 100vw, 928px" /></a></p>
+<p>En la captura anterior veis dónde está el botón. Hacemos clic sobre él y se nos abrirá la pantalla para crear el fichero:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-176" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png" alt="Pantalla para crear un fichero en github" width="882" height="874" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267.png 882w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-150x150.png 150w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-300x297.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture267-624x618.png 624w" sizes="(max-width: 882px) 100vw, 882px" /></a></p>
+<p>La pantalla no tiene mucho misterio, como podéis ver en la captura:</p>
+<ul>
+<li>Seleccionamos en qué rama lo queremos crear</li>
+<li>Introducimos el nombre y extensión del fichero</li>
+<li>Ponemos el contenido</li>
+<li>Rellenamos el mensaje para el commit (el resumen es obligatorio)</li>
+</ul>
+<p>Una vez tenemos el fichero escrito, hacemos clic sobre «Commit New File» y si no se produce ningún error, volveremos a la pantalla del repositorio con algunos cambios:</p>
+<ul>
+<li>El fichero ya lo tenemos en el repositorio</li>
+<li>Hay un commit más en el repositorio</li>
+</ul>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-177" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png" alt="Tras subir el fichero" width="833" height="409" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268.png 833w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268-300x147.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture268-624x306.png 624w" sizes="(max-width: 833px) 100vw, 833px" /></a></p>
+<p><span style="line-height: 24px">Pues ya está. Para obtener el fichero en nuestra copia local, hacemos un pull de la rama en la que hemos subido el fichero. Como veis, es un poquito más cómodo que el método normal y nos puede ahorrar tiempo en ciertas tareas.</span></p>
+<h2>¿Cuándo conviene usar esta funcionalidad de github?</h2>
+<p>Como pone en la propia <a href="https://github.com/blog/1327-creating-files-on-github">entrada del blog en github</a>, es un método pensado para ficheros como el README, LICENSE, el .gitignore o escribir documentación. Usa el sentido común y sé práctico. Yo, por ejemplo, lo he usado para crear un fichero sencillo con datos de prueba en json y pasárselo a mis compañeros desde el iPad en el sofá o para crear un fichero sencillo con traducciones en formato CSV.</p>
+<h2>Creando .gitignore desde plantillas</h2>
+<p>Los chicos de github están en todo, así que para ahorrarnos un poco de trabajo han creado una serie de plantillas para crear ficheros .gitignore. Para verlas y seleccionarlas, creamos un nuevo fichero como hemos visto antes y en el nombre del mismo escribimos «.gitignore»:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-178" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png" alt="Creando un .gitignore desde plantilla" width="857" height="293" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270.png 857w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270-300x102.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture270-624x213.png 624w" sizes="(max-width: 857px) 100vw, 857px" /></a></p>
+<p>Cuando lo hagamos, veremos a la derecha un desplegable para seleccionar la plantilla. La seleccionamos y ya podemos editar el fichero, quitando reglas o añadiendo las que puedan faltar. Al terminar, no nos olvidamos de hacer clic sobre «Commit New File».</p>
+<h2>¿Y si el repositorio no es mío?</h2>
+<p>Si intentas crea un fichero sobre un repositorio sobre el que no tienes permiso, verás el siguiente mensaje:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-179" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png" alt="Creando fichero sobre repositorio sin permiso de escritura" width="877" height="186" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271.png 877w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271-300x63.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture271-624x132.png 624w" sizes="(max-width: 877px) 100vw, 877px" /></a></p>
+<p>Lo que nos está diciendo es que antes de crear el fichero va a hacer un fork del repositorio en nuestra cuenta y que el fichero será creado en el nuevo repositorio. Una vez creado, podemos hacer un pull request al administrador del repositorio original para que incorpore el nuevo fichero en su repositorio.</p>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">174</post-id>	</item>
+		<item>
+		<title>.gitignore en XCode</title>
+		<link>https://aprendegit.com/gitignore-en-xcode/</link>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 12 Dec 2012 11:30:14 +0000</pubDate>
+				<category><![CDATA[XCode]]></category>
+		<category><![CDATA[.gitignore]]></category>
+		<category><![CDATA[xcode]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=155</guid>
+
+					<description><![CDATA[Cuando creamos un proyecto nuevo en XCode y marcamos la opción para que utilice el control de versiones, ¿qué está haciendo XCode por debajo? Básicamente sigue los siguientes pasos: Crea e inicializa un repositorio git en la carpeta raíz del proyecto Añade todos los ficheros al repositorio excepto las carpetas [nombre].xcodeproj/project.xcworkspace y [nombre].xcodeproj/xcuserdata/ Hace un [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Cuando creamos un proyecto nuevo en XCode y marcamos la opción para que utilice el control de versiones, ¿qué está haciendo XCode por debajo?</p>
+<p>Básicamente sigue los siguientes pasos:</p>
+<ul>
+<li>Crea e inicializa un repositorio git en la carpeta raíz del proyecto</li>
+<li>Añade todos los ficheros al repositorio excepto las carpetas [nombre].xcodeproj/project.xcworkspace y [nombre].xcodeproj/xcuserdata/</li>
+<li>Hace un commit con el comentario «Initial Commit»</li>
+</ul>
+<p>Para ver en qué estado ha quedado el repositorio vamos a seguir los siguientes pasos:</p>
+<ul>
+<li>Creamos proyecto nuevo en XCode, cualquiera de las plantillas que vienen por defecto nos vale (tanto de iOS como de Mac)</li>
+<li>Abrimos SourceTree</li>
+<li>En la ventana «bookmarks» hacemos clic sobre el icono para añadir repositorio</li>
+</ul>
+<p style="text-align: center"><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-156" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png" alt="Añadiendo repositorio de XCode a SourceTree paso 1" width="519" height="163" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259.png 519w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture259-300x94.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></a></p>
+<ul>
+<li>A continuación seleccionamos «Add working copy», ya que XCode ya ha inicializado el repositorio por nosotros. En el campo «Working copy path» buscamos la carpeta en la que está nuestro proyecto e introducimos un alias campo «»Bookmark Name» si el que crea SourceTree no nos gusta. Hacemos clic sobre «Add» cuando hayamos terminado</li>
+</ul>
+<p><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-157" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260.png" alt="Añadiendo repositorio XCode a SourceTree paso 2" width="613" height="261" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260.png 613w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture260-300x127.png 300w" sizes="(max-width: 613px) 100vw, 613px" /></p>
+<div>
+<ul>
+<li><span style="line-height: 14px">Cuando se cierre la ventana y volvamos al listado de repositorios de SourceTree, hacemos doble clic sobre el repositorio que acabamos de crear</span></li>
+</ul>
+<h2>Los ficheros que XCode no incluye</h2>
+<p>Cuando git crea el repositorio, añade el siguiente contenido al fichero .git/info/exclude</p>
+<blockquote><p>.DS_Store<br />
+UserInterface.xcuserstate</p></blockquote>
+<p>Este fichero, a diferencia de .gitignore, contiene reglas que se aplican sólo a nuestro repositorio local (si compartimos el repositorio con otros usuarios a través de github o bitbucket, no verán estas reglas).</p>
+<p>Aparte de estas dos reglas, ¿qué más no ha incluido XCode en el repositorio nada más crearlo?</p>
+<p>Si no habéis abierto todavía el repositorio en SourceTree (haced doble clic sobre él en la ventana de Bookmarks) hacedlo ahora. A la izquierda haced clic sobre la rama master, veréis que en la sección «Files in the working tree» nos aparecen los ficheros que XCode no ha añadido al repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-158" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png" alt="Ficheros nos incluidos por XCode en el repositorio" width="715" height="493" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261.png 715w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261-300x206.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture261-624x430.png 624w" sizes="(max-width: 715px) 100vw, 715px" /></a></p>
+<p>Si os fijáis, estos ficheros no están incluidos y no se están ignorando. Eso significa que cualquiera podría añadirlos al repositorio en cualquier momento, veamos cómo.</p>
+<p>Dejemos la ventana del SourceTree como está (luego volveremos a ella) y volvamos a XCode para modificar alguno de los ficheros (como si estuviésemos trabajando en algo serio). Una vez modificado, vamos a Archivo -&gt; Source Control -&gt; Commit (u OPCIÓN-CMD-C) para acceder a la pantalla para enviar un commit:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-159" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png" alt="Commit desde XCode" width="770" height="220" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262.png 770w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262-300x85.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture262-624x178.png 624w" sizes="(max-width: 770px) 100vw, 770px" /></a></p>
+<p>Como podemos ver, en la parte de arriba a la izquierda tenemos los ficheros que no están incluidos inicialmente en el repositorio, y que son los mismos que hemos visto con SourceTree. Si los marcáis junto a los otros tres ficheros que he modificado, los añadiríamos al repositorio.</p>
+<p>La pregunta es&#8230;</p>
+<h2>¿Deben estar los «Workspace Settings» y «User Data» en el repositorio?</h2>
+<p>«Workspace Settings» contiene información relacionada con los proyectos, así que a no ser que sea algo que estrictamente sólo vamos a usar nosotros, conviene incluirlo en el repositorio.</p>
+<p>Sin embargo, la carpeta «User Data» que contiene la configuración propia de nuestro usuario, sí conviene ignorarla ya que si no lo hacemos y trabajamos con otras personas, vamos a encontrarnos constantemente con conflictos difíciles de resolver sobre el IDE, no sobre el proyecto en sí.</p>
+<p>Para ignorar estos ficheros, abrimos un editor de textos cualquiera y dentro de la raíz del proyecto creamos un fichero de texto plano al que llamaremos «.gitignore» (no os olvidéis del «punto» delante del nombre del fichero) y añadimos las siguientes líneas:</p>
+<blockquote><p>.DS_Store<br />
+UserInterface.xcuserstate<br />
+xcuserdata</p></blockquote>
+<ul>
+<li>Las dos primeras reglas son el mismo contenido que teníamos en .git/info/exclude. Las ponemos aquí para asegurarnos de que todo el mundo que se descargue el repositorio ignora estos ficheros</li>
+<li>La tercera línea es la que ignora las preferencias de usuario</li>
+</ul>
+<p>Una vez creado el fichero, volvemos a la pantalla de commit del XCode y veremos lo siguiente:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-160" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png" alt="Ignorando User Data" width="667" height="261" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263.png 667w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263-300x117.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture263-624x244.png 624w" sizes="(max-width: 667px) 100vw, 667px" /></a></p>
+<p>¡Ya no podemos enviar la carpeta «User Data» por error!. Marcamos la carpeta «Workspace Settings» junto al resto de ficheros y hacemos el commit.</p>
+<h2>¿Ya está?</h2>
+<p>No, todavía no. Cuando he creado el fichero .gitignore, no lo he creado usando XCode así que si habéis hecho los commits desde XCode como yo, <strong>el fichero .gitignore no está incluido en el repositorio</strong>. ¿No me crees? Vuelve a la ventana del SourceTree que hemos dejado olvidada hace unos minutos y verás:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-161" src="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png" alt="Añadiendo .gitignore al repositorio" width="661" height="317" srcset="https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264.png 661w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264-300x143.png 300w, https://aprendegit.com/wp-content/uploads/2012/12/Voila_Capture264-624x299.png 624w" sizes="(max-width: 661px) 100vw, 661px" /></a></p>
+<p>Efectivamente, no está incluido. En otro post os contaré porqué necesitamos incluirlo; para no desviarnos del tema de esta entrada, vamos a incluirlo arrastrándolo al área «Files staged in the index» y haciendo clic sobre «Commit».</p>
+<p>(Nota: si preferís añadir el fichero por línea de comandos os resumo los pasos. Abrís una terminal, vais a la carpeta raíz del proyecto de XCode, ejecutáis «git add .gitignore» y luego ejecutáis «git commit -m&#8217;Añadiendo .gitignore&#8217; «)</p>
+<p>Ahora sí, ya tenemos la versión más sencilla del fichero .gitignore.</p>
+<h2>¿La versión más sencilla? ¿&#8230;es que faltan más cosas?</h2>
+<p>Sí, en función del proyecto en el que estéis trabajando podéis necesitar no incluir otros ficheros como .nib, clases obsoletas, etc. La comunidad ha generado ya un fichero de reglas estándar que <a href="http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects">podéis consultar en Stack Overflow</a>, y que copio un poco más abajo para que las tengáis a mano.</p>
+<p>¿Usáis vosotros alguna regla que no esté en este fichero? ¿Cuáles son las reglas que utilizáis normalmente? Compartid vuestro .gitignore como un gist en github y poned aquí el enlace. ¡Compartir es vivir!</p>
+<p><div>Could not embed GitHub Gist 4260145: Not Found</div>.</p>
+<p>¡Happy gitting!</p>
+</div>
+]]></content:encoded>
+					
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">155</post-id>	</item>
+	</channel>
+</rss>

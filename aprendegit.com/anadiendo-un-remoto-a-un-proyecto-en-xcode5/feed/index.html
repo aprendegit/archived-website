@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Añadiendo un remoto a un proyecto en XCode5	</title>
+	<atom:link href="https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:48:39 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: alfonso		</title>
+		<link>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comment-1285</link>
+
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Fri, 07 Feb 2014 20:42:17 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=659#comment-1285</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comment-1284&quot;&gt;Borja Toran&lt;/a&gt;.
+
+Hola Borja:
+
+La mejor manera de hacerlo es cuando creas el proyecto. Si como comentas, el proyecto ya existe tienes que ejecutar unos comandos de git por el terminal.
+
+Puedes encontrar la documentación oficial en este enlace https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/PublishYourCodetoaSourceRepository/PublishYourCodetoaSourceRepository.html#//apple_ref/doc/uid/TP40013292-CH8-SW1, en la sección &quot;Use Git to Manage an Unmanaged Workspace Directory on a Development Mac&quot;. Básicamente debes hacer lo siguiente:
+&lt;ul&gt;
+	&lt;li&gt;Cierra Xcode y abre un terminal&lt;/li&gt;
+	&lt;li&gt;Ve a la carpeta del proyecto: cd /ruta/a/tu/proyecto/. La ruta es la carpeta que contiene el fichero .xcodeproj&lt;/li&gt;
+	&lt;li&gt;En esa carpeta ejecutas el comando: git init&lt;/li&gt;
+	&lt;li&gt;Ve a la página gitignore.io, y busca xcode.&lt;/li&gt;
+	&lt;li&gt;Crea con vi/emacs/tu_editor_favorito un fichero .gitignore y copia dentro el contenido que has copiado de la página anterior&lt;/li&gt;
+	&lt;li&gt;Añade todos los ficheros al staging área: git add --all&lt;/li&gt;
+	&lt;li&gt;Haz el commit: git commit -m&#039;Versión inicial&#039;&lt;/li&gt;
+&lt;/ul&gt;
+
+Si no te sientes seguro, haz una copia del proyecto antes de hacer esto y ya está.
+
+Un saludo,
+
+Alfonso]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comment-1284">Borja Toran</a>.</p>
+<p>Hola Borja:</p>
+<p>La mejor manera de hacerlo es cuando creas el proyecto. Si como comentas, el proyecto ya existe tienes que ejecutar unos comandos de git por el terminal.</p>
+<p>Puedes encontrar la documentación oficial en este enlace <a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/PublishYourCodetoaSourceRepository/PublishYourCodetoaSourceRepository.html#//apple_ref/doc/uid/TP40013292-CH8-SW1" rel="nofollow ugc">https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/PublishYourCodetoaSourceRepository/PublishYourCodetoaSourceRepository.html#//apple_ref/doc/uid/TP40013292-CH8-SW1</a>, en la sección «Use Git to Manage an Unmanaged Workspace Directory on a Development Mac». Básicamente debes hacer lo siguiente:</p>
+<ul>
+<li>Cierra Xcode y abre un terminal</li>
+<li>Ve a la carpeta del proyecto: cd /ruta/a/tu/proyecto/. La ruta es la carpeta que contiene el fichero .xcodeproj</li>
+<li>En esa carpeta ejecutas el comando: git init</li>
+<li>Ve a la página gitignore.io, y busca xcode.</li>
+<li>Crea con vi/emacs/tu_editor_favorito un fichero .gitignore y copia dentro el contenido que has copiado de la página anterior</li>
+<li>Añade todos los ficheros al staging área: git add &#8211;all</li>
+<li>Haz el commit: git commit -m&#8217;Versión inicial&#8217;</li>
+</ul>
+<p>Si no te sientes seguro, haz una copia del proyecto antes de hacer esto y ya está.</p>
+<p>Un saludo,</p>
+<p>Alfonso</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Borja Toran		</title>
+		<link>https://aprendegit.com/anadiendo-un-remoto-a-un-proyecto-en-xcode5/#comment-1284</link>
+
+		<dc:creator><![CDATA[Borja Toran]]></dc:creator>
+		<pubDate>Fri, 07 Feb 2014 17:32:26 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=659#comment-1284</guid>
+
+					<description><![CDATA[Me gustaría añadir un remoto a Xcode 5 pero mi proyecto existente no está bajo git.... 
+¿Cómo se podría hacer? Gracias]]></description>
+			<content:encoded><![CDATA[<p>Me gustaría añadir un remoto a Xcode 5 pero mi proyecto existente no está bajo git&#8230;.<br />
+¿Cómo se podría hacer? Gracias</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

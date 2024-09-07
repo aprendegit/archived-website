@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comentarios en: Ignorando ficheros en git &#8211; Parte II: Prioridades	</title>
+	<atom:link href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:46 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+	<item>
+		<title>
+		Por: OScar		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-3894</link>
+
+		<dc:creator><![CDATA[OScar]]></dc:creator>
+		<pubDate>Mon, 04 Apr 2016 14:18:20 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-3894</guid>
+
+					<description><![CDATA[Hola yo tengo un fichero de configuraciones del cual solo quiero bajar las actualizaciones que se le hagan pero no quiero subir mis cambios..existe alguna vía de hacer eso ?]]></description>
+			<content:encoded><![CDATA[<p>Hola yo tengo un fichero de configuraciones del cual solo quiero bajar las actualizaciones que se le hagan pero no quiero subir mis cambios..existe alguna vía de hacer eso ?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1184</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Tue, 22 Oct 2013 07:24:38 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-1184</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1183&quot;&gt;Angel Jimenez&lt;/a&gt;.
+
+¡Gracias!]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1183">Angel Jimenez</a>.</p>
+<p>¡Gracias!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Angel Jimenez		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1183</link>
+
+		<dc:creator><![CDATA[Angel Jimenez]]></dc:creator>
+		<pubDate>Mon, 21 Oct 2013 19:55:14 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-1183</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1182&quot;&gt;admin&lt;/a&gt;.
+
+Muchas Gracias por la pronta respuesta, las dos ideas me parecen excelentes, comenzare a probar ...
+
+PD: Excelente Blog. Sigue Así.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1182">admin</a>.</p>
+<p>Muchas Gracias por la pronta respuesta, las dos ideas me parecen excelentes, comenzare a probar &#8230;</p>
+<p>PD: Excelente Blog. Sigue Así.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: admin		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1182</link>
+
+		<dc:creator><![CDATA[admin]]></dc:creator>
+		<pubDate>Mon, 21 Oct 2013 19:00:36 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-1182</guid>
+
+					<description><![CDATA[En respuesta a &lt;a href=&quot;https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1181&quot;&gt;Angel Jimenez&lt;/a&gt;.
+
+Hola Ángel:
+
+Lo que debes hacer es decirle a git que deje monitorizar ese fichero. Para ello, utiliza el comando git-update-index:
+
+&lt;code&gt;git update-index --assume-unchanged app.php&lt;/code&gt;
+
+Si pasado un tiempo quieres volver a monitorizar los cambios, basta con que hagas
+
+&lt;code&gt;git update-index --no-assume-unchanged app.php&lt;/code&gt;
+
+Este método tiene una pega y es que cada persona que clona el repositorio deberá ejecutar estos comandos. Yo creo que una solución más interesante, que es la que yo suelo usar es la la siguiente:
+
+&lt;ul&gt;
+	&lt;li&gt;Creas un fichero app.php de referencia, digamos app_ref.php&lt;/li&gt;
+
+	&lt;li&gt;Creas un fichero app.php que no metes en el repositorio, ignorándolo desde el principio en .gitignore&lt;/li&gt;
+
+	&lt;li&gt;Metes la información pre-establecida en app_ref.php y cuando cualquier persona se clona el repositorio, copia este fichero a app.php y lo personaliza si lo necesita. Podrías incluso crear un script para ello.&lt;/li&gt;
+&lt;/ul&gt;
+
+Quizás esta forma de proceder te resulte un poco más cómoda. Espero haberte ayudado.]]></description>
+			<content:encoded><![CDATA[<p>En respuesta a <a href="https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1181">Angel Jimenez</a>.</p>
+<p>Hola Ángel:</p>
+<p>Lo que debes hacer es decirle a git que deje monitorizar ese fichero. Para ello, utiliza el comando git-update-index:</p>
+<p><code>git update-index --assume-unchanged app.php</code></p>
+<p>Si pasado un tiempo quieres volver a monitorizar los cambios, basta con que hagas</p>
+<p><code>git update-index --no-assume-unchanged app.php</code></p>
+<p>Este método tiene una pega y es que cada persona que clona el repositorio deberá ejecutar estos comandos. Yo creo que una solución más interesante, que es la que yo suelo usar es la la siguiente:</p>
+<ul>
+<li>Creas un fichero app.php de referencia, digamos app_ref.php</li>
+<li>Creas un fichero app.php que no metes en el repositorio, ignorándolo desde el principio en .gitignore</li>
+<li>Metes la información pre-establecida en app_ref.php y cuando cualquier persona se clona el repositorio, copia este fichero a app.php y lo personaliza si lo necesita. Podrías incluso crear un script para ello.</li>
+</ul>
+<p>Quizás esta forma de proceder te resulte un poco más cómoda. Espero haberte ayudado.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: Angel Jimenez		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-1181</link>
+
+		<dc:creator><![CDATA[Angel Jimenez]]></dc:creator>
+		<pubDate>Sat, 19 Oct 2013 20:00:55 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-1181</guid>
+
+					<description><![CDATA[Hola, primero que todo, excelente por el trabajo que hacen con este blog.
+
+Mi consulta en concreto es la siguiente.
+
+En mi repositorio necesito incluir un archivo llamado app.php, en el contiene información importante de la aplicación, ahora: quiero subir el archivo en el primer commiit, con una información básica pre establecida, pero después quiero que cualquier cambio que se realice a ese archivo sea ignorado, use .gitignore, pero no funciona porque ya el archivo esta siendo versionado, que puedo hacer en ese caso..
+
+De antemano gracias por la pronta respuesta.]]></description>
+			<content:encoded><![CDATA[<p>Hola, primero que todo, excelente por el trabajo que hacen con este blog.</p>
+<p>Mi consulta en concreto es la siguiente.</p>
+<p>En mi repositorio necesito incluir un archivo llamado app.php, en el contiene información importante de la aplicación, ahora: quiero subir el archivo en el primer commiit, con una información básica pre establecida, pero después quiero que cualquier cambio que se realice a ese archivo sea ignorado, use .gitignore, pero no funciona porque ya el archivo esta siendo versionado, que puedo hacer en ese caso..</p>
+<p>De antemano gracias por la pronta respuesta.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Por: git - ignorando ficheros - Parte III - Patrones		</title>
+		<link>https://aprendegit.com/ignorando-ficheros-en-git-parte-ii-prioridades/#comment-37</link>
+
+		<dc:creator><![CDATA[git - ignorando ficheros - Parte III - Patrones]]></dc:creator>
+		<pubDate>Fri, 11 Jan 2013 09:24:35 +0000</pubDate>
+		<guid isPermaLink="false">https://aprendegit.com/?p=217#comment-37</guid>
+
+					<description><![CDATA[[...] la segunda entrega de esta serie aprendimos en qué orden se aplican los patrones para ignorar cambios en ciertos [...]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] la segunda entrega de esta serie aprendimos en qué orden se aplican los patrones para ignorar cambios en ciertos [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

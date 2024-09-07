@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>comandos Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/category/comandos/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/category/comandos/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:42 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Cómo deshacer el último commit en git</title>
+		<link>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/</link>
+					<comments>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Wed, 11 Sep 2013 15:14:32 +0000</pubDate>
+				<category><![CDATA[comandos]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=630</guid>
+
+					<description><![CDATA[Aquí os dejo una manera sencilla de dar marcha atrás si habéis hecho un commit y os habéis arrepentido de hacerlo. El motivo por el que queréis «borrarlo» puede ser múltiple: porque el trabajo no está terminado y queréis continuar trabajando, habéis introducido un bug sin daos cuenta o sencillamente os habéis equivocado y lo [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Aquí os dejo una manera sencilla de dar marcha atrás si habéis hecho un commit y os habéis arrepentido de hacerlo. El motivo por el que queréis «borrarlo» puede ser múltiple: porque el trabajo no está terminado y queréis continuar trabajando, habéis introducido un bug sin daos cuenta o sencillamente os habéis equivocado y lo habéis hecho antes de tiempo.</p>
+<p>Existen dos maneras de borrar ese commit:</p>
+<ul>
+<li><span style="line-height: 14px;">Eliminando junto al commit las modificaciones que este contiene</span></li>
+<li>Recuperándolas en el área de trabajo para seguir trabajando en ellas</li>
+</ul>
+<p>En ambos casos, el comando que utilizaremos será «git reset».</p>
+<h2>Deshacer el commit perdiendo las modificaciones</h2>
+<p>Supongamos que tenemos nuestro repositorio en el siguiente estado:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-633" alt="Voila_Capture283" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png" width="670" height="225" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png 670w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283-300x100.png 300w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283-624x209.png 624w" sizes="(max-width: 670px) 100vw, 670px" /></a>y queremos deshacer el último commit. En este primer caso, <strong>queremos desechar los cambios introducidos en ese commit</strong> que contiene una serie de tests funcionales.</p>
+<p>Para ello, ejecutamos el comando:</p>
+<pre>git reset --hard HEAD~1</pre>
+<p>Tras ejecutar el comando, el estado del repositorio es el siguiente:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture284.png"><img decoding="async" class="aligncenter size-full wp-image-634" alt="Repositorio tras borrar el commit" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture284.png" width="671" height="231" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture284.png 671w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture284-300x103.png 300w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture284-624x214.png 624w" sizes="(max-width: 671px) 100vw, 671px" /></a></p>
+<p>Como podéis ver, el commit 600cc08 ha desaparecido que era lo que queríamos. Además, la rama activa se ha desplazado un commit hacia abajo y nuestro área de trabajo ha quedado en el estado del commit 6eb9f2d. Los tests funcionales que estaban en el commit se han perdido y tendríamos que <a title="Git: la he liado parda" href="https://aprendegit.com/git-la-he-liado-parda/">recurrir al reflog</a> para recuperarlos.</p>
+<p>La sintaxis HEAD~1 del comando anterior la podríamos traducir como «El commit al que está apuntando la rama activa menos uno». Si hubiésemos ejecutado el comando:</p>
+<pre>git reset --hard HEAD~3</pre>
+<p>en lugar de acabar en el commit 6eb9f2d (uno por detrás) habríamos acabado en 63db9fa (tres por detrás).</p>
+<h2>Deshacer el commit manteniendo las modificaciones</h2>
+<p>Existe la posibilidad de eliminar el commit pero manteniendo las modificaciones que contiene ese commit en el área de trabajo. ¿Y por qué querríamos hacer esto? Por varios motivos, por ejemplo por que los tests funcionales del commit 600cc08 están incompletos, son incorrectos o he introducido algún bug en él.</p>
+<p>Partiendo de nuevo del mismos estado inicial de antes:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png"><img decoding="async" class="aligncenter size-full wp-image-633" alt="Estado inicial del repositorio." src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png" width="670" height="225" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283.png 670w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283-300x100.png 300w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture283-624x209.png 624w" sizes="(max-width: 670px) 100vw, 670px" /></a>ejecutaríamos el siguiente comando:</p>
+<pre>git reset HEAD~1</pre>
+<p>Tras lo cual, el estado del repositorio sería:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture285.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-635" alt="Voila_Capture285" src="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture285.png" width="668" height="487" srcset="https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture285.png 668w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture285-300x218.png 300w, https://aprendegit.com/wp-content/uploads/2013/09/Voila_Capture285-624x454.png 624w" sizes="(max-width: 668px) 100vw, 668px" /></a>Si miráis el estado veréis los siguiente:</p>
+<ul>
+<li><span style="line-height: 14px;">Al igual que en el caso anterior, el commit 600cc08 ha desaparecido</span></li>
+<li><span style="line-height: 14px;">La rama activa (rest) ha pasado al apuntar al commit 6eb9f2d</span></li>
+<li><span style="line-height: 14px;">A diferencia del  caso anterior, el área de trabajo contiene las modificaciones que estaban en el commit que acabamos de borrar.</span></li>
+</ul>
+<p>Así que podemos seguir trabajando, corregir el bug o completar los tests que habíamos dejado incompletos y hacer un nuevo commit con los cambios completos. ¡Así de fácil!</p>
+<h2>Muy útil pero&#8230;</h2>
+<p>Muy importante tener en cuenta que estas dos operaciones sobreescriben la historia del repositorio ¡estamos borrando un commit!. Si estamos trabajando en local y no hemos hecho push a nuestro remoto no hay ningún problema. Si ha habéis hecho push de este commit tened en cuenta que vuestros compañeros lo seguirán viendo si alguna de sus ramas lo referencia.</p>
+<p>Espero que os haya resultado útil.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/como-deshacer-el-ultimo-commit-en-git/feed/</wfw:commentRss>
+			<slash:comments>15</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">630</post-id>	</item>
+		<item>
+		<title>Forzando los merge commits</title>
+		<link>https://aprendegit.com/forzando-merge-commits/</link>
+					<comments>https://aprendegit.com/forzando-merge-commits/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 18 Feb 2013 17:27:43 +0000</pubDate>
+				<category><![CDATA[comandos]]></category>
+		<category><![CDATA[workflow]]></category>
+		<category><![CDATA[git-merge]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409</guid>
+
+					<description><![CDATA[Una de las preguntas más habituales que se hacen en los cursos de git que imparto regularmente, y que también se me ha planteado en algunas de las reuniones de desarrolladores en las que participo es la siguiente: ¿Cómo evito un fast-forward para dejar constancia en el repositorio de dónde empieza y termina una rama? [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Una de las preguntas más habituales que se hacen en los <a href="http://www.cursodegit.com">cursos de git</a> que imparto regularmente, y que también se me ha planteado en algunas de las reuniones de desarrolladores en las que participo es la siguiente: ¿Cómo evito un fast-forward para dejar constancia en el repositorio de dónde empieza y termina una rama?</p>
+<h1>Forzar merge commits</h1>
+<p>Lo más claro, como siempre, es verlo con un ejemplo. Imaginad que llegáis por la mañana al trabajo y empezáis como siempre a picar código como locos en la rama devel. De repente surge la necesidad de atender un bug. Siguiendo las buenas prácticas, lo que haremos será crear una rama HotFix, arreglar el problema haciendo cuantos commits necesitemos a esa rama y finalmente hacer un merge a la rama que corresponda cuando terminemos de corregir el bug.</p>
+<p>En la siguiente captura se muestra el estado del repositorio justo después de haber hecho el último commit a la rama hotfix_14523 que arregla el problema en cuestión:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-411" title="Estado del repositorio al terminar el hotfix 15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png" alt="Estado del repositorio al terminar el hotfix 15423" width="920" height="537" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-300x175.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-624x364.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>Si en este momento se hace un merge de la rama hotfix_15423 a la rama devel, se hará un fast-forward:</p>
+<pre>$ git checkout devel
+$ git merge hotfix_15423
+Updating 2d1d1c4..2b9d126
+<span style="color: #ff0000;"><strong>Fast-forward</strong></span>
+Gemfile | 2 ++
+app/views/home/index.html.erb | 1 +
+2 files changed, 3 insertions(+)</pre>
+<p>Así queda el grafo después de hacer el merge:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-412" title="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png" alt="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" width="920" height="346" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-300x112.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-624x234.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>Como vemos, mirando la historia del repositorio, no queda constancia de cuándo se empezó el desarrollo de la rama hotfix_15423 y cuándo se incorporó a la rama devel. Una solución podría ser etiquetar los commits correspondientes, como se muestra en la siguiente captura:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-413" title="Usando etiquetas para indicar el inicio y final de una rama" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png" alt="Usando etiquetas para indicar el inicio y final de una rama" width="919" height="370" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png 919w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-300x120.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-624x251.png 624w" sizes="(max-width: 919px) 100vw, 919px" /></a></p>
+<p>Esta solución es válida cuando tenemos pocas ramas. Si tenemos muchas ramas de las que queramos saber su inicio y final, podemos acabar con un número de etiquetas difícil de gestionar.</p>
+<h1>Forzar un merge commit</h1>
+<p>Volvamos a la situación inicial:</p>
+<pre>$ git reset --hard 2d1d1c4
+HEAD is now at 2d1d1c4 Update README.rdoc</pre>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-411" title="Estado del repositorio al terminar el hotfix 15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png" alt="Estado del repositorio al terminar el hotfix 15423" width="920" height="537" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-300x175.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-624x364.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>En esta situación, volvemos a ejecutar el merge de la siguiente forma:</p>
+<pre>$ git merge <strong><span style="color: #ff0000;">--no-ff</span></strong> hotfix_15423 -m'Incorporando rama hotfix_15423'
+Merge made by the 'recursive' strategy.
+ Gemfile | 2 ++
+ app/views/home/index.html.erb | 1 +
+ 2 files changed, 3 insertions(+)</pre>
+<p>Después de ejecutar el comando, este es el estado del repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-414" title="Incoporando hotfix15423 en devel con la opción --no-ff" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png" alt="Incoporando hotfix15423 en devel con la opción --no-ff" width="921" height="457" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png 921w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-300x148.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-624x309.png 624w" sizes="(max-width: 921px) 100vw, 921px" /></a></p>
+<p>Haciéndolo de esta forma, en lugar de hacerse un fast-forward, vemos que se crea un merge-commit, lo que resulta en una bifurcación que indica claramente el fin y el inicio de la rama hotfix_15423.</p>
+<p>Si sois de los que os gusta ver claramente dónde empiezan y terminan vuestras ramas, este pequeño truco es resultará de utilidad.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/forzando-merge-commits/feed/</wfw:commentRss>
+			<slash:comments>4</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">409</post-id>	</item>
+		<item>
+		<title>Opciones del comando git add</title>
+		<link>https://aprendegit.com/opciones-del-comando-git-add/</link>
+					<comments>https://aprendegit.com/opciones-del-comando-git-add/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 21 Jan 2013 13:23:17 +0000</pubDate>
+				<category><![CDATA[comandos]]></category>
+		<category><![CDATA[General]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=301</guid>
+
+					<description><![CDATA[Un comando con el que todos estamos familiarizados es git add. Cuando nos iniciamos en el uso de git, este es de los que no faltan en las recetas que podemos en ver en cualquier tutorial. Es de los primeros que empezamos a utilizar cuando aprendemos git ¡En el libro de git de Scott Chacon [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Un comando con el que todos estamos familiarizados es git add. Cuando nos iniciamos en el uso de git, este es de los que no faltan en las recetas que podemos en ver en cualquier tutorial. Es de los primeros que empezamos a utilizar cuando aprendemos git ¡En el libro de git de Scott Chacon aparece en la <a href="http://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository">sección 2.2</a>!</p>
+<p>Es una pieza fundamental del flujo básico de git ya que es el comando que mueve al índice las modificaciones que hayamos realizado. El índice es un snapshot del contenido del área de trabajo en un momento dado. Este snapshot es el que posteriormente se convertirá en un commit.</p>
+<h1>La receta de git add</h1>
+<p>La forma más habitual de invocar el comando git-add es:</p>
+<pre>$ git add .</pre>
+<p>Este comando añade al índice cualquier fichero nuevo o que haya sido modificado:</p>
+<pre>$ git add .
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       new file: app/assets/javascripts/home.js.coffee
+#       new file: app/assets/stylesheets/home.css.scss
+#       new file: app/controllers/home_controller.rb
+#       new file: app/helpers/home_helper.rb
+#       new file: app/views/home/index.html.erb
+#       modified: config/database.yml
+#       modified: config/routes.rb
+#       new file: test/functional/home_controller_test.rb
+#       new file: test/unit/helpers/home_helper_test.rb
+#
+# Changes not staged for commit:
+# (use "git add/rm &lt;file&gt;..." to update what will be committed)
+# (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#       <span style="color: #000000;"><strong>deleted: app/assets/images/rails.png</strong></span></pre>
+<p>Sin embargo, los ficheros borrados no se actualizan en el índice. En este caso, tendríamos que ejecutar el comando git rm app/assets/images/rails.png:</p>
+<pre>$ <strong><span style="color: #000000;">git rm app/assets/images/rails.png</span></strong>
+rm 'app/assets/images/rails.png'
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+<strong><span style="color: #000000;"># deleted: app/assets/images/rails.png</span></strong>
+# new file: app/assets/javascripts/home.js.coffee
+# new file: app/assets/stylesheets/home.css.scss
+# new file: app/controllers/home_controller.rb
+# new file: app/helpers/home_helper.rb
+# new file: app/views/home/index.html.erb
+# modified: config/database.yml
+# modified: config/routes.rb
+# new file: test/functional/home_controller_test.rb
+# new file: test/unit/helpers/home_helper_test.rb
+#</pre>
+<p>Las opciones -u y -A del comando git-add añaden al índice los ficheros eliminados, aunque gestionan de manera diferente los ficheros nuevos. Veamoslo usando este mismo ejemplo.</p>
+<h1>git-add -u</h1>
+<p>Partimos de la siguiente área de trabajo:</p>
+<pre>$ git status
+# On branch master
+# Changes not staged for commit:
+# (use "git add/rm &lt;file&gt;..." to update what will be committed)
+# (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#    deleted: app/assets/images/rails.png
+#    modified: config/routes.rb
+#
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#    app/assets/javascripts/home.js.coffee
+#    app/assets/stylesheets/home.css.scss
+#    app/controllers/home_controller.rb
+#    app/helpers/home_helper.rb
+#    app/views/home/
+#    test/functional/home_controller_test.rb
+#    test/unit/helpers/
+no changes added to commit (use "git add" and/or "git commit -a")</pre>
+<p>La opción -u sólo añade al índice aquellos ficheros que ya estén siendo monitorizados por git, así que en este caso, únicamente se subirán al índice rails.png y routes.rb:</p>
+<pre>$ git add -u
+$ git status
+# On branch master
+<span style="color: #000000;"><strong># Changes to be committed:</strong></span>
+<span style="color: #000000;"><strong># (use "git reset HEAD &lt;file&gt;..." to unstage)</strong></span>
+<span style="color: #000000;"><strong>#</strong></span>
+<span style="color: #000000;"><strong>#    deleted: app/assets/images/rails.png</strong></span>
+<span style="color: #000000;"><strong>#    modified: config/routes.rb</strong></span>
+#
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#    app/assets/javascripts/home.js.coffee
+#    app/assets/stylesheets/home.css.scss
+#    app/controllers/home_controller.rb
+#    app/helpers/home_helper.rb
+#    app/views/home/
+#    test/functional/home_controller_test.rb
+#    test/unit/helpers/</pre>
+<p>La opción -u acepta un patrón de búsqueda. Si este patrón está vacío, el resultado es que se actualicen todos los ficheros borrados o modificados en el área de trabajo. Si el patrón no está vacío, sólo se actualizarán en el índice los ficheros que encajen con el patrón. En el siguiente ejemplo, ejecutamos el mismo comando para añadir únicamente los ficheros de la carpeta config:</p>
+<pre><strong><span style="color: #000000;">$ git add -u config/*</span></strong>
+$ git status
+# On branch master
+<strong><span style="color: #000000;"># Changes to be committed:</span></strong>
+<strong><span style="color: #000000;"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span></strong>
+<strong><span style="color: #000000;">#</span></strong>
+<strong><span style="color: #000000;">#    modified: config/routes.rb</span></strong>
+#
+<strong><span style="color: #000000;"># Changes not staged for commit:</span></strong>
+# (use "git add/rm &lt;file&gt;..." to update what will be committed)
+# (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+<strong><span style="color: #000000;">#    deleted: app/assets/images/rails.png</span></strong>
+#
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#    app/assets/javascripts/home.js.coffee
+#    app/assets/stylesheets/home.css.scss
+#    app/controllers/home_controller.rb
+#    app/helpers/home_helper.rb
+#    app/views/home/
+#    test/functional/home_controller_test.rb
+#    test/unit/helpers/</pre>
+<h1>git-add -a</h1>
+<p>Esta opción funciona como la opción -u añadiendo también a la búsqueda los ficheros del área de trabajo. El resultado es que los ficheros que no estén siendo monitorizados también se añadirán al índice.</p>
+<p>Partimos de la siguiente situación:</p>
+<pre>$ git status
+# On branch master
+# Changes not staged for commit:
+# (use "git add/rm &lt;file&gt;..." to update what will be committed)
+# (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#    deleted: app/assets/images/rails.png
+#    modified: config/routes.rb
+#
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#    app/assets/javascripts/home.js.coffee
+#    app/assets/stylesheets/home.css.scss
+#    app/controllers/home_controller.rb
+#    app/helpers/home_helper.rb
+#    app/views/home/
+#    test/functional/home_controller_test.rb
+#    test/unit/helpers/
+no changes added to commit (use "git add" and/or "git commit -a")</pre>
+<p>Al ejecutar el comando git add -A, se añadirán al índice los ficheros borrados, los modificados y los nuevos:</p>
+<pre>$ git add -A
+$ git status
+# On branch master
+# Changes to be committed:
+# (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#    deleted: app/assets/images/rails.png
+#    new file: app/assets/javascripts/home.js.coffee
+#    new file: app/assets/stylesheets/home.css.scss
+#    new file: app/controllers/home_controller.rb
+#    new file: app/helpers/home_helper.rb
+#    new file: app/views/home/index.html.erb
+#    modified: config/routes.rb
+#    new file: test/functional/home_controller_test.rb
+#    new file: test/unit/helpers/home_helper_test.rb</pre>
+<p>Al igual que la opción -u, esta opción también acepta un patrón. En el siguiente ejemplo, actualizamos el índice con las modificaciones, ficheros nuevos y ficheros borrados sólo de la carpeta app/assets:</p>
+<pre>$ git add -A app/assets
+$ git status
+# On branch master
+<strong><span style="color: #000000;"># Changes to be committed:</span></strong>
+<strong><span style="color: #000000;"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span></strong>
+<strong><span style="color: #000000;">#</span></strong>
+<strong><span style="color: #000000;">#    deleted: app/assets/images/rails.png</span></strong>
+<strong><span style="color: #000000;">#    new file: app/assets/javascripts/home.js.coffee</span></strong>
+<strong><span style="color: #000000;">#    new file: app/assets/stylesheets/home.css.scss</span></strong>
+#
+# Changes not staged for commit:
+# (use "git add &lt;file&gt;..." to update what will be committed)
+# (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#    modified: config/routes.rb
+#
+# Untracked files:
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#    app/controllers/home_controller.rb
+#    app/helpers/home_helper.rb
+#    app/views/home/
+#    test/functional/home_controller_test.rb
+#    test/unit/helpers/</pre>
+<h1>git-add -n</h1>
+<p>Esta opción es muy práctica ya que nos mostrará en pantalla lo que el comando git-add haría sin actualizar el índice. Continuando con el comando anterior (git add -A app/assets) si quisiésemos ver qué ficheros se actualizarán en el índice sin realmente actualizarlos, haríamos los siguiente:</p>
+<pre>$ git add -n -A app/assets
+remove 'app/assets/images/rails.png'
+add 'app/assets/javascripts/home.js.coffee'
+add 'app/assets/stylesheets/home.css.scss'</pre>
+<h1>Resumen</h1>
+<p>Hemos visto tres opciones del comando git-add: -u, -A y -n. Las dos primeras nos permiten actualizar en el índice directamente ficheros borrados sin necesidad de ejecutar el comando git-rm. La última opción, -n, simula lo que hará el comando git-add sin realmente actualizar el índice. Los tres son opciones útiles que de haberlas conocido cuando empecé con git hace años me habrían ahorrado unos cuantos comandos.</p>
+<h1>Referencias</h1>
+<ul>
+<li><a href="http://git-scm.com/docs/git-add">Página de manual de git-add</a></li>
+</ul>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/opciones-del-comando-git-add/feed/</wfw:commentRss>
+			<slash:comments>3</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">301</post-id>	</item>
+	</channel>
+</rss>

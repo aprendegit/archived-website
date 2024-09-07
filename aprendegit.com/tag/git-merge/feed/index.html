@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>git-merge Archives - Aprende GIT</title>
+	<atom:link href="https://aprendegit.com/tag/git-merge/feed/" rel="self" type="application/rss+xml" />
+	<link>https://aprendegit.com/tag/git-merge/</link>
+	<description>Información y experiencias sobre el uso de git</description>
+	<lastBuildDate>Thu, 25 Jul 2024 14:51:37 +0000</lastBuildDate>
+	<language>es</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
+<site xmlns="com-wordpress:feed-additions:1">43885904</site>	<item>
+		<title>Forzando los merge commits</title>
+		<link>https://aprendegit.com/forzando-merge-commits/</link>
+					<comments>https://aprendegit.com/forzando-merge-commits/#comments</comments>
+		
+		<dc:creator><![CDATA[alfonso]]></dc:creator>
+		<pubDate>Mon, 18 Feb 2013 17:27:43 +0000</pubDate>
+				<category><![CDATA[comandos]]></category>
+		<category><![CDATA[workflow]]></category>
+		<category><![CDATA[git-merge]]></category>
+		<guid isPermaLink="false">https://aprendegit.com/?p=409</guid>
+
+					<description><![CDATA[Una de las preguntas más habituales que se hacen en los cursos de git que imparto regularmente, y que también se me ha planteado en algunas de las reuniones de desarrolladores en las que participo es la siguiente: ¿Cómo evito un fast-forward para dejar constancia en el repositorio de dónde empieza y termina una rama? [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Una de las preguntas más habituales que se hacen en los <a href="http://www.cursodegit.com">cursos de git</a> que imparto regularmente, y que también se me ha planteado en algunas de las reuniones de desarrolladores en las que participo es la siguiente: ¿Cómo evito un fast-forward para dejar constancia en el repositorio de dónde empieza y termina una rama?</p>
+<h1>Forzar merge commits</h1>
+<p>Lo más claro, como siempre, es verlo con un ejemplo. Imaginad que llegáis por la mañana al trabajo y empezáis como siempre a picar código como locos en la rama devel. De repente surge la necesidad de atender un bug. Siguiendo las buenas prácticas, lo que haremos será crear una rama HotFix, arreglar el problema haciendo cuantos commits necesitemos a esa rama y finalmente hacer un merge a la rama que corresponda cuando terminemos de corregir el bug.</p>
+<p>En la siguiente captura se muestra el estado del repositorio justo después de haber hecho el último commit a la rama hotfix_14523 que arregla el problema en cuestión:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-411" title="Estado del repositorio al terminar el hotfix 15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png" alt="Estado del repositorio al terminar el hotfix 15423" width="920" height="537" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-300x175.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-624x364.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>Si en este momento se hace un merge de la rama hotfix_15423 a la rama devel, se hará un fast-forward:</p>
+<pre>$ git checkout devel
+$ git merge hotfix_15423
+Updating 2d1d1c4..2b9d126
+<span style="color: #ff0000;"><strong>Fast-forward</strong></span>
+Gemfile | 2 ++
+app/views/home/index.html.erb | 1 +
+2 files changed, 3 insertions(+)</pre>
+<p>Así queda el grafo después de hacer el merge:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png"><img decoding="async" class="aligncenter size-full wp-image-412" title="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png" alt="Estado del repositorio tras hacer un merge con fast-forward de la rama hotfix_15423" width="920" height="346" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-300x112.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture25-624x234.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>Como vemos, mirando la historia del repositorio, no queda constancia de cuándo se empezó el desarrollo de la rama hotfix_15423 y cuándo se incorporó a la rama devel. Una solución podría ser etiquetar los commits correspondientes, como se muestra en la siguiente captura:<a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png"><img decoding="async" class="aligncenter size-full wp-image-413" title="Usando etiquetas para indicar el inicio y final de una rama" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png" alt="Usando etiquetas para indicar el inicio y final de una rama" width="919" height="370" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26.png 919w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-300x120.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture26-624x251.png 624w" sizes="(max-width: 919px) 100vw, 919px" /></a></p>
+<p>Esta solución es válida cuando tenemos pocas ramas. Si tenemos muchas ramas de las que queramos saber su inicio y final, podemos acabar con un número de etiquetas difícil de gestionar.</p>
+<h1>Forzar un merge commit</h1>
+<p>Volvamos a la situación inicial:</p>
+<pre>$ git reset --hard 2d1d1c4
+HEAD is now at 2d1d1c4 Update README.rdoc</pre>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png"><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-411" title="Estado del repositorio al terminar el hotfix 15423" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png" alt="Estado del repositorio al terminar el hotfix 15423" width="920" height="537" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24.png 920w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-300x175.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture24-624x364.png 624w" sizes="(max-width: 920px) 100vw, 920px" /></a></p>
+<p>En esta situación, volvemos a ejecutar el merge de la siguiente forma:</p>
+<pre>$ git merge <strong><span style="color: #ff0000;">--no-ff</span></strong> hotfix_15423 -m'Incorporando rama hotfix_15423'
+Merge made by the 'recursive' strategy.
+ Gemfile | 2 ++
+ app/views/home/index.html.erb | 1 +
+ 2 files changed, 3 insertions(+)</pre>
+<p>Después de ejecutar el comando, este es el estado del repositorio:</p>
+<p><a href="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png"><img loading="lazy" decoding="async" class="aligncenter size-full wp-image-414" title="Incoporando hotfix15423 en devel con la opción --no-ff" src="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png" alt="Incoporando hotfix15423 en devel con la opción --no-ff" width="921" height="457" srcset="https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28.png 921w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-300x148.png 300w, https://aprendegit.com/wp-content/uploads/2013/02/Voila_Capture28-624x309.png 624w" sizes="(max-width: 921px) 100vw, 921px" /></a></p>
+<p>Haciéndolo de esta forma, en lugar de hacerse un fast-forward, vemos que se crea un merge-commit, lo que resulta en una bifurcación que indica claramente el fin y el inicio de la rama hotfix_15423.</p>
+<p>Si sois de los que os gusta ver claramente dónde empiezan y terminan vuestras ramas, este pequeño truco es resultará de utilidad.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://aprendegit.com/forzando-merge-commits/feed/</wfw:commentRss>
+			<slash:comments>4</slash:comments>
+		
+		
+		<post-id xmlns="com-wordpress:feed-additions:1">409</post-id>	</item>
+	</channel>
+</rss>

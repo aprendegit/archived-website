@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+aprendegit.com	TRUE	/	FALSE	1999999999	_lscache_vary	de7919a81172745be5cf7a81e5295f7c
+.aprendegit.com	TRUE	/	FALSE	1999999999	wordpress_test_cookie	WP%20Cookie%20check
+
